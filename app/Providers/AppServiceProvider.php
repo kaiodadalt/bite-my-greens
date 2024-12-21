@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\CachedAuth\CachedPersonalAccessToken;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
         $this->configureCommands();
         $this->configureModels();
         $this->configureUrl();
+
+        Sanctum::usePersonalAccessTokenModel(CachedPersonalAccessToken::class);
+
 
 //        Passport::withCookieEncryption();
 //        Passport::withCookieSerialization();
