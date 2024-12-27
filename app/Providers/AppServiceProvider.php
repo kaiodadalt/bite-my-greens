@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,24 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
-            return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
-        });
-
         $this->configureCommands();
         $this->configureModels();
         $this->configureUrl();
-
-        Sanctum::usePersonalAccessTokenModel(CachedPersonalAccessToken::class);
-
-
-//        Passport::withCookieEncryption();
-//        Passport::withCookieSerialization();
-//
-//        Passport::hashClientSecrets();
-//        Passport::tokensExpireIn(now()->addDays(15));
-//        Passport::refreshTokensExpireIn(now()->addDays(30));
-//        Passport::personalAccessTokensExpireIn(now()->addMonths(6));
+        $this->configurePassport();
+        $this->configureSanctum();
     }
 
     private function configureCommands(): void {
@@ -58,5 +46,23 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->isProduction()) {
             URL::forceScheme('https');
         }
+
+        ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
+            return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
+        });
+    }
+
+    private function configurePassport(): void {
+        Passport::ignoreRoutes();
+        Passport::hashClientSecrets();
+        Passport::withCookieEncryption();
+        Passport::withCookieSerialization();
+        Passport::tokensExpireIn(now()->addDays(15));
+        Passport::refreshTokensExpireIn(now()->addDays(30));
+        Passport::personalAccessTokensExpireIn(now()->addMonths(6));
+    }
+
+    private function configureSanctum(): void {
+        Sanctum::usePersonalAccessTokenModel(CachedPersonalAccessToken::class);
     }
 }

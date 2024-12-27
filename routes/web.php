@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $test = "asd";
+//    phpinfo();
     return ['Laravel' => app()->version()];
 });
 
