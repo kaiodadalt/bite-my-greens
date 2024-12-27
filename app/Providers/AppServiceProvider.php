@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\CachedAuth\CachedPersonalAccessToken;
-use App\Repositories\PassportCache\ClientRepositoryCache;
-use App\Repositories\PassportCache\RefreshTokenRepositoryCache;
-use App\Repositories\PassportCache\TokenRepositoryCache;
+use App\Models\Auth\SanctumCache\PersonalAccessTokenWithCache;
+use App\Repositories\PassportCache\ClientRepositoryWithCache;
+use App\Repositories\PassportCache\RefreshTokenRepositoryWithCache;
+use App\Repositories\PassportCache\TokenRepositoryWithCache;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -63,20 +63,20 @@ class AppServiceProvider extends ServiceProvider
     }
 
     private function configureSanctum(): void {
-        Sanctum::usePersonalAccessTokenModel(CachedPersonalAccessToken::class);
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessTokenWithCache::class);
     }
 
     private function registerPassportSingletons(): void {
         $this->app->singleton(TokenRepository::class, function () {
-            return new TokenRepositoryCache();
+            return new TokenRepositoryWithCache();
         });
 
         $this->app->singleton(RefreshTokenRepository::class, function () {
-            return new RefreshTokenRepositoryCache();
+            return new RefreshTokenRepositoryWithCache();
         });
 
         $this->app->singleton(ClientRepository::class, function () {
-            return new ClientRepositoryCache();
+            return new ClientRepositoryWithCache();
         });
     }
 }

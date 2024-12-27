@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Models\CachedAuth;
+namespace App\Models\Auth\SanctumCache;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
 
 /**
  * @property string $token
  */
-class CachedPersonalAccessToken extends PersonalAccessToken
+class PersonalAccessTokenWithCache extends PersonalAccessToken
 {
-    private const SECONDS_TO_EXPIRE = 604800; // 1 week
-
     public static function findToken($token): ?self
     {
         $token = self::extractTokenFromString($token);
@@ -21,7 +19,7 @@ class CachedPersonalAccessToken extends PersonalAccessToken
 
         $cached_token = Cache::remember(
             "personal-access-token:$hashed_token",
-            self::SECONDS_TO_EXPIRE,
+            now()->addDays(30),
             fn () => parent::findToken($token)
         );
 
@@ -60,7 +58,7 @@ class CachedPersonalAccessToken extends PersonalAccessToken
         return Attribute::make(
             get: fn ($_, $attributes) => Cache::remember(
                 "personal-access-token:" . Hash::make($attributes['token']) . ":tokenable",
-                self::SECONDS_TO_EXPIRE,
+                now()->addDays(30),
                 fn () => parent::tokenable()
             )
         );

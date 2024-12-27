@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Auth\ApiUser;
+use App\Models\Auth\User;
+
 return [
 
     /*
@@ -40,6 +43,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+        'api-sanctum' => [
+            'driver' => 'sanctum',
+            'provider' => 'api-users',
+        ],
     ],
 
     /*
@@ -62,13 +73,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'api-users' => [
+            'driver' => 'eloquent',
+            'model' => ApiUser::class,
+        ],
     ],
 
     /*

@@ -6,7 +6,7 @@ use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\RefreshTokenRepository;
 
-class RefreshTokenRepositoryCache extends RefreshTokenRepository
+class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
 {
     public function find($id): ?RefreshToken
     {

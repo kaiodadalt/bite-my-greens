@@ -5,7 +5,7 @@ namespace App\Repositories\PassportCache;
 use Laravel\Passport\Client;
 use Laravel\Passport\ClientRepository;
 
-class ClientRepositoryCache extends ClientRepository
+class ClientRepositoryWithCache extends ClientRepository
 {
     public function find($id): ?Client
     {

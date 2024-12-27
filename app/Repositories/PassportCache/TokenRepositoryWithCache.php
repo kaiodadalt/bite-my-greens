@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Laravel\Passport\Token;
 use Laravel\Passport\TokenRepository;
 
-class TokenRepositoryCache extends TokenRepository
+class TokenRepositoryWithCache extends TokenRepository
 {
     public function find($id): ?Token
     {
