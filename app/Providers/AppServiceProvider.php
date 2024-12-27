@@ -50,6 +50,10 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
+
+//        RedirectIfAuthenticated::redirectUsing(function () {
+//            return env('FRONTEND_URL');
+//        });
     }
 
     private function configurePassport(): void {
@@ -60,6 +64,7 @@ class AppServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(now()->addDays(15));
         Passport::refreshTokensExpireIn(now()->addDays(30));
         Passport::personalAccessTokensExpireIn(now()->addMonths(6));
+        Passport::cookie(env('PASSPORT_COOKIE_NAME', 'auth_cookie'));
     }
 
     private function configureSanctum(): void {
