@@ -3,11 +3,20 @@
 namespace App\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
+use Database\Factories\Auth\UserFactory;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property DateTime|null $email_verified_at
+ * @property string|null $remember_token
+ */
 abstract class BaseUser extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
