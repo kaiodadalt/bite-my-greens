@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Resources\ChallengeGroup;
+namespace App\Http\Resources\Auth;
 
-use App\Http\Resources\Auth\UserResource;
-use App\Models\ChallengeGroups\ChallengeGroup;
+use App\Models\Auth\BaseUser;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ChallengeGroupResource extends JsonResource
+class UserResource extends JsonResource
 {
-    public function __construct(ChallengeGroup $resource)
+    public function __construct(BaseUser $resource)
     {
         parent::__construct($resource);
     }
@@ -19,8 +18,7 @@ class ChallengeGroupResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'name' => $this->resource->name,
-            'end_date' => $this->resource->end_date,
-            'creator' => new UserResource($this->resource->creator),
+            'email' => $this->resource->email,
             'created_at' => $this->resource->created_at,
         ];
     }
