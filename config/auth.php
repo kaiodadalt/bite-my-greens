@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Auth\ApiUser;
-use App\Models\Auth\User;
+use App\Infrastructure\Persistence\Models\Auth\ApiUser;
+use App\Infrastructure\Persistence\Models\Auth\User;
 
 return [
 

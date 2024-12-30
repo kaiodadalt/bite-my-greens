@@ -1,7 +1,8 @@
 <?php
 
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\AuthServiceProvider::class,
-    App\Providers\HorizonServiceProvider::class,
+    App\Infrastructure\Providers\AppServiceProvider::class,
+    App\Infrastructure\Providers\AuthServiceProvider::class,
+    App\Infrastructure\Providers\HorizonServiceProvider::class,
+    \App\Infrastructure\Providers\RepositoryServiceProvider::class,
 ];

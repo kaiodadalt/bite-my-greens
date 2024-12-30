@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Infrastructure\Http\Controllers\ChallengeGroup;
+
+use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupUseCase;
+use App\Infrastructure\Http\Controllers\Controller;
+use App\Infrastructure\Http\Requests\ChallengeGroup\CreateChallengeGroupRequest;
+use App\Infrastructure\Http\Resources\ChallengeGroup\ChallengeGroupResource;
+use Illuminate\Http\JsonResponse;
+
+class ChallengeGroupController extends Controller
+{
+    public function __construct(
+        private readonly CreateChallengeGroupUseCase $useCase
+    ) {}
+
+    public function create(CreateChallengeGroupRequest $request): JsonResponse
+    {
+        $challenge_group = $this->useCase->execute($request->toDto());
+        return (new ChallengeGroupResource($challenge_group))
+            ->response()
+            ->setStatusCode(201);
+    }
+}

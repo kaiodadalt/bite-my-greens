@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Infrastructure\Providers;
+
+use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
+use App\Infrastructure\Persistence\Repositories\ChallengeGroup\ChallengeGroupEloquentRepository;
+use Illuminate\Support\ServiceProvider;
+
+class RepositoryServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this->app->bind(ChallengeGroupRepository::class, ChallengeGroupEloquentRepository::class);
+    }
+}

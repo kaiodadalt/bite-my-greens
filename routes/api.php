@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ChallengeGroup\ChallengeGroupController;
+use App\Infrastructure\Http\Controllers\ChallengeGroup\ChallengeGroupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

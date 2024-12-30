@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\ChallengeGroup;
 
-use App\Models\Auth\User;
+use App\Infrastructure\Persistence\Models\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -28,10 +28,8 @@ class ChallengeGroupTest extends TestCase
 
         $response->assertStatus(201);
         $response->assertJson([
-            'data' => [
-                'name' => 'Kaio Challenge',
-                'end_date' => now()->addDays(7)->toDateString(),
-            ],
+            'name' => 'Kaio Challenge',
+            'end_date' => now()->addDays(7)->toDateString(),
         ]);
     }
 }
