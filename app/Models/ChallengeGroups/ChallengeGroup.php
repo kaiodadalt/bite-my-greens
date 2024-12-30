@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property DateTime $end_date
  * @property User $creator
+ * @method static create(array $array)
  */
 class ChallengeGroup extends Model
 {

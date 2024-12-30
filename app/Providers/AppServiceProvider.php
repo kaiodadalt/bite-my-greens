@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Auth\SanctumCache\PersonalAccessTokenWithCache;
 use App\Repositories\PassportCache\ClientRepositoryWithCache;
 use App\Repositories\PassportCache\RefreshTokenRepositoryWithCache;
 use App\Repositories\PassportCache\TokenRepositoryWithCache;
@@ -12,10 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\ClientRepository;
-use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshTokenRepository;
 use Laravel\Passport\TokenRepository;
-use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
         $this->configureCommands();
         $this->configureModels();
         $this->configureUrl();
-        $this->configurePassport();
-        $this->configureSanctum();
     }
 
     private function configureCommands(): void {
@@ -54,21 +49,6 @@ class AppServiceProvider extends ServiceProvider
 //        RedirectIfAuthenticated::redirectUsing(function () {
 //            return env('FRONTEND_URL');
 //        });
-    }
-
-    private function configurePassport(): void {
-        Passport::ignoreRoutes();
-        Passport::hashClientSecrets();
-        Passport::withCookieEncryption();
-        Passport::withCookieSerialization();
-        Passport::tokensExpireIn(now()->addDays(15));
-        Passport::refreshTokensExpireIn(now()->addDays(30));
-        Passport::personalAccessTokensExpireIn(now()->addMonths(6));
-        Passport::cookie(env('PASSPORT_COOKIE_NAME', 'auth_cookie'));
-    }
-
-    private function configureSanctum(): void {
-        Sanctum::usePersonalAccessTokenModel(PersonalAccessTokenWithCache::class);
     }
 
     private function registerPassportSingletons(): void {
