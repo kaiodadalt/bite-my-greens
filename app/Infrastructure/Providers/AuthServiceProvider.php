@@ -4,10 +4,10 @@ namespace App\Infrastructure\Providers;
 
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Infrastructure\Persistence\Models\Auth\SanctumCache\PersonalAccessTokenWithCache;
+use App\Infrastructure\Persistence\Policies\ChallengeGroup\ChallengeGroupPolicy;
 use App\Infrastructure\Persistence\Repositories\PassportCache\ClientRepositoryWithCache;
 use App\Infrastructure\Persistence\Repositories\PassportCache\RefreshTokenRepositoryWithCache;
 use App\Infrastructure\Persistence\Repositories\PassportCache\TokenRepositoryWithCache;
-use App\Infrastructure\Policies\ChallengeGroup\ChallengeGroupPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
