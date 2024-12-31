@@ -1,6 +1,6 @@
 <?php
 
-use App\Infrastructure\Http\Controllers\ChallengeGroup\ChallengeGroupController;
+use App\Infrastructure\Http\Controllers\ChallengeGroup\CreateChallengeGroupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,5 +9,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    Route::post('/challenge-group',  [ChallengeGroupController::class, 'create']);
+    Route::post('/challenge-group',  [CreateChallengeGroupController::class, 'create']);
 });

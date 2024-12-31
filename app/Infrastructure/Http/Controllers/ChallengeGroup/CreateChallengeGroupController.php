@@ -8,15 +8,16 @@ use App\Infrastructure\Http\Requests\ChallengeGroup\CreateChallengeGroupRequest;
 use App\Infrastructure\Http\Resources\ChallengeGroup\ChallengeGroupResource;
 use Illuminate\Http\JsonResponse;
 
-class ChallengeGroupController extends Controller
+class CreateChallengeGroupController extends Controller
 {
     public function __construct(
-        private readonly CreateChallengeGroupUseCase $useCase
+        private readonly CreateChallengeGroupUseCase $create
     ) {}
+
 
     public function create(CreateChallengeGroupRequest $request): JsonResponse
     {
-        $challenge_group = $this->useCase->execute($request->toDto());
+        $challenge_group = $this->create->execute($request->toDto());
         return (new ChallengeGroupResource($challenge_group))
             ->response()
             ->setStatusCode(201);
