@@ -13,7 +13,7 @@ readonly class CreateChallengeGroupUseCase extends UseCase
 {
     public function __construct(
         private ChallengeGroupRepository        $repository,
-        private ChallengeGroupValidationService $validation_service
+        private ChallengeGroupValidationService $validator
     ) {}
 
     /**
@@ -23,13 +23,13 @@ readonly class CreateChallengeGroupUseCase extends UseCase
     public function execute(CreateChallengeGroupDTO $dto): ChallengeGroupEntity
     {
         $this->authorize('create', ChallengeGroupEntity::class);
-        $this->validation_service->validateEndDate($dto->end_date);
-
-        return $this->repository->save(new ChallengeGroupEntity(
+        $challenge_group = new ChallengeGroupEntity(
             id: null,
             name: $dto->name,
             end_date: $dto->end_date,
             created_by: $dto->created_by
-        ));
+        );
+        $this->validator->validate($challenge_group);
+        return $this->repository->save($challenge_group);
     }
 }
