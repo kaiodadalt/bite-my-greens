@@ -32,4 +32,42 @@ class ChallengeGroupTest extends TestCase
             'end_date' => now()->addDays(7)->toDateString(),
         ]);
     }
+
+    public function test_authenticated_user_can_update_challenge_group(): void
+    {
+        $user = User::factory()->create();
+
+        // Log in the user
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+
+        $response = $this->post('/api/challenge-group', [
+            'name' => 'Kaio Challenge',
+            'end_date' => now()->addDays(7)->toDateString(),
+        ]);
+
+        $id = $response->json('id');
+
+        $response = $this->put('/api/challenge-group/' . $id, [
+            'name' => 'Updated Challenge',
+            'end_date' => now()->addDays(10)->toDateString(),
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'id' => $id,
+            'name' => 'Updated Challenge',
+            'end_date' => now()->addDays(10)->toDateString(),
+        ]);
+        $this->assertDatabaseHas('challenge_groups', [
+            'id' => $id,
+            'name' => 'Updated Challenge',
+            'end_date' => now()->addDays(10)->toDateString(),
+        ]);
+    }
+
 }

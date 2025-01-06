@@ -14,7 +14,6 @@ class CreateChallengeGroupController extends Controller
         private readonly CreateChallengeGroupUseCase $create
     ) {}
 
-
     public function create(CreateChallengeGroupRequest $request): JsonResponse
     {
         $challenge_group = $this->create->execute($request->toDto());

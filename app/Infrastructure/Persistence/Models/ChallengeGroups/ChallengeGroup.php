@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property DateTime $end_date
  * @property User $creator
  * @method static create(array $array)
+ * @method static exists(int $id)
+ * @method static find(int $id)
+ * @method static where(array $clauses)
  */
 class ChallengeGroup extends Model
 {

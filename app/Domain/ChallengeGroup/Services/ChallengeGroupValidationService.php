@@ -12,7 +12,9 @@ class ChallengeGroupValidationService
      */
     public function validate(ChallengeGroupEntity $challenge_group): void
     {
-        $this->validateEndDate($challenge_group);
+        if($challenge_group->end_date){
+            $this->validateEndDate($challenge_group);
+        }
     }
 
     /**
