@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Application\ChallengeGroups\UseCases;
+
+use App\Application\Auth\DTOs\UserDTO;
+use App\Application\ChallengeGroups\DTOs\GetChallengeGroupDTO;
+use App\Application\Shared\UseCase;
+use App\Domain\Auth\Entities\UserEntity;
+use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
+use App\Domain\ChallengeGroup\Services\GetChallengeGroupService;
+use App\Domain\Shared\Exceptions\DomainAuthorizationException;
+
+readonly class GetChallengeGroupUseCase extends UseCase
+{
+    public function __construct(
+        private GetChallengeGroupService $service
+    ) {}
+
+    /**
+     * @throws DomainAuthorizationException
+     */
+    public function execute(UserDTO $user_dto, GetChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
+    {
+        $user = new UserEntity(
+            $user_dto->id,
+            $user_dto->name,
+            $user_dto->email
+        );
+        $challenge_group = new ChallengeGroupEntity(
+            $challenge_group_dto->id,
+        );
+        return $this->service->get($user, $challenge_group);
+    }
+}

@@ -10,7 +10,7 @@ class ChallengeGroupEntity implements Entity
         private ?int     $id = null,
         private ?string  $name = null,
         private ?string  $end_date = null,
-        private int      $created_by,
+        private ?int     $created_by = null,
         private ?string  $created_at = null,
         private ?string  $updated_at = null,
     ) {}
@@ -39,6 +39,11 @@ class ChallengeGroupEntity implements Entity
     public function getOwnerId(): int
     {
         return $this->created_by;
+    }
+
+    public function hasOwner(int $user_id): bool
+    {
+        return $this->created_by === $user_id;
     }
 
     public function getCreatedAt(): ?string

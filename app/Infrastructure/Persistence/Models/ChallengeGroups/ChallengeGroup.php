@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static exists(int $id)
  * @method static find(int $id)
  * @method static where(array $clauses)
+ * @method static join(string $table, string $first, string $operator, string $second)
  */
 class ChallengeGroup extends Model
 {
