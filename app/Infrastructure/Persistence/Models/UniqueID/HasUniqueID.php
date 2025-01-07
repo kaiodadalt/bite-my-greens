@@ -7,6 +7,8 @@ namespace App\Infrastructure\Persistence\Models\UniqueID;
  */
 trait HasUniqueID
 {
+    protected $keyType = 'string';
+    protected $incrementing = false;
     protected static function bootUuidTrait(): void
     {
         static::creating(function ($model) {
