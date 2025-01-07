@@ -25,7 +25,7 @@ class UpdateChallengeGroupRequest extends FormRequest implements ConvertsToDTO
         ];
     }
 
-    public function toDto(): UpdateChallengeGroupDTO
+    public function toDTO(): UpdateChallengeGroupDTO
     {
         return new UpdateChallengeGroupDTO(
             $this->route('id'),

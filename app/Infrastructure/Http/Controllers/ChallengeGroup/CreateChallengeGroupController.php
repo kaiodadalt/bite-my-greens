@@ -16,7 +16,7 @@ class CreateChallengeGroupController extends Controller
 
     public function create(CreateChallengeGroupRequest $request): JsonResponse
     {
-        $challenge_group = $this->create->execute($request->toDto());
+        $challenge_group = $this->create->execute($request->toDTO());
         return (new ChallengeGroupResource($challenge_group))
             ->response()
             ->setStatusCode(201);

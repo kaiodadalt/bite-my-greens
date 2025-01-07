@@ -2,32 +2,37 @@
 
 namespace App\Application\ChallengeGroups\UseCases;
 
+use App\Application\Auth\DTOs\UserDTO;
 use App\Application\ChallengeGroups\DTOs\UpdateChallengeGroupDTO;
-use App\Application\UseCase;
-use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
+use App\Application\Shared\UseCase;
+use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\ChallengeGroup\Services\ChallengeGroupValidationService;
-use App\Domain\DomainException;
+use App\Domain\ChallengeGroup\Services\UpdateChallengeGroupService;
+use App\Domain\Shared\Exceptions\DomainAuthorizationException;
+use App\Domain\Shared\Exceptions\DomainException;
 
 readonly class UpdateChallengeGroupUseCase extends UseCase
 {
     public function __construct(
-        private ChallengeGroupRepository        $repository,
-        private ChallengeGroupValidationService $validator
+        private UpdateChallengeGroupService $service
     ) {}
 
     /**
-     * @throws DomainException
+     * @throws DomainException|DomainAuthorizationException
      */
-    public function execute(UpdateChallengeGroupDTO $dto): ChallengeGroupEntity
+    public function execute(UserDTO $user_dto, UpdateChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
     {
-        $challenge_group = new ChallengeGroupEntity(
-            id: $dto->id,
-            name: $dto->name,
-            end_date: $dto->end_date,
-            created_by: $dto->created_by
+        $user = new UserEntity(
+            $user_dto->id,
+            $user_dto->name,
+            $user_dto->email
         );
-        $this->validator->validate($challenge_group);
-        return $this->repository->update($challenge_group);
+        $challenge_group = new ChallengeGroupEntity(
+            $challenge_group_dto->id,
+            $challenge_group_dto->name,
+            $challenge_group_dto->end_date,
+            $challenge_group_dto->created_by
+        );
+        return $this->service->update($user, $challenge_group);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\Http\Requests;
 
-use App\Application\DTO;
+use App\Application\Shared\DTO;
 
 interface ConvertsToDTO
 {
-    public function toDto(): DTO;
+    public function toDTO(): DTO;
 }

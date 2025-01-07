@@ -2,9 +2,7 @@
 
 namespace App\Infrastructure\Providers;
 
-use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Infrastructure\Persistence\Models\Auth\SanctumCache\PersonalAccessTokenWithCache;
-use App\Infrastructure\Persistence\Policies\ChallengeGroup\ChallengeGroupPolicy;
 use App\Infrastructure\Persistence\Repositories\PassportCache\ClientRepositoryWithCache;
 use App\Infrastructure\Persistence\Repositories\PassportCache\RefreshTokenRepositoryWithCache;
 use App\Infrastructure\Persistence\Repositories\PassportCache\TokenRepositoryWithCache;
@@ -18,7 +16,6 @@ use Laravel\Sanctum\Sanctum;
 class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
-        ChallengeGroupEntity::class => ChallengeGroupPolicy::class,
     ];
 
     public function register(): void

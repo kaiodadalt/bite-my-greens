@@ -3,17 +3,15 @@
 namespace App\Application\ChallengeGroups\UseCases;
 
 use App\Application\ChallengeGroups\DTOs\CreateChallengeGroupDTO;
-use App\Application\UseCase;
-use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
+use App\Application\Shared\UseCase;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\ChallengeGroup\Services\ChallengeGroupValidationService;
-use App\Domain\DomainException;
+use App\Domain\ChallengeGroup\Services\CreateChallengeGroupService;
+use App\Domain\Shared\Exceptions\DomainException;
 
 readonly class CreateChallengeGroupUseCase extends UseCase
 {
     public function __construct(
-        private ChallengeGroupRepository        $repository,
-        private ChallengeGroupValidationService $validator
+        private CreateChallengeGroupService $service
     ) {}
 
     /**
@@ -21,13 +19,11 @@ readonly class CreateChallengeGroupUseCase extends UseCase
      */
     public function execute(CreateChallengeGroupDTO $dto): ChallengeGroupEntity
     {
-        $challenge_group = new ChallengeGroupEntity(
+        return $this->service->create(new ChallengeGroupEntity(
             id: null,
             name: $dto->name,
             end_date: $dto->end_date,
             created_by: $dto->created_by
-        );
-        $this->validator->validate($challenge_group);
-        return $this->repository->create($challenge_group);
+        ));
     }
 }

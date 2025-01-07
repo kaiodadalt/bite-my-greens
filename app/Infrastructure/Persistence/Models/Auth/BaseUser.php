@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Persistence\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Application\Auth\DTOs\UserDTO;
 use Database\Factories\Auth\UserFactory;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,5 +61,14 @@ abstract class BaseUser extends Authenticatable
     protected static function newFactory(): UserFactory
     {
         return new UserFactory();
+    }
+
+    public function toDTO(): UserDTO
+    {
+        return new UserDTO(
+            $this->id,
+            $this->name,
+            $this->email,
+        );
     }
 }

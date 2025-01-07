@@ -17,11 +17,11 @@ class ChallengeGroupResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->resource->id,
-            'name' => $this->resource->name,
-            'end_date' => $this->resource->end_date,
-            'created_by' => $this->resource->created_by,
-            'created_at' => $this->resource->created_at,
+            'id' => $this->resource->getId(),
+            'name' => $this->resource->getName(),
+            'end_date' => $this->resource->getEndDate(),
+            'created_by' => $this->resource->getOwnerId(),
+            'created_at' => $this->resource->getCreatedAt(),
         ];
     }
 }

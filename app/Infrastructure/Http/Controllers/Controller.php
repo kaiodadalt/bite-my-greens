@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Http\Controllers;
 
-use App\Domain\DomainException;
+use App\Domain\Shared\Exceptions\DomainException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;

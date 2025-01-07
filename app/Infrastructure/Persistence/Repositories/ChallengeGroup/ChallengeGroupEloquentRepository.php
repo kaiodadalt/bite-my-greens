@@ -3,9 +3,9 @@
 namespace App\Infrastructure\Persistence\Repositories\ChallengeGroup;
 
 
-use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
-use App\Domain\DomainException;
+use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
+use App\Domain\Shared\Exceptions\DomainException;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
 
 class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
@@ -13,30 +13,31 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
     public function create(ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
     {
         $created_model = ChallengeGroup::create([
-            'name' => $challenge_group->name,
-            'end_date' => $challenge_group->end_date,
-            'created_by' => $challenge_group->created_by,
+            'name' => $challenge_group->getName(),
+            'end_date' => $challenge_group->getEndDate(),
+            'created_by' => $challenge_group->getOwnerId(),
         ]);
-        $challenge_group->id = $created_model->id;
-        $challenge_group->created_at = $created_model->created_at;
-        $challenge_group->updated_at = $created_model->updated_at;
-
-        return $challenge_group;
+        return $challenge_group->setId($created_model->id)
+            ->setCreatedAt($created_model->created_at)
+            ->setUpdatedAt($created_model->updated_at);
     }
 
+    /**
+     * @throws DomainException
+     */
     public function update(ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
     {
         $this->findOrFail(
-            $challenge_group->id,
-            $challenge_group->created_by
+            $challenge_group->getId(),
+            $challenge_group->getOwnerId()
         );
 
         ChallengeGroup::where([
-            'id' => $challenge_group->id,
-            'created_by' => $challenge_group->created_by
+            'id' => $challenge_group->getId(),
+            'created_by' => $challenge_group->getOwnerId()
         ])->update(array_filter([
-            'name' => $challenge_group->name,
-            'end_date' => $challenge_group->end_date,
+            'name' => $challenge_group->getName(),
+            'end_date' => $challenge_group->getEndDate(),
         ]));
 
         return $challenge_group;

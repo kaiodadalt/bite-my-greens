@@ -25,7 +25,7 @@ class CreateChallengeGroupRequest extends FormRequest implements ConvertsToDTO
         ];
     }
 
-    public function toDto(): CreateChallengeGroupDTO
+    public function toDTO(): CreateChallengeGroupDTO
     {
         return new CreateChallengeGroupDTO(
             $this->name,

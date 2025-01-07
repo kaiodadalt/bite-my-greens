@@ -3,16 +3,16 @@
 namespace App\Domain\ChallengeGroup\Services;
 
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\DomainException;
+use App\Domain\Shared\Exceptions\DomainException;
 
-class ChallengeGroupValidationService
+class ValidateChallengeGroupService
 {
     /**
      * @throws DomainException
      */
     public function validate(ChallengeGroupEntity $challenge_group): void
     {
-        if($challenge_group->end_date){
+        if($challenge_group->getEndDate()){
             $this->validateEndDate($challenge_group);
         }
     }
@@ -22,7 +22,7 @@ class ChallengeGroupValidationService
      */
     private function validateEndDate(ChallengeGroupEntity $challenge_group): void
     {
-        if (strtotime($challenge_group->end_date) < time()) {
+        if (strtotime($challenge_group->getEndDate()) < time()) {
             throw new DomainException("End date must be in the future.");
         }
     }

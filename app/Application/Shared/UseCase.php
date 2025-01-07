@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application;
+namespace App\Application\Shared;
 
 abstract readonly class UseCase
 {}

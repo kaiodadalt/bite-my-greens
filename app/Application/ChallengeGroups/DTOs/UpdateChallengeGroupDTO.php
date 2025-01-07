@@ -2,7 +2,7 @@
 
 namespace App\Application\ChallengeGroups\DTOs;
 
-use App\Application\DTO;
+use App\Application\Shared\DTO;
 
 readonly class UpdateChallengeGroupDTO implements DTO
 {
