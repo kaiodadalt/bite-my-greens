@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Http\Controllers;
 
+use App\Domain\Shared\Exceptions\DomainAuthorizationException;
 use App\Domain\Shared\Exceptions\DomainException;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Log;
@@ -23,7 +23,7 @@ abstract class Controller extends BaseController
     {
         try {
             return parent::callAction($method, $parameters);
-        } catch (AuthorizationException $e) {
+        } catch (DomainAuthorizationException $e) {
             return $this->errorResponse('You are not authorized to perform this action.', 403);
         } catch (DomainException $e) {
             return $this->errorResponse($e->getMessage(), 422);

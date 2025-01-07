@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Http\Controllers\ChallengeGroup;
 
 use App\Application\ChallengeGroups\UseCases\UpdateChallengeGroupUseCase;
-use App\Domain\Shared\Exceptions\DomainException;
 use App\Infrastructure\Http\Controllers\Controller;
 use App\Infrastructure\Http\Requests\ChallengeGroup\UpdateChallengeGroupRequest;
 use App\Infrastructure\Http\Resources\ChallengeGroup\ChallengeGroupResource;
@@ -15,9 +14,6 @@ class UpdateChallengeGroupController extends Controller
         private readonly UpdateChallengeGroupUseCase $update
     ) {}
 
-    /**
-     * @throws DomainException
-     */
     public function update(UpdateChallengeGroupRequest $request, int $id): JsonResponse
     {
         $challenge_group = $this->update->execute(auth()->user()->toDTO(), $request->toDto());
