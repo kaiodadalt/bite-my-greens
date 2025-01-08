@@ -7,7 +7,7 @@ use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;
 
-readonly class ChallengeGroupService
+final readonly class ChallengeGroupService
 {
     public function __construct(
         private AuthorizeChallengeGroupService $auth,
@@ -26,7 +26,7 @@ readonly class ChallengeGroupService
     public function get(UserEntity $user, ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
     {
         $this->auth->canView($user, $challenge_group);
-        return $this->repository->getById($challenge_group->getId());
+        return $this->repository->findOrFail($challenge_group->getId(), $user->getId());
     }
 
     /**

@@ -8,6 +8,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -38,5 +39,14 @@ class ChallengeGroup extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+
+    /**
+     * @return HasMany<ChallengeGroupUser>
+     */
+    public function challengeGroupUsers(): HasMany
+    {
+        return $this->hasMany(ChallengeGroupUser::class, 'challenge_group_id');
     }
 }

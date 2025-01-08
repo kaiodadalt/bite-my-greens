@@ -43,27 +43,6 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         return $challenge_group;
     }
 
-    /**
-     * @throws DomainException
-     */
-    public function getById(int $challenge_group_id): ChallengeGroupEntity
-    {
-        $challenge_group = ChallengeGroup::find($challenge_group_id);
-
-        if ($challenge_group === null) {
-            throw new DomainException('Challenge group does not exist');
-        }
-
-        return new ChallengeGroupEntity(
-            $challenge_group->id,
-            $challenge_group->name,
-            $challenge_group->end_date,
-            $challenge_group->created_by,
-            $challenge_group->created_at,
-            $challenge_group->updated_at,
-        );
-    }
-
     public function delete(ChallengeGroupEntity $challenge_group): bool
     {
         return ChallengeGroup::where([

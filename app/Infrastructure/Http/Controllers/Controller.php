@@ -24,7 +24,7 @@ abstract class Controller extends BaseController
         try {
             return parent::callAction($method, $parameters);
         } catch (DomainAuthorizationException $e) {
-            return $this->errorResponse('You are not authorized to perform this action.', 403);
+            return $this->errorResponse($e->getMessage(), 403);
         } catch (DomainException $e) {
             return $this->errorResponse($e->getMessage(), 422);
         } catch (\Exception $e) {

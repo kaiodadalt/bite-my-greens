@@ -7,7 +7,7 @@ use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;
 
-readonly class AuthorizeChallengeGroupService
+final readonly class AuthorizeChallengeGroupService
 {
     public function __construct(
         private ChallengeGroupRepository $repository,
