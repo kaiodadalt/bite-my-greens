@@ -21,17 +21,9 @@ readonly class UpdateChallengeGroupUseCase extends UseCase
      */
     public function execute(UserDTO $user_dto, ChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
     {
-        $user = new UserEntity(
-            $user_dto->id,
-            $user_dto->name,
-            $user_dto->email
+        return $this->service->update(
+            new UserEntity(...$user_dto),
+            new ChallengeGroupEntity(...$challenge_group_dto)
         );
-        $challenge_group = new ChallengeGroupEntity(
-            $challenge_group_dto->id,
-            $challenge_group_dto->name,
-            $challenge_group_dto->end_date,
-            $challenge_group_dto->created_by
-        );
-        return $this->service->update($user, $challenge_group);
     }
 }

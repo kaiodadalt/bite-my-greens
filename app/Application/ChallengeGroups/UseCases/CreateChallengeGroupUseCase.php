@@ -2,8 +2,10 @@
 
 namespace App\Application\ChallengeGroups\UseCases;
 
+use App\Application\Auth\DTOs\UserDTO;
 use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
 use App\Application\Shared\UseCase;
+use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\ChallengeGroup\Services\ChallengeGroupService;
 
@@ -13,13 +15,11 @@ readonly class CreateChallengeGroupUseCase extends UseCase
         private ChallengeGroupService $service
     ) {}
 
-    public function execute(ChallengeGroupDTO $dto): ChallengeGroupEntity
+    public function execute(UserDTO $user_dto, ChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
     {
-        return $this->service->create(new ChallengeGroupEntity(
-            id: null,
-            name: $dto->name,
-            end_date: $dto->end_date,
-            created_by: $dto->created_by
-        ));
+        return $this->service->create(
+            new UserEntity(...$user_dto),
+            new ChallengeGroupEntity(...$challenge_group_dto)
+        );
     }
 }

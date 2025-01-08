@@ -41,6 +41,12 @@ class ChallengeGroupEntity implements Entity
         return $this->created_by;
     }
 
+    public function setOwnerId(int $created_by): self
+    {
+        $this->created_by = $created_by;
+        return $this;
+    }
+
     public function hasOwner(int $user_id): bool
     {
         return $this->created_by === $user_id;

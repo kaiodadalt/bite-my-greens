@@ -14,8 +14,9 @@ readonly class ChallengeGroupService
         private ChallengeGroupRepository $repository,
     ) {}
 
-    public function create(ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
+    public function create(UserEntity $user, ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
     {
+        $challenge_group->setOwnerId($user->getId());
         return $this->repository->create($challenge_group);
     }
 
@@ -24,7 +25,7 @@ readonly class ChallengeGroupService
      */
     public function get(UserEntity $user, ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
     {
-        $this->auth->canView($user->getId(), $challenge_group);
+        $this->auth->canView($user, $challenge_group);
         return $this->repository->getById($challenge_group->getId());
     }
 
@@ -33,7 +34,7 @@ readonly class ChallengeGroupService
      */
     public function update(UserEntity $user, ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
     {
-        $this->auth->canUpdate($user->getId(), $challenge_group);
+        $this->auth->canUpdate($user, $challenge_group);
         return $this->repository->update($challenge_group);
     }
 
@@ -42,7 +43,7 @@ readonly class ChallengeGroupService
      */
     public function delete(UserEntity $user, ChallengeGroupEntity $challenge_group): bool
     {
-        $this->auth->canDelete($user->getId(), $challenge_group);
+        $this->auth->canDelete($user, $challenge_group);
         return $this->repository->delete($challenge_group);
     }
 }

@@ -21,14 +21,9 @@ readonly class GetChallengeGroupUseCase extends UseCase
      */
     public function execute(UserDTO $user_dto, ChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
     {
-        $user = new UserEntity(
-            $user_dto->id,
-            $user_dto->name,
-            $user_dto->email
+        return $this->service->get(
+            new UserEntity(...$user_dto),
+            new ChallengeGroupEntity(...$challenge_group_dto)
         );
-        $challenge_group = new ChallengeGroupEntity(
-            $challenge_group_dto->id,
-        );
-        return $this->service->get($user, $challenge_group);
     }
 }

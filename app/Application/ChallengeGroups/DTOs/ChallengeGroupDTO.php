@@ -4,12 +4,22 @@ namespace App\Application\ChallengeGroups\DTOs;
 
 use App\Application\Shared\DTO;
 
-readonly class ChallengeGroupDTO implements DTO
+class ChallengeGroupDTO extends DTO
 {
     public function __construct(
-        public ?int     $id = null,
-        public ?string  $name = null,
-        public ?string  $end_date = null,
-        public ?int     $created_by = null
+        public readonly ?int     $id = null,
+        public readonly ?string  $name = null,
+        public readonly ?string  $end_date = null,
+        public readonly ?int     $created_by = null
     ) {}
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'end_date' => $this->end_date,
+            'created_by' => $this->created_by,
+        ];
+    }
 }

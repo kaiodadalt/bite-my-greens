@@ -17,7 +17,7 @@ class ChallengeGroupController extends Controller
 {
     public function create(CreateChallengeGroupRequest $request, CreateChallengeGroupUseCase $use_case): JsonResponse
     {
-        $challenge_group = $use_case->execute($request->toDTO());
+        $challenge_group = $use_case->execute(auth()->user()->toDTO(), $request->toDTO());
         return (new ChallengeGroupResource($challenge_group))
             ->response()
             ->setStatusCode(201);

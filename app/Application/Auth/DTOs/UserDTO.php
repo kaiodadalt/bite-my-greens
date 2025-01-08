@@ -4,11 +4,20 @@ namespace App\Application\Auth\DTOs;
 
 use App\Application\Shared\DTO;
 
-readonly class UserDTO implements DTO
+class UserDTO extends DTO
 {
     public function __construct(
-        public string $id,
-        public string $name,
-        public string $email,
+        public readonly string $id,
+        public readonly string $name,
+        public readonly string $email,
     ) {}
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
+    }
 }

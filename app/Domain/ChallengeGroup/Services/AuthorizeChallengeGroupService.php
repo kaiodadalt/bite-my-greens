@@ -2,6 +2,7 @@
 
 namespace App\Domain\ChallengeGroup\Services;
 
+use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;
@@ -15,9 +16,9 @@ readonly class AuthorizeChallengeGroupService
     /**
      * @throws DomainAuthorizationException
      */
-    public function canView(int $user_id, ChallengeGroupEntity $challenge_group): void
+    public function canView(UserEntity $user, ChallengeGroupEntity $challenge_group): void
     {
-        if (!$challenge_group->hasOwner($user_id) || !$this->repository->hasMember($challenge_group, $user_id)) {
+        if (!$challenge_group->hasOwner($user->getId()) || !$this->repository->hasMember($challenge_group, $user->getId())) {
             throw new DomainAuthorizationException("You are not authorized to view this challenge group.");
         }
     }
@@ -25,9 +26,9 @@ readonly class AuthorizeChallengeGroupService
     /**
      * @throws DomainAuthorizationException
      */
-    public function canUpdate(int $user_id, ChallengeGroupEntity $challenge_group): void
+    public function canUpdate(UserEntity $user, ChallengeGroupEntity $challenge_group): void
     {
-        if (!$challenge_group->hasOwner($user_id)) {
+        if (!$challenge_group->hasOwner($user->getId())) {
             throw new DomainAuthorizationException("You are not authorized to update this challenge group.");
         }
     }
@@ -35,9 +36,9 @@ readonly class AuthorizeChallengeGroupService
     /**
      * @throws DomainAuthorizationException
      */
-    public function canDelete(int $user_id, ChallengeGroupEntity $challenge_group, ): void
+    public function canDelete(UserEntity $user, ChallengeGroupEntity $challenge_group, ): void
     {
-        if ($challenge_group->hasOwner($user_id)) {
+        if ($challenge_group->hasOwner($user->getId())) {
             throw new DomainAuthorizationException("You are not authorized to delete this challenge group.");
         }
     }

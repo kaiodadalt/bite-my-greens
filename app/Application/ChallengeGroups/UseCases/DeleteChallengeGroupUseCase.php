@@ -21,14 +21,9 @@ readonly class DeleteChallengeGroupUseCase extends UseCase
      */
     public function execute(UserDTO $user_dto, ChallengeGroupDTO $challenge_group_dto): bool
     {
-        $user = new UserEntity(
-            $user_dto->id,
-            $user_dto->name,
-            $user_dto->email
+        return $this->service->delete(
+            new UserEntity(...$user_dto),
+            new ChallengeGroupEntity(...$challenge_group_dto)
         );
-        $challenge_group = new ChallengeGroupEntity(
-            $challenge_group_dto->id,
-        );
-        return $this->service->delete($user, $challenge_group);
     }
 }
