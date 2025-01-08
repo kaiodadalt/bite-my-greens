@@ -4,18 +4,12 @@ namespace App\Application\ChallengeGroups\UseCases;
 
 use App\Application\Auth\DTOs\UserDTO;
 use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
-use App\Application\Shared\UseCase;
 use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\ChallengeGroup\Services\ChallengeGroupService;
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;
 
-readonly class DeleteChallengeGroupUseCase extends UseCase
+readonly class DeleteChallengeGroupUseCase extends ChallengeGroupUseCase
 {
-    public function __construct(
-        private ChallengeGroupService $service
-    ) {}
-
     /**
      * @throws DomainAuthorizationException
      */

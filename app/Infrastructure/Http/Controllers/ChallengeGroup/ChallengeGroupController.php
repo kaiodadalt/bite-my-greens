@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Http\Controllers\ChallengeGroup;
 
 use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
-use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupUseCase;
+use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\DeleteChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\GetChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\UpdateChallengeGroupUseCase;
@@ -15,7 +15,7 @@ use Illuminate\Http\JsonResponse;
 
 class ChallengeGroupController extends Controller
 {
-    public function create(CreateChallengeGroupRequest $request, CreateChallengeGroupUseCase $use_case): JsonResponse
+    public function create(CreateChallengeGroupRequest $request, CreateChallengeGroupChallengeGroupUseCase $use_case): JsonResponse
     {
         $challenge_group = $use_case->execute(auth()->user()->toDTO(), $request->toDTO());
         return (new ChallengeGroupResource($challenge_group))
