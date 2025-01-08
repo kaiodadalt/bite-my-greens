@@ -3,24 +3,23 @@
 namespace App\Application\ChallengeGroups\UseCases;
 
 use App\Application\Auth\DTOs\UserDTO;
-use App\Application\ChallengeGroups\DTOs\UpdateChallengeGroupDTO;
+use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
 use App\Application\Shared\UseCase;
 use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\ChallengeGroup\Services\UpdateChallengeGroupService;
+use App\Domain\ChallengeGroup\Services\ChallengeGroupService;
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;
-use App\Domain\Shared\Exceptions\DomainException;
 
 readonly class UpdateChallengeGroupUseCase extends UseCase
 {
     public function __construct(
-        private UpdateChallengeGroupService $service
+        private ChallengeGroupService $service
     ) {}
 
     /**
-     * @throws DomainException|DomainAuthorizationException
+     * @throws DomainAuthorizationException
      */
-    public function execute(UserDTO $user_dto, UpdateChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
+    public function execute(UserDTO $user_dto, ChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
     {
         $user = new UserEntity(
             $user_dto->id,

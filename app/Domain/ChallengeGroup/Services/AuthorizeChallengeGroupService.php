@@ -27,7 +27,7 @@ readonly class AuthorizeChallengeGroupService
      */
     public function canUpdate(int $user_id, ChallengeGroupEntity $challenge_group): void
     {
-        if ($challenge_group->hasOwner($user_id)) {
+        if (!$challenge_group->hasOwner($user_id)) {
             throw new DomainAuthorizationException("You are not authorized to update this challenge group.");
         }
     }

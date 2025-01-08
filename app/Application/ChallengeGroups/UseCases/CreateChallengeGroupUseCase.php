@@ -2,22 +2,18 @@
 
 namespace App\Application\ChallengeGroups\UseCases;
 
-use App\Application\ChallengeGroups\DTOs\CreateChallengeGroupDTO;
+use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
 use App\Application\Shared\UseCase;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\ChallengeGroup\Services\CreateChallengeGroupService;
-use App\Domain\Shared\Exceptions\DomainException;
+use App\Domain\ChallengeGroup\Services\ChallengeGroupService;
 
 readonly class CreateChallengeGroupUseCase extends UseCase
 {
     public function __construct(
-        private CreateChallengeGroupService $service
+        private ChallengeGroupService $service
     ) {}
 
-    /**
-     * @throws DomainException
-     */
-    public function execute(CreateChallengeGroupDTO $dto): ChallengeGroupEntity
+    public function execute(ChallengeGroupDTO $dto): ChallengeGroupEntity
     {
         return $this->service->create(new ChallengeGroupEntity(
             id: null,

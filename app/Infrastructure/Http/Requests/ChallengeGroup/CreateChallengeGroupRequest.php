@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Http\Requests\ChallengeGroup;
 
+use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
 use App\Application\ChallengeGroups\DTOs\CreateChallengeGroupDTO;
 use App\Infrastructure\Http\Requests\ConvertsToDTO;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,12 +26,13 @@ class CreateChallengeGroupRequest extends FormRequest implements ConvertsToDTO
         ];
     }
 
-    public function toDTO(): CreateChallengeGroupDTO
+    public function toDTO(): ChallengeGroupDTO
     {
-        return new CreateChallengeGroupDTO(
-            $this->name,
-            $this->end_date,
-            auth()->user()->id
+        return new ChallengeGroupDTO(
+            id: null,
+            name: $this->name,
+            end_date: $this->end_date,
+            created_by: auth()->user()->id
         );
     }
 }

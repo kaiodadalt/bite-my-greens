@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Http\Requests\ChallengeGroup;
 
-use App\Application\ChallengeGroups\DTOs\UpdateChallengeGroupDTO;
+use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
 use App\Infrastructure\Http\Requests\ConvertsToDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,13 +25,13 @@ class UpdateChallengeGroupRequest extends FormRequest implements ConvertsToDTO
         ];
     }
 
-    public function toDTO(): UpdateChallengeGroupDTO
+    public function toDTO(): ChallengeGroupDTO
     {
-        return new UpdateChallengeGroupDTO(
-            $this->route('id'),
-            $this->name,
-            $this->end_date,
-            auth()->user()->id
+        return new ChallengeGroupDTO(
+            id: $this->route('id'),
+            name: $this->name,
+            end_date: $this->end_date,
+            created_by: auth()->user()->id
         );
     }
 }
