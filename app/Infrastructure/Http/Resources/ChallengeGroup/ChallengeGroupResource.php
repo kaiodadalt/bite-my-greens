@@ -19,7 +19,7 @@ class ChallengeGroupResource extends JsonResource
         return [
             'id' => $this->resource->getId(),
             'name' => $this->resource->getName(),
-            'end_date' => $this->resource->getEndDate(),
+            'end_date' => $this->resource->getEndDate()->format('Y-m-d'),
             'created_by' => $this->resource->getOwnerId(),
             'created_at' => $this->resource->getCreatedAt(),
         ];

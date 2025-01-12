@@ -4,22 +4,28 @@ namespace App\Infrastructure\Persistence\Repositories\ChallengeGroup;
 
 
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
+use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainException;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
 
 class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
 {
-    public function create(ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
+    public function create(CreateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
         $created_model = ChallengeGroup::create([
-            'name' => $challenge_group->getName(),
-            'end_date' => $challenge_group->getEndDate(),
-            'created_by' => $challenge_group->getOwnerId(),
+            'name' => $challenge_group_data->getName(),
+            'end_date' => $challenge_group_data->getEndDate(),
+            'created_by' => $challenge_group_data->getOwnerId(),
         ]);
-        return $challenge_group->setId($created_model->id)
-            ->setCreatedAt($created_model->created_at)
-            ->setUpdatedAt($created_model->updated_at);
+        return new ChallengeGroupEntity(
+            $created_model->id,
+            $created_model->name,
+            $created_model->end_date,
+            $created_model->created_by,
+            $created_model->created_at,
+            $created_model->updated_at,
+        );
     }
 
     /**

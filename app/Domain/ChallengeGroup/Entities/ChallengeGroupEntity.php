@@ -3,13 +3,14 @@
 namespace App\Domain\ChallengeGroup\Entities;
 
 use App\Domain\Shared\Entity;
+use DateTime;
 
 class ChallengeGroupEntity implements Entity
 {
     public function __construct(
         private ?int     $id = null,
         private ?string  $name = null,
-        private ?string  $end_date = null,
+        private ?DateTime  $end_date = null,
         private ?int     $created_by = null,
         private ?string  $created_at = null,
         private ?string  $updated_at = null,
@@ -31,7 +32,7 @@ class ChallengeGroupEntity implements Entity
         return $this->name;
     }
 
-    public function getEndDate(): ?string
+    public function getEndDate(): ?DateTime
     {
         return $this->end_date;
     }

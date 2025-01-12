@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\ChallengeGroups\DTOs;
+namespace App\Application\ChallengeGroups\DTO;
 
 use App\Application\Shared\DTO;
 

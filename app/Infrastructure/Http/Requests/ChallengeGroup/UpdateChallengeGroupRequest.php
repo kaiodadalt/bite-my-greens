@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Http\Requests\ChallengeGroup;
 
-use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
+use App\Application\ChallengeGroups\DTO\ChallengeGroupDTO;
 use App\Infrastructure\Http\Requests\ConvertsToDTO;
 use Illuminate\Foundation\Http\FormRequest;
 

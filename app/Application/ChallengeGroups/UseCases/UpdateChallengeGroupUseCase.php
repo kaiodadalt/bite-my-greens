@@ -3,7 +3,7 @@
 namespace App\Application\ChallengeGroups\UseCases;
 
 use App\Application\Auth\DTOs\UserDTO;
-use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
+use App\Application\ChallengeGroups\DTO\ChallengeGroupDTO;
 use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;

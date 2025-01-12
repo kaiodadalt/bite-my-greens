@@ -4,6 +4,7 @@ namespace App\Domain\ChallengeGroup\Services;
 
 use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
+use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;
 
@@ -14,10 +15,9 @@ final readonly class ChallengeGroupService
         private ChallengeGroupRepository $repository,
     ) {}
 
-    public function create(UserEntity $user, ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
+    public function create(CreateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
-        $challenge_group->setOwnerId($user->getId());
-        return $this->repository->create($challenge_group);
+        return $this->repository->create($challenge_group_data);
     }
 
     /**

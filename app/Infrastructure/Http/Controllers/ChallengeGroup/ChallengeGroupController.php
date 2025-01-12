@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Http\Controllers\ChallengeGroup;
 
-use App\Application\ChallengeGroups\DTOs\ChallengeGroupDTO;
+use App\Application\ChallengeGroups\DTO\ChallengeGroupDTO;
 use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\DeleteChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\GetChallengeGroupUseCase;
