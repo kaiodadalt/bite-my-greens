@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Services;
 
-use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 
