@@ -2,22 +2,20 @@
 
 namespace App\Application\ChallengeGroups\UseCases;
 
-use App\Application\Auth\DTOs\UserDTO;
-use App\Application\ChallengeGroups\DTO\ChallengeGroupDTO;
-use App\Domain\Auth\Entities\UserEntity;
+use App\Application\ChallengeGroups\DTO\UpdateChallengeGroupDTO;
+use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\Shared\Exceptions\DomainAuthorizationException;
+use App\Domain\ChallengeGroup\Exceptions\ChallengeGroupNotFound;
 
 readonly class UpdateChallengeGroupUseCase extends ChallengeGroupUseCase
 {
     /**
-     * @throws DomainAuthorizationException
+     * @throws ChallengeGroupNotFound
      */
-    public function execute(UserDTO $user_dto, ChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
+    public function execute(int $user_id, UpdateChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
     {
-        return $this->service->update(
-            new UserEntity(...$user_dto),
-            new ChallengeGroupEntity(...$challenge_group_dto)
+        return $this->service->update($user_id,
+            new UpdateChallengeGroupData(...$challenge_group_dto)
         );
     }
 }

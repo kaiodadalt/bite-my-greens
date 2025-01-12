@@ -5,7 +5,6 @@ namespace App\Domain\ChallengeGroup\Services;
 use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\Shared\Exceptions\DomainAuthorizationException;
 
 final readonly class AuthorizeChallengeGroupService
 {
@@ -13,33 +12,24 @@ final readonly class AuthorizeChallengeGroupService
         private ChallengeGroupRepository $repository,
     ) {}
 
-    /**
-     * @throws DomainAuthorizationException
-     */
-    public function canView(UserEntity $user, ChallengeGroupEntity $challenge_group): void
+    public function canView(int $user_id, ChallengeGroupEntity $challenge_group): bool
     {
-        if (!$challenge_group->hasOwner($user->getId()) || !$this->repository->hasMember($challenge_group, $user->getId())) {
-            throw new DomainAuthorizationException("You are not authorized to view this challenge group.");
-        }
+        return $challenge_group->hasOwner($user_id) || $this->repository->hasMember($challenge_group, $user_id);
     }
 
-    /**
-     * @throws DomainAuthorizationException
-     */
-    public function canUpdate(UserEntity $user, ChallengeGroupEntity $challenge_group): void
+    public function cannotView(int $user_id, ChallengeGroupEntity $challenge_group): bool
     {
-        if (!$challenge_group->hasOwner($user->getId())) {
-            throw new DomainAuthorizationException("You are not authorized to update this challenge group.");
-        }
+        return !$this->canView($user_id, $challenge_group);
     }
 
-    /**
-     * @throws DomainAuthorizationException
-     */
-    public function canDelete(UserEntity $user, ChallengeGroupEntity $challenge_group, ): void
+    public function cannotUpdate(int $user_id, ChallengeGroupEntity $challenge_group): bool
     {
-        if ($challenge_group->hasOwner($user->getId())) {
-            throw new DomainAuthorizationException("You are not authorized to delete this challenge group.");
-        }
+        return !$challenge_group->hasOwner($user_id);
+    }
+
+
+    public function cannotDelete(int $user_id, ChallengeGroupEntity $challenge_group, ): bool
+    {
+        return !$challenge_group->hasOwner($user_id);
     }
 }

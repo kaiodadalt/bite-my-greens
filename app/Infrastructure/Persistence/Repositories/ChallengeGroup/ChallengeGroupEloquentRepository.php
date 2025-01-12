@@ -5,6 +5,7 @@ namespace App\Infrastructure\Persistence\Repositories\ChallengeGroup;
 
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
+use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainException;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
@@ -28,25 +29,15 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         );
     }
 
-    /**
-     * @throws DomainException
-     */
-    public function update(ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
+    public function update(ChallengeGroupEntity $challenge_group): bool
     {
-        $this->findOrFail(
-            $challenge_group->getId(),
-            $challenge_group->getOwnerId()
-        );
-
-        ChallengeGroup::where([
+        return ChallengeGroup::where([
             'id' => $challenge_group->getId(),
             'created_by' => $challenge_group->getOwnerId()
-        ])->update(array_filter([
+        ])->update([
             'name' => $challenge_group->getName(),
             'end_date' => $challenge_group->getEndDate(),
-        ]));
-
-        return $challenge_group;
+        ]);
     }
 
     public function delete(ChallengeGroupEntity $challenge_group): bool
@@ -66,6 +57,22 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             'challenge_groups_users.challenge_group_id' => $challenge_group->getId(),
             'challenge_groups_users.user_id' => $user_id,
         ])->exists();
+    }
+
+    public function find(int $challenge_group_id): ?ChallengeGroupEntity
+    {
+        $challenge_group = ChallengeGroup::find($challenge_group_id);
+        if ($challenge_group === null) {
+            return null;
+        }
+        return new ChallengeGroupEntity(
+            $challenge_group->id,
+            $challenge_group->name,
+            $challenge_group->end_date,
+            $challenge_group->created_by,
+            $challenge_group->created_at,
+            $challenge_group->updated_at,
+        );
     }
 
     /**

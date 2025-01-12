@@ -2,11 +2,11 @@
 
 namespace App\Domain\ChallengeGroup\Services;
 
-use App\Domain\Auth\Entities\UserEntity;
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
+use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
-use App\Domain\Shared\Exceptions\DomainAuthorizationException;
+use App\Domain\ChallengeGroup\Exceptions\ChallengeGroupNotFound;
 
 final readonly class ChallengeGroupService
 {
@@ -21,29 +21,45 @@ final readonly class ChallengeGroupService
     }
 
     /**
-     * @throws DomainAuthorizationException
+     * @throws ChallengeGroupNotFound
      */
-    public function get(UserEntity $user, ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
+    public function get(int $user_id, int $challenge_group_id): ChallengeGroupEntity
     {
-        $this->auth->canView($user, $challenge_group);
-        return $this->repository->findOrFail($challenge_group->getId(), $user->getId());
+        $challenge_group = $this->repository->find($challenge_group_id);
+        if (!$challenge_group || $this->auth->cannotView($user_id, $challenge_group)) {
+            throw new ChallengeGroupNotFound();
+        }
+        return $challenge_group;
     }
 
     /**
-     * @throws DomainAuthorizationException
+     * @throws ChallengeGroupNotFound
      */
-    public function update(UserEntity $user, ChallengeGroupEntity $challenge_group): ChallengeGroupEntity
+    public function update(int $user_id, UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
-        $this->auth->canUpdate($user, $challenge_group);
-        return $this->repository->update($challenge_group);
+        $challenge_group = $this->repository->find($challenge_group_data->getId());
+        if (!$challenge_group || $this->auth->cannotUpdate($user_id, $challenge_group)) {
+            throw new ChallengeGroupNotFound();
+        }
+        if ($challenge_group_data->getName()) {
+            $challenge_group->setName($challenge_group_data->getName());
+        }
+        if ($challenge_group_data->getEndDate()) {
+            $challenge_group->setEndDate($challenge_group_data->getEndDate());
+        }
+        $this->repository->update($challenge_group);
+        return $challenge_group;
     }
 
     /**
-     * @throws DomainAuthorizationException
+     * @throws ChallengeGroupNotFound
      */
-    public function delete(UserEntity $user, ChallengeGroupEntity $challenge_group): bool
+    public function delete(int $user_id, int $challenge_group_id): bool
     {
-        $this->auth->canDelete($user, $challenge_group);
+        $challenge_group = $this->repository->find($challenge_group_id);
+        if (!$challenge_group || $this->auth->cannotDelete($user_id, $challenge_group)) {
+            throw new ChallengeGroupNotFound();
+        }
         return $this->repository->delete($challenge_group);
     }
 }

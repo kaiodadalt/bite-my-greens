@@ -32,9 +32,21 @@ class ChallengeGroupEntity implements Entity
         return $this->name;
     }
 
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
     public function getEndDate(): ?DateTime
     {
         return $this->end_date;
+    }
+
+    public function setEndDate(DateTime $end_date): self
+    {
+        $this->end_date = $end_date;
+        return $this;
     }
 
     public function getOwnerId(): int

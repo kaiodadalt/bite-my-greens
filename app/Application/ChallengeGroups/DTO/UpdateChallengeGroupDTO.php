@@ -3,13 +3,14 @@
 namespace App\Application\ChallengeGroups\DTO;
 
 use App\Application\Shared\DTO;
+use DateTime;
 
 class UpdateChallengeGroupDTO extends DTO
 {
     public function __construct(
         public readonly int      $id,
         public readonly ?string  $name = null,
-        public readonly ?string  $end_date = null,
+        public readonly ?DateTime  $end_date = null,
     ) {}
 
     public function toArray(): array
