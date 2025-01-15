@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Providers;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
         $this->configureCommands();
         $this->configureModels();
         $this->configureUrl();
+        $this->configureDates();
+        $this->configureVite();
     }
 
     private function configureCommands(): void {
@@ -39,5 +44,13 @@ class AppServiceProvider extends ServiceProvider
 //        RedirectIfAuthenticated::redirectUsing(function () {
 //            return env('FRONTEND_URL');
 //        });
+    }
+
+    private function configureDates(): void {
+        Date::use(CarbonImmutable::class);
+    }
+
+    private function configureVite(): void {
+        Vite::useAggressivePrefetching();
     }
 }
