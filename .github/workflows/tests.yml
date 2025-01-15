@@ -69,8 +69,8 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Build dependencies
-        run: npm run build
+#      - name: Build dependencies
+#        run: npm run build
 
       - name: Prepare Laravel
         run: |
