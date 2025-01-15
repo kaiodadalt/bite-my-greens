@@ -15,8 +15,11 @@ readonly class UpdateChallengeGroupUseCase extends ChallengeGroupUseCase
      */
     public function execute(int $user_id, UpdateChallengeGroupDTO $challenge_group_dto): ChallengeGroupEntity
     {
-        return $this->service->update($user_id,
-            new UpdateChallengeGroupData(...$challenge_group_dto)
-        );
+        return $this->service->update(new UpdateChallengeGroupData(
+            $challenge_group_dto->id,
+            $challenge_group_dto->name,
+            $challenge_group_dto->end_date,
+            $user_id
+        ));
     }
 }

@@ -30,15 +30,28 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         );
     }
 
-    public function update(ChallengeGroupEntity $challenge_group): bool
+    public function update(UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
-        return ChallengeGroup::where([
-            'id' => $challenge_group->getId(),
-            'created_by' => $challenge_group->getOwnerId()
-        ])->update([
-            'name' => $challenge_group->getName(),
-            'end_date' => $challenge_group->getEndDate(),
-        ]);
+
+        $challenge_group = ChallengeGroup::where([
+            'id' => $challenge_group_data->getId(),
+            'created_by' => $challenge_group_data->getOwnerId()
+        ])->find();
+        if ($challenge_group_data->getName()) {
+            $challenge_group->name = $challenge_group_data->getName();
+        }
+        if ($challenge_group_data->getEndDate()) {
+            $challenge_group->end_date = $challenge_group_data->getEndDate();
+        }
+        $challenge_group->save();
+        return new ChallengeGroupEntity(
+            $challenge_group->id,
+            $challenge_group->name,
+            $challenge_group->end_date,
+            $challenge_group->created_by,
+            $challenge_group->created_at,
+            $challenge_group->updated_at,
+        );
     }
 
     public function delete(ChallengeGroupEntity $challenge_group): bool

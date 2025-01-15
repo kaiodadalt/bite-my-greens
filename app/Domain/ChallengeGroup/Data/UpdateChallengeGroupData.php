@@ -11,7 +11,8 @@ final readonly class UpdateChallengeGroupData
     public function __construct(
         private int $id,
         private ?string $name = null,
-        private ?DateTime $end_date = null
+        private ?DateTime $end_date = null,
+        private int $created_by,
     ) {
         if (!is_null($this->name) && strlen($name) === 0) {
             throw new InvalidArgumentException('Name cannot be empty');
@@ -35,5 +36,10 @@ final readonly class UpdateChallengeGroupData
     public function getEndDate(): ?DateTime
     {
         return $this->end_date;
+    }
+
+    public function getOwnerId(): int
+    {
+        return $this->created_by;
     }
 }

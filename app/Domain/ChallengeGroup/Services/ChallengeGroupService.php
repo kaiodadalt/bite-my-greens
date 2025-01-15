@@ -36,20 +36,13 @@ final readonly class ChallengeGroupService
     /**
      * @throws ChallengeGroupNotFound
      */
-    public function update(int $user_id, UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
+    public function update(UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
         $challenge_group = $this->repository->find($challenge_group_data->getId());
-        if (!$challenge_group || $this->auth->cannotUpdate($user_id, $challenge_group)) {
+        if (!$challenge_group || $this->auth->cannotUpdate($challenge_group_data->getOwnerId(), $challenge_group)) {
             throw new ChallengeGroupNotFound();
         }
-        if ($challenge_group_data->getName()) {
-            $challenge_group->setName($challenge_group_data->getName());
-        }
-        if ($challenge_group_data->getEndDate()) {
-            $challenge_group->setEndDate($challenge_group_data->getEndDate());
-        }
-        $this->repository->update($challenge_group);
-        return $challenge_group;
+        return $this->repository->update($challenge_group_data);
     }
 
     /**
