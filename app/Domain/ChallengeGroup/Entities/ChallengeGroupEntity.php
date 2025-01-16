@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace App\Domain\ChallengeGroup\Entities;
 
 use App\Domain\Shared\Entity;
-use DateTime;
+use DateTimeImmutable;
 
 class ChallengeGroupEntity implements Entity
 {
     public function __construct(
-        private readonly int    $id,
-        private string          $name,
-        private DateTime        $end_date,
-        private readonly int    $created_by,
-        private readonly string $created_at,
-        private readonly string $updated_at,
+        private readonly int        $id,
+        private string              $name,
+        private DateTimeImmutable   $end_date,
+        private readonly int        $created_by,
+        private DateTimeImmutable   $created_at,
+        private DateTimeImmutable   $updated_at,
     ) {}
 
     public function getId(): int
@@ -33,12 +33,12 @@ class ChallengeGroupEntity implements Entity
         return $this;
     }
 
-    public function getEndDate(): DateTime
+    public function getEndDate(): DateTimeImmutable
     {
         return $this->end_date;
     }
 
-    public function setEndDate(DateTime $end_date): self
+    public function setEndDate(DateTimeImmutable $end_date): self
     {
         $this->end_date = $end_date;
         return $this;
@@ -54,12 +54,12 @@ class ChallengeGroupEntity implements Entity
         return $this->created_by === $user_id;
     }
 
-    public function getCreatedAt(): string
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->created_at;
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updated_at;
     }

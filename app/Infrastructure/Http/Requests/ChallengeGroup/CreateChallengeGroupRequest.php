@@ -5,7 +5,7 @@ namespace App\Infrastructure\Http\Requests\ChallengeGroup;
 
 use App\Application\ChallengeGroups\DTO\CreateChallengeGroupDTO;
 use App\Infrastructure\Http\Requests\ConvertsToDTO;
-use DateTime;
+use DateTimeImmutable;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -31,7 +31,7 @@ class CreateChallengeGroupRequest extends FormRequest implements ConvertsToDTO
     {
         return new CreateChallengeGroupDTO(
             $this->name,
-            new DateTime($this->end_date),
+            new DateTimeImmutable($this->end_date),
         );
     }
 }

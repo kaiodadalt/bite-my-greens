@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Data;
 
-use DateTime;
+use DateTimeImmutable;
 use InvalidArgumentException;
 
 final readonly class UpdateChallengeGroupData
@@ -11,14 +11,14 @@ final readonly class UpdateChallengeGroupData
     public function __construct(
         private int $id,
         private ?string $name = null,
-        private ?DateTime $end_date = null,
+        private ?DateTimeImmutable $end_date = null,
         private int $created_by,
     ) {
         if (!is_null($this->name) && strlen($name) === 0) {
             throw new InvalidArgumentException('Name cannot be empty');
         }
 
-        if (!is_null($this->end_date) && $end_date < new DateTime()) {
+        if (!is_null($this->end_date) && $end_date < new DateTimeImmutable()) {
             throw new InvalidArgumentException('End date cannot be in the past');
         }
     }
@@ -33,7 +33,7 @@ final readonly class UpdateChallengeGroupData
         return $this->name;
     }
 
-    public function getEndDate(): ?DateTime
+    public function getEndDate(): ?DateTimeImmutable
     {
         return $this->end_date;
     }

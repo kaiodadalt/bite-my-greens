@@ -10,7 +10,7 @@ use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 interface ChallengeGroupRepository
 {
     public function create(CreateChallengeGroupData $challenge_group_data): ChallengeGroupEntity;
-    public function update(UpdateChallengeGroupData $challenge_group): ChallengeGroupEntity;
+    public function update(UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity;
     public function delete(ChallengeGroupEntity $challenge_group): bool;
     public function hasMember(ChallengeGroupEntity $challenge_group, int $user_id): bool;
     public function find(int $challenge_group_id): ?ChallengeGroupEntity;

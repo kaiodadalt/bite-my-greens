@@ -30,13 +30,18 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         );
     }
 
+    /**
+     * @throws DomainException
+     */
     public function update(UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
-
         $challenge_group = ChallengeGroup::where([
             'id' => $challenge_group_data->getId(),
             'created_by' => $challenge_group_data->getOwnerId()
-        ])->find();
+        ])->first();
+        if ($challenge_group === null) {
+            throw new DomainException('Challenge group does not exist');
+        }
         if ($challenge_group_data->getName()) {
             $challenge_group->name = $challenge_group_data->getName();
         }
