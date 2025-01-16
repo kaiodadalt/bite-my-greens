@@ -72,4 +72,6 @@ return [
         'secret' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET'),
     ],
 
+    'cookie_name' => env('PASSPORT_COOKIE_NAME', 'auth_cookie'),
+
 ];

@@ -8,6 +8,7 @@ use App\Infrastructure\Persistence\Repositories\PassportCache\ClientRepositoryWi
 use App\Infrastructure\Persistence\Repositories\PassportCache\RefreshTokenRepositoryWithCache;
 use App\Infrastructure\Persistence\Repositories\PassportCache\TokenRepositoryWithCache;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Config;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshTokenRepository;
@@ -41,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(now()->addDays(15));
         Passport::refreshTokensExpireIn(now()->addDays(30));
         Passport::personalAccessTokensExpireIn(now()->addMonths(6));
-        Passport::cookie(env('PASSPORT_COOKIE_NAME', 'auth_cookie'));
+        Passport::cookie(Config::string('passport.cookie_name'));
     }
 
     private function configureSanctum(): void {

@@ -10,11 +10,11 @@ final readonly class UpdateChallengeGroupData
 {
     public function __construct(
         private int $id,
+        private int $created_by,
         private ?string $name = null,
         private ?DateTimeImmutable $end_date = null,
-        private int $created_by,
     ) {
-        if (!is_null($this->name) && strlen($name) === 0) {
+        if (!is_null($this->name) && empty($name)) {
             throw new InvalidArgumentException('Name cannot be empty');
         }
 

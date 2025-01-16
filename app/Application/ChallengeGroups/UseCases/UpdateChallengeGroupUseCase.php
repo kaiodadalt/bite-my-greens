@@ -17,9 +17,9 @@ readonly class UpdateChallengeGroupUseCase extends ChallengeGroupUseCase
     {
         return $this->service->update(new UpdateChallengeGroupData(
             $challenge_group_dto->id,
+            $user_id,
             $challenge_group_dto->name,
             $challenge_group_dto->end_date,
-            $user_id
         ));
     }
 }
