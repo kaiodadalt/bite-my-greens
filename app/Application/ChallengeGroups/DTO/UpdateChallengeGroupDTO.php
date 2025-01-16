@@ -13,13 +13,4 @@ class UpdateChallengeGroupDTO extends DTO
         public readonly ?string  $name = null,
         public readonly ?DateTimeImmutable  $end_date = null,
     ) {}
-
-    public function toArray(): array
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'end_date' => $this->end_date,
-        ];
-    }
 }

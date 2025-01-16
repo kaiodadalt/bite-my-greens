@@ -67,7 +67,7 @@ class ChallengeGroupTest extends TestCase
         $this->assertDatabaseHas('challenge_groups', [
             'id' => $id,
             'name' => 'Updated Challenge',
-            'end_date' => now()->addDays(10)->toDateString(),
+            'end_date' => now()->startOfDay()->addDays(10)->format('Y-m-d H:i:s'),
         ]);
     }
 

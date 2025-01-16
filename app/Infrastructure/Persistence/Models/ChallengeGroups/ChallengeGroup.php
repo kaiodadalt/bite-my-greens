@@ -34,8 +34,10 @@ class ChallengeGroup extends Model
         'end_date',
     ];
 
-    protected $casts = [
-        'end_date' => 'datetime', // Cast end_date to a DateTime object
+    protected $dates = [
+        'end_date',
+        'created_at',
+        'updated_at',
     ];
 
     /**

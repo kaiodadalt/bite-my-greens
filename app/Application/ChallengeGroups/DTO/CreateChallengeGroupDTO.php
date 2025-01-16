@@ -12,12 +12,4 @@ class CreateChallengeGroupDTO extends DTO
         public readonly string  $name,
         public readonly DateTimeImmutable  $end_date,
     ) {}
-
-    public function toArray(): array
-    {
-        return [
-            'name' => $this->name,
-            'end_date' => $this->end_date,
-        ];
-    }
 }
