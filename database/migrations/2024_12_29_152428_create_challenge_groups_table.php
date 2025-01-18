@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('challenge_groups', function (Blueprint $table) {
             $table->id();
             $table->foreignId('created_by')->constrained('users');
-            $table->string('name',80);
+            $table->string('name', 80);
             $table->date('end_date');
             $table->timestamps();
         });

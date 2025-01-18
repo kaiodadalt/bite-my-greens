@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Models\Auth\SanctumCache;
@@ -24,7 +25,7 @@ class PersonalAccessTokenWithCache extends PersonalAccessToken
             fn () => parent::findToken($token)
         );
 
-        if (!$cached_token || !Hash::check($cached_token->token, $hashed_token)) {
+        if (! $cached_token || ! Hash::check($cached_token->token, $hashed_token)) {
             return null;
         }
 
@@ -53,12 +54,11 @@ class PersonalAccessTokenWithCache extends PersonalAccessToken
         });
     }
 
-
     public function tokenable(): Attribute
     {
         return Attribute::make(
             get: fn ($_, $attributes) => Cache::remember(
-                "personal-access-token:" . Hash::make($attributes['token']) . ":tokenable",
+                'personal-access-token:'.Hash::make($attributes['token']).':tokenable',
                 now()->addDays(30),
                 fn () => parent::tokenable()
             )

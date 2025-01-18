@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Repositories\ChallengeGroup;
-
 
 use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
@@ -20,6 +20,7 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             'end_date' => $challenge_group_data->getEndDate(),
             'created_by' => $challenge_group_data->getOwnerId(),
         ]);
+
         return new ChallengeGroupEntity(
             $created_model->id,
             $created_model->name,
@@ -37,7 +38,7 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
     {
         $challenge_group = ChallengeGroup::where([
             'id' => $challenge_group_data->getId(),
-            'created_by' => $challenge_group_data->getOwnerId()
+            'created_by' => $challenge_group_data->getOwnerId(),
         ])->first();
         if ($challenge_group === null) {
             throw new DomainException('Challenge group does not exist');
@@ -49,6 +50,7 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             $challenge_group->end_date = $challenge_group_data->getEndDate();
         }
         $challenge_group->save();
+
         return new ChallengeGroupEntity(
             $challenge_group->id,
             $challenge_group->name,
@@ -63,7 +65,7 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
     {
         return ChallengeGroup::where([
             'id' => $challenge_group->getId(),
-            'created_by' => $challenge_group->getOwnerId()
+            'created_by' => $challenge_group->getOwnerId(),
         ])->delete();
     }
 
@@ -84,6 +86,7 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         if ($challenge_group === null) {
             return null;
         }
+
         return new ChallengeGroupEntity(
             $challenge_group->id,
             $challenge_group->name,
@@ -106,6 +109,7 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         if ($challenge_group === null) {
             throw new DomainException('Challenge group does not exist');
         }
+
         return new ChallengeGroupEntity(
             $challenge_group->id,
             $challenge_group->name,
@@ -116,4 +120,3 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         );
     }
 }
-

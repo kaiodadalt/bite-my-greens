@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Services;
@@ -19,17 +20,16 @@ final readonly class AuthorizeChallengeGroupService
 
     public function cannotView(int $user_id, ChallengeGroupEntity $challenge_group): bool
     {
-        return !$this->canView($user_id, $challenge_group);
+        return ! $this->canView($user_id, $challenge_group);
     }
 
     public function cannotUpdate(int $user_id, ChallengeGroupEntity $challenge_group): bool
     {
-        return !$challenge_group->hasOwner($user_id);
+        return ! $challenge_group->hasOwner($user_id);
     }
 
-
-    public function cannotDelete(int $user_id, ChallengeGroupEntity $challenge_group, ): bool
+    public function cannotDelete(int $user_id, ChallengeGroupEntity $challenge_group): bool
     {
-        return !$challenge_group->hasOwner($user_id);
+        return ! $challenge_group->hasOwner($user_id);
     }
 }

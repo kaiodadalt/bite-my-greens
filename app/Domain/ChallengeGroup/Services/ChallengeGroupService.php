@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Services;
@@ -27,9 +28,10 @@ final readonly class ChallengeGroupService
     public function get(int $user_id, int $challenge_group_id): ChallengeGroupEntity
     {
         $challenge_group = $this->repository->find($challenge_group_id);
-        if (!$challenge_group || $this->auth->cannotView($user_id, $challenge_group)) {
-            throw new ChallengeGroupNotFound();
+        if (! $challenge_group || $this->auth->cannotView($user_id, $challenge_group)) {
+            throw new ChallengeGroupNotFound;
         }
+
         return $challenge_group;
     }
 
@@ -39,9 +41,10 @@ final readonly class ChallengeGroupService
     public function update(UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
         $challenge_group = $this->repository->find($challenge_group_data->getId());
-        if (!$challenge_group || $this->auth->cannotUpdate($challenge_group_data->getOwnerId(), $challenge_group)) {
-            throw new ChallengeGroupNotFound();
+        if (! $challenge_group || $this->auth->cannotUpdate($challenge_group_data->getOwnerId(), $challenge_group)) {
+            throw new ChallengeGroupNotFound;
         }
+
         return $this->repository->update($challenge_group_data);
     }
 
@@ -51,9 +54,10 @@ final readonly class ChallengeGroupService
     public function delete(int $user_id, int $challenge_group_id): bool
     {
         $challenge_group = $this->repository->find($challenge_group_id);
-        if (!$challenge_group || $this->auth->cannotDelete($user_id, $challenge_group)) {
-            throw new ChallengeGroupNotFound();
+        if (! $challenge_group || $this->auth->cannotDelete($user_id, $challenge_group)) {
+            throw new ChallengeGroupNotFound;
         }
+
         return $this->repository->delete($challenge_group);
     }
 }

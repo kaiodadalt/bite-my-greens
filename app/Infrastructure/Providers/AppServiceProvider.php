@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Providers;
@@ -24,16 +25,19 @@ class AppServiceProvider extends ServiceProvider
         $this->configureVite();
     }
 
-    private function configureCommands(): void {
+    private function configureCommands(): void
+    {
         DB::prohibitDestructiveCommands($this->app->isProduction());
     }
 
-    private function configureModels(): void {
+    private function configureModels(): void
+    {
         Model::shouldBeStrict();
         Model::unguard();
     }
 
-    private function configureUrl(): void {
+    private function configureUrl(): void
+    {
         if ($this->app->isProduction()) {
             URL::forceScheme('https');
         }
@@ -42,16 +46,18 @@ class AppServiceProvider extends ServiceProvider
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
 
-//        RedirectIfAuthenticated::redirectUsing(function () {
-//            return env('FRONTEND_URL');
-//        });
+        //        RedirectIfAuthenticated::redirectUsing(function () {
+        //            return env('FRONTEND_URL');
+        //        });
     }
 
-    private function configureDates(): void {
+    private function configureDates(): void
+    {
         Date::use(CarbonImmutable::class);
     }
 
-    private function configureVite(): void {
+    private function configureVite(): void
+    {
         Vite::useAggressivePrefetching();
     }
 }

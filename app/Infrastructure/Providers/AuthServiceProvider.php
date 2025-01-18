@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Providers;
@@ -26,7 +27,6 @@ class AuthServiceProvider extends ServiceProvider
         parent::register();
     }
 
-
     public function boot(): void
     {
         $this->registerPolicies();
@@ -34,7 +34,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->configureSanctum();
     }
 
-    private function configurePassport(): void {
+    private function configurePassport(): void
+    {
         Passport::ignoreRoutes();
         Passport::hashClientSecrets();
         Passport::withCookieEncryption();
@@ -45,21 +46,23 @@ class AuthServiceProvider extends ServiceProvider
         Passport::cookie(Config::string('passport.cookie_name'));
     }
 
-    private function configureSanctum(): void {
+    private function configureSanctum(): void
+    {
         Sanctum::usePersonalAccessTokenModel(PersonalAccessTokenWithCache::class);
     }
 
-    private function registerPassportSingletons(): void {
+    private function registerPassportSingletons(): void
+    {
         $this->app->singleton(TokenRepository::class, function () {
-            return new TokenRepositoryWithCache();
+            return new TokenRepositoryWithCache;
         });
 
         $this->app->singleton(RefreshTokenRepository::class, function () {
-            return new RefreshTokenRepositoryWithCache();
+            return new RefreshTokenRepositoryWithCache;
         });
 
         $this->app->singleton(ClientRepository::class, function () {
-            return new ClientRepositoryWithCache();
+            return new ClientRepositoryWithCache;
         });
     }
 }

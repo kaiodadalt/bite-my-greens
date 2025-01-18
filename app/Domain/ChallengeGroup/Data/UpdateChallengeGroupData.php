@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Data;
@@ -14,11 +15,11 @@ final readonly class UpdateChallengeGroupData
         private ?string $name = null,
         private ?DateTimeImmutable $end_date = null,
     ) {
-        if (!is_null($this->name) && empty($name)) {
+        if (! is_null($this->name) && empty($name)) {
             throw new InvalidArgumentException('Name cannot be empty');
         }
 
-        if (!is_null($this->end_date) && $end_date < new DateTimeImmutable()) {
+        if (! is_null($this->end_date) && $end_date < new DateTimeImmutable) {
             throw new InvalidArgumentException('End date cannot be in the past');
         }
     }

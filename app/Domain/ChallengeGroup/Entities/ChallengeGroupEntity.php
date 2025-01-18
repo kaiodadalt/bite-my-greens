@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Entities;
@@ -9,12 +10,12 @@ use DateTimeImmutable;
 class ChallengeGroupEntity implements Entity
 {
     public function __construct(
-        private readonly int        $id,
-        private string              $name,
-        private DateTimeImmutable   $end_date,
-        private readonly int        $created_by,
-        private DateTimeImmutable   $created_at,
-        private DateTimeImmutable   $updated_at,
+        private readonly int $id,
+        private string $name,
+        private DateTimeImmutable $end_date,
+        private readonly int $created_by,
+        private DateTimeImmutable $created_at,
+        private DateTimeImmutable $updated_at,
     ) {}
 
     public function getId(): int
@@ -30,6 +31,7 @@ class ChallengeGroupEntity implements Entity
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -41,6 +43,7 @@ class ChallengeGroupEntity implements Entity
     public function setEndDate(DateTimeImmutable $end_date): self
     {
         $this->end_date = $end_date;
+
         return $this;
     }
 

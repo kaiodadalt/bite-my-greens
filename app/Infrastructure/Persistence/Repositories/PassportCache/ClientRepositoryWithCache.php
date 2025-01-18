@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Repositories\PassportCache;
@@ -14,7 +15,7 @@ class ClientRepositoryWithCache extends ClientRepository
         return cache()->remember(
             $this->createKey($id),
             now()->addDays(30),
-            fn() => parent::find($id)
+            fn () => parent::find($id)
         );
     }
 

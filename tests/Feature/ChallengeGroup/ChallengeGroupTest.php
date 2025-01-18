@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Feature\ChallengeGroup;
@@ -53,7 +54,7 @@ class ChallengeGroupTest extends TestCase
 
         $id = $response->json('id');
 
-        $response = $this->put('/api/challenge-group/' . $id, [
+        $response = $this->put('/api/challenge-group/'.$id, [
             'name' => 'Updated Challenge',
             'end_date' => now()->addDays(10)->toDateString(),
         ]);
@@ -70,5 +71,4 @@ class ChallengeGroupTest extends TestCase
             'end_date' => now()->startOfDay()->addDays(10)->format('Y-m-d H:i:s'),
         ]);
     }
-
 }

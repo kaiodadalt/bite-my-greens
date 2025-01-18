@@ -1,17 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Models\ChallengeGroups;
 
 use App\Infrastructure\Persistence\Models\Auth\User;
 use Database\Factories\ChallengeGroups\ChallengeGroupFactory;
-use DateTime;
-use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 
 /**
  * @property int $id
@@ -34,7 +32,6 @@ class ChallengeGroup extends Model
         'end_date' => 'immutable_date',
     ];
 
-
     /**
      * @return BelongsTo<User, ChallengeGroup>
      */
@@ -42,7 +39,6 @@ class ChallengeGroup extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-
 
     /**
      * @return HasMany<ChallengeGroupUser, ChallengeGroup>

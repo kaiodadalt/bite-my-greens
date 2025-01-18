@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Repositories\PassportCache;
@@ -15,7 +16,7 @@ class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
         return cache()->remember(
             $this->createKey($id),
             now()->addDays(30),
-            fn() => parent::find($id)
+            fn () => parent::find($id)
         );
     }
 
@@ -31,7 +32,7 @@ class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
             ->query()
             ->where('access_token_id', $tokenId)
             ->get()
-            ->each(fn(RefreshToken $token) => cache()->forget($this->createKey($token->id)));
+            ->each(fn (RefreshToken $token) => cache()->forget($this->createKey($token->id)));
         parent::revokeRefreshTokensByAccessTokenId($tokenId);
     }
 

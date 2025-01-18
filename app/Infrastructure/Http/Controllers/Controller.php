@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Controllers;
@@ -12,13 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class Controller extends BaseController
 {
-
     /**
      * Handle exceptions automatically for all controller methods.
      *
-     * @param string $method
-     * @param array $parameters
-     * @return Response
+     * @param  string  $method
+     * @param  array  $parameters
      */
     public function callAction($method, $parameters): Response
     {
@@ -40,10 +39,6 @@ abstract class Controller extends BaseController
 
     /**
      * Generate an error JSON response.
-     *
-     * @param string $message
-     * @param int $status
-     * @return JsonResponse
      */
     protected function errorResponse(string $message, int $status): JsonResponse
     {

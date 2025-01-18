@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Repositories\PassportCache;
@@ -15,7 +16,7 @@ class TokenRepositoryWithCache extends TokenRepository
         return cache()->remember(
             $this->createKey($id),
             now()->addDays(15),
-            fn() => parent::find($id)
+            fn () => parent::find($id)
         );
     }
 
@@ -24,7 +25,7 @@ class TokenRepositoryWithCache extends TokenRepository
         return cache()->remember(
             $this->createKey($id),
             now()->addDays(15),
-            fn() => parent::findForUser($id, $userId)
+            fn () => parent::findForUser($id, $userId)
         );
     }
 
@@ -33,22 +34,23 @@ class TokenRepositoryWithCache extends TokenRepository
         return cache()->remember(
             $this->createKey($userId),
             now()->addDays(15),
-            fn() => parent::forUser($userId)
+            fn () => parent::forUser($userId)
         );
     }
 
     public function getValidToken($user, $client): ?Token
     {
         return cache()->remember(
-            $this->createKey($user->getKey() . $client->getKey()),
+            $this->createKey($user->getKey().$client->getKey()),
             now()->addDays(15),
-            fn() => parent::getValidToken($user, $client)
+            fn () => parent::getValidToken($user, $client)
         );
     }
 
     public function revokeAccessToken($id): mixed
     {
         cache()->forget($this->createKey($id));
+
         return parent::revokeAccessToken($id);
     }
 

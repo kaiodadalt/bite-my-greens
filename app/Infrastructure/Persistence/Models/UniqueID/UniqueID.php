@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Models\UniqueID;
@@ -21,7 +22,7 @@ abstract class UniqueID implements CastsAttributes
 
         $hex = bin2hex($value);
 
-        return static::PREFIX . $hex;
+        return static::PREFIX.$hex;
     }
 
     /**

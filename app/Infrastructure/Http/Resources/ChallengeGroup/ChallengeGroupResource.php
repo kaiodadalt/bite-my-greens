@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Resources\ChallengeGroup;
@@ -10,6 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class ChallengeGroupResource extends JsonResource
 {
     public static $wrap = null;
+
     public function __construct(ChallengeGroupEntity $resource)
     {
         parent::__construct($resource);

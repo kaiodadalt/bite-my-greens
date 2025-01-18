@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Models\ChallengeGroups;
@@ -19,6 +20,7 @@ class ChallengeGroupUser extends Model
     use HasFactory;
 
     public $incrementing = false;
+
     public $timestamps = false;
 
     protected $fillable = [

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Controllers\Auth;
@@ -16,7 +17,6 @@ class RegisteredUserController extends Controller
 {
     /**
      * Handle an incoming registration request.
-     *
      */
     public function store(Request $request): Response
     {

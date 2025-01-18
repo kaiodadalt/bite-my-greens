@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Data;
@@ -17,7 +18,7 @@ final readonly class CreateChallengeGroupData
             throw new InvalidArgumentException('Name cannot be empty');
         }
 
-        if ($end_date < new DateTimeImmutable()) {
+        if ($end_date < new DateTimeImmutable) {
             throw new InvalidArgumentException('End date cannot be in the past');
         }
     }

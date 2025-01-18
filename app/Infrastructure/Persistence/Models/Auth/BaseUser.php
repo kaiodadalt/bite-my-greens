@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Models\Auth;
@@ -60,7 +61,7 @@ abstract class BaseUser extends Authenticatable
 
     protected static function newFactory(): UserFactory
     {
-        return new UserFactory();
+        return new UserFactory;
     }
 
     public function toDTO(): UserDTO

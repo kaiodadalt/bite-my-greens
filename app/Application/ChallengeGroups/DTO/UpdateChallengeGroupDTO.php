@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Application\ChallengeGroups\DTO;
@@ -9,8 +10,8 @@ use DateTimeImmutable;
 class UpdateChallengeGroupDTO extends DTO
 {
     public function __construct(
-        public readonly int      $id,
-        public readonly ?string  $name = null,
-        public readonly ?DateTimeImmutable  $end_date = null,
+        public readonly int $id,
+        public readonly ?string $name = null,
+        public readonly ?DateTimeImmutable $end_date = null,
     ) {}
 }
