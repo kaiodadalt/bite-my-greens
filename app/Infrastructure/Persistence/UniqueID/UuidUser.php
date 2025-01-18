@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Models\UniqueID;
+namespace App\Infrastructure\Persistence\UniqueID;
 
 use App\Infrastructure\Persistence\Models\Auth\BaseUser;
 
