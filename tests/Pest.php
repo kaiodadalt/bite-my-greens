@@ -33,9 +33,9 @@ pest()->extend(TestCase::class, RefreshDatabase::class)
 |
 */
 
-//expect()->extend('toBeOne', function () {
+// expect()->extend('toBeOne', function () {
 //    return $this->toBe(1);
-//});
+// });
 
 /*
 |--------------------------------------------------------------------------
