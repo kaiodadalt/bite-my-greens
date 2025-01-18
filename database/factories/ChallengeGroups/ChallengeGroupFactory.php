@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories\ChallengeGroups;
 
 use App\Infrastructure\Persistence\Models\Auth\User;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<ChallengeGroup>
  */
-class ChallengeGroupFactory extends Factory
+final class ChallengeGroupFactory extends Factory
 {
     /**
      * Define the model's default state.

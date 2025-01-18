@@ -10,8 +10,9 @@ use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainException;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
+use DateTimeImmutable;
 
-class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
+final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
 {
     public function create(CreateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
@@ -43,10 +44,10 @@ class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         if ($challenge_group === null) {
             throw new DomainException('Challenge group does not exist');
         }
-        if ($challenge_group_data->getName()) {
+        if (! in_array($challenge_group_data->getName(), [null, '', '0'], true)) {
             $challenge_group->name = $challenge_group_data->getName();
         }
-        if ($challenge_group_data->getEndDate()) {
+        if ($challenge_group_data->getEndDate() instanceof DateTimeImmutable) {
             $challenge_group->end_date = $challenge_group_data->getEndDate();
         }
         $challenge_group->save();

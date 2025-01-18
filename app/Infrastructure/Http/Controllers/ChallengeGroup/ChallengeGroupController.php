@@ -15,7 +15,7 @@ use App\Infrastructure\Http\Requests\ChallengeGroup\UpdateChallengeGroupRequest;
 use App\Infrastructure\Http\Resources\ChallengeGroup\ChallengeGroupResource;
 use Illuminate\Http\JsonResponse;
 
-class ChallengeGroupController extends Controller
+final class ChallengeGroupController extends Controller
 {
     public function create(CreateChallengeGroupRequest $request, CreateChallengeGroupChallengeGroupUseCase $use_case): JsonResponse
     {

@@ -38,6 +38,8 @@ RUN apt-get update && apt-get upgrade -y \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_VERSION.x nodistro main" > /etc/apt/sources.list.d/nodesource.list \
     && apt-get update \
+    && apt-get install -y aspell \
+    && apt-get install -y aspell-en \
     && apt-get install -y nodejs \
     && npm install -g npm \
     && npm install -g pnpm \
@@ -70,4 +72,5 @@ RUN chmod +x /usr/local/bin/start-container
 
 EXPOSE 80/tcp
 
+RUN chmod 777 /tmp
 ENTRYPOINT ["start-container"]

@@ -6,7 +6,7 @@ namespace App\Domain\Shared\Exceptions;
 
 use Exception;
 
-class DomainException extends Exception
+final class DomainException extends Exception
 {
     public function __construct(string $message)
     {

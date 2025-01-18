@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $name
  * @property User $creator
  */
-class ChallengeGroup extends Model
+final class ChallengeGroup extends Model
 {
     /** @use HasFactory<ChallengeGroupFactory> */
     use HasFactory;

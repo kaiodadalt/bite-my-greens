@@ -6,7 +6,7 @@ namespace App\Infrastructure\Persistence\Models\UniqueID;
 
 use App\Infrastructure\Persistence\Models\Auth\BaseUser;
 
-class UuidUser extends BaseUser
+final class UuidUser extends BaseUser
 {
     use HasUniqueID;
 

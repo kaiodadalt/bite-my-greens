@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 use Laravel\Passport\Client;
 use Laravel\Passport\ClientRepository;
 
-class ClientRepositoryWithCache extends ClientRepository
+final class ClientRepositoryWithCache extends ClientRepository
 {
     public function find($id): ?Client
     {
@@ -19,7 +19,7 @@ class ClientRepositoryWithCache extends ClientRepository
         );
     }
 
-    protected function createKey(int|string $id): string
+    private function createKey(int|string $id): string
     {
         return sprintf('%s:%s', Config::string('passport.client_cache_prefix'), $id);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Infrastructure\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Infrastructure\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Infrastructure\Http\Controllers\Auth\NewPasswordController;

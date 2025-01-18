@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders\ChallengeGroup;
 
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
 use Illuminate\Database\Seeder;
 
-class ChallengeGroupSeeder extends Seeder
+final class ChallengeGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.

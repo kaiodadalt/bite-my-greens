@@ -12,15 +12,24 @@ abstract class UniqueID implements CastsAttributes
     public const PREFIX = '';
 
     /**
+     * Generate a new UUID (with dashes).
+     * We'll remove the dashes in set() before storing.
+     */
+    final public static function generate(): string
+    {
+        return (string) Str::uuid();
+    }
+
+    /**
      * Read from the database (binary(16)) and cast to a hex string with optional prefix.
      */
-    public function get($model, string $key, $value, array $attributes): ?string
+    final public function get($model, string $key, $value, array $attributes): ?string
     {
         if (is_null($value)) {
             return null;
         }
 
-        $hex = bin2hex($value);
+        $hex = bin2hex((string) $value);
 
         return static::PREFIX.$hex;
     }
@@ -31,7 +40,7 @@ abstract class UniqueID implements CastsAttributes
      *   - Strip dashes if it's a standard UUID
      *   - Convert to binary(16)
      */
-    public function set($model, string $key, $value, array $attributes)
+    final public function set($model, string $key, $value, array $attributes)
     {
         // If the value is empty, generate a new one
         if (empty($value)) {
@@ -39,8 +48,8 @@ abstract class UniqueID implements CastsAttributes
         }
 
         // Remove the prefix (e.g. "usr_") if present
-        if (static::PREFIX && str_starts_with($value, static::PREFIX)) {
-            $value = substr($value, strlen(static::PREFIX));
+        if (static::PREFIX && str_starts_with((string) $value, (string) static::PREFIX)) {
+            $value = mb_substr((string) $value, mb_strlen((string) static::PREFIX));
         }
 
         // If the value is a standard UUID with dashes, remove them
@@ -49,14 +58,5 @@ abstract class UniqueID implements CastsAttributes
 
         // Convert the (32-char) hex string into raw binary(16)
         return hex2bin($value);
-    }
-
-    /**
-     * Generate a new UUID (with dashes).
-     * We'll remove the dashes in set() before storing.
-     */
-    public static function generate(): string
-    {
-        return (string) Str::uuid();
     }
 }

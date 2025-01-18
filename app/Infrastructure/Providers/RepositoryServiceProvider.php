@@ -8,7 +8,7 @@ use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Infrastructure\Persistence\Repositories\ChallengeGroup\ChallengeGroupEloquentRepository;
 use Illuminate\Support\ServiceProvider;
 
-class RepositoryServiceProvider extends ServiceProvider
+final class RepositoryServiceProvider extends ServiceProvider
 {
     public function register(): void
     {

@@ -9,7 +9,7 @@ use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\ChallengeGroup\Exceptions\ChallengeGroupNotFound;
 
-readonly class UpdateChallengeGroupUseCase extends ChallengeGroupUseCase
+final readonly class UpdateChallengeGroupUseCase extends ChallengeGroupUseCase
 {
     /**
      * @throws ChallengeGroupNotFound

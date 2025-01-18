@@ -15,7 +15,11 @@ final readonly class AuthorizeChallengeGroupService
 
     public function canView(int $user_id, ChallengeGroupEntity $challenge_group): bool
     {
-        return $challenge_group->hasOwner($user_id) || $this->repository->hasMember($challenge_group, $user_id);
+        if ($challenge_group->hasOwner($user_id)) {
+            return true;
+        }
+
+        return $this->repository->hasMember($challenge_group, $user_id);
     }
 
     public function cannotView(int $user_id, ChallengeGroupEntity $challenge_group): bool

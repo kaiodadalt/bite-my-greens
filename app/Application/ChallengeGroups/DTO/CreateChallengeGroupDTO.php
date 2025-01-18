@@ -7,7 +7,7 @@ namespace App\Application\ChallengeGroups\DTO;
 use App\Application\Shared\DTO;
 use DateTimeImmutable;
 
-class CreateChallengeGroupDTO extends DTO
+final class CreateChallengeGroupDTO extends DTO
 {
     public function __construct(
         public readonly string $name,

@@ -16,7 +16,7 @@ use Laravel\Passport\RefreshTokenRepository;
 use Laravel\Passport\TokenRepository;
 use Laravel\Sanctum\Sanctum;
 
-class AuthServiceProvider extends ServiceProvider
+final class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
     ];
@@ -53,16 +53,10 @@ class AuthServiceProvider extends ServiceProvider
 
     private function registerPassportSingletons(): void
     {
-        $this->app->singleton(TokenRepository::class, function () {
-            return new TokenRepositoryWithCache;
-        });
+        $this->app->singleton(TokenRepository::class, fn (): \App\Infrastructure\Persistence\Repositories\PassportCache\TokenRepositoryWithCache => new TokenRepositoryWithCache);
 
-        $this->app->singleton(RefreshTokenRepository::class, function () {
-            return new RefreshTokenRepositoryWithCache;
-        });
+        $this->app->singleton(RefreshTokenRepository::class, fn (): \App\Infrastructure\Persistence\Repositories\PassportCache\RefreshTokenRepositoryWithCache => new RefreshTokenRepositoryWithCache);
 
-        $this->app->singleton(ClientRepository::class, function () {
-            return new ClientRepositoryWithCache;
-        });
+        $this->app->singleton(ClientRepository::class, fn (): \App\Infrastructure\Persistence\Repositories\PassportCache\ClientRepositoryWithCache => new ClientRepositoryWithCache);
     }
 }

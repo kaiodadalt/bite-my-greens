@@ -8,7 +8,7 @@ use App\Infrastructure\Persistence\Models\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ChallengeGroupTest extends TestCase
+final class ChallengeGroupTest extends TestCase
 {
     use RefreshDatabase;
 

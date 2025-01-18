@@ -8,9 +8,9 @@ use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ChallengeGroupResource extends JsonResource
+final class ChallengeGroupResource extends JsonResource
 {
-    public static $wrap = null;
+    public static $wrap;
 
     public function __construct(ChallengeGroupEntity $resource)
     {

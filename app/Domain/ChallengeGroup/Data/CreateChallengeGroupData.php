@@ -14,7 +14,7 @@ final readonly class CreateChallengeGroupData
         private DateTimeImmutable $end_date,
         private int $created_by
     ) {
-        if (strlen($name) === 0) {
+        if (mb_strlen($name) === 0) {
             throw new InvalidArgumentException('Name cannot be empty');
         }
 

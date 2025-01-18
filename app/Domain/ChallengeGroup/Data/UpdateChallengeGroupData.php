@@ -15,7 +15,7 @@ final readonly class UpdateChallengeGroupData
         private ?string $name = null,
         private ?DateTimeImmutable $end_date = null,
     ) {
-        if (! is_null($this->name) && empty($name)) {
+        if (! is_null($this->name) && ($name === null || $name === '' || $name === '0')) {
             throw new InvalidArgumentException('Name cannot be empty');
         }
 

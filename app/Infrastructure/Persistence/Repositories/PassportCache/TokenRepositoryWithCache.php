@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Config;
 use Laravel\Passport\Token;
 use Laravel\Passport\TokenRepository;
 
-class TokenRepositoryWithCache extends TokenRepository
+final class TokenRepositoryWithCache extends TokenRepository
 {
     public function find($id): ?Token
     {
@@ -54,7 +54,7 @@ class TokenRepositoryWithCache extends TokenRepository
         return parent::revokeAccessToken($id);
     }
 
-    protected function createKey($id): string
+    private function createKey($id): string
     {
         return sprintf('%s:%s', Config::string('passport.token_cache_prefix'), $id);
     }

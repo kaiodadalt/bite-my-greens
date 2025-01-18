@@ -8,7 +8,7 @@ use App\Application\ChallengeGroups\DTO\CreateChallengeGroupDTO;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 
-readonly class CreateChallengeGroupChallengeGroupUseCase extends ChallengeGroupUseCase
+final readonly class CreateChallengeGroupChallengeGroupUseCase extends ChallengeGroupUseCase
 {
     public function execute(int $user_id, CreateChallengeGroupDTO $creation_data): ChallengeGroupEntity
     {

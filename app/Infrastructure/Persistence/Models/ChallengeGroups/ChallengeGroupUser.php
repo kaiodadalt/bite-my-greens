@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $challenge_group_id
  * @property int $user_id
  */
-class ChallengeGroupUser extends Model
+final class ChallengeGroupUser extends Model
 {
     /** @use HasFactory<ChallengeGroupFactory> */
     use HasFactory;

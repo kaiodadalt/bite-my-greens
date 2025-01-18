@@ -6,13 +6,13 @@ namespace App\Infrastructure\Persistence\Models\UniqueID;
 
 trait HasUniqueID
 {
-    protected $keyType = 'string';
+    //    protected $keyType = 'string';
 
-    public $incrementing = false;
+    //    public $incrementing = false;
 
     protected static function bootUuidTrait(): void
     {
-        static::creating(function ($model) {
+        static::creating(function ($model): void {
             if (! $model->id) {
                 $model->id = UniqueID::generate();
             }

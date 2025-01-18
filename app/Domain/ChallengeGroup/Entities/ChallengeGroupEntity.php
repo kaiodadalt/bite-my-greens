@@ -7,15 +7,15 @@ namespace App\Domain\ChallengeGroup\Entities;
 use App\Domain\Shared\Entity;
 use DateTimeImmutable;
 
-class ChallengeGroupEntity implements Entity
+final class ChallengeGroupEntity implements Entity
 {
     public function __construct(
         private readonly int $id,
         private string $name,
         private DateTimeImmutable $end_date,
         private readonly int $created_by,
-        private DateTimeImmutable $created_at,
-        private DateTimeImmutable $updated_at,
+        private readonly DateTimeImmutable $created_at,
+        private readonly DateTimeImmutable $updated_at,
     ) {}
 
     public function getId(): int

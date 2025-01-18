@@ -6,7 +6,7 @@ namespace App\Application\ChallengeGroups\UseCases;
 
 use App\Domain\ChallengeGroup\Exceptions\ChallengeGroupNotFound;
 
-readonly class DeleteChallengeGroupUseCase extends ChallengeGroupUseCase
+final readonly class DeleteChallengeGroupUseCase extends ChallengeGroupUseCase
 {
     /**
      * @throws ChallengeGroupNotFound

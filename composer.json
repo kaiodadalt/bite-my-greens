@@ -26,7 +26,12 @@
         "laravel/sail": "^1.39",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^3.7"
+        "peckphp/peck": "^0.1.1",
+        "pestphp/pest": "^3.7.1",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "pestphp/pest-plugin-stressless": "^3.1",
+        "pestphp/pest-plugin-type-coverage": "^3.2",
+        "rector/rector": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -61,24 +66,21 @@
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
         ],
         "phpstan:baseline": "phpstan --generate-baseline",
-        "lint": [
-            "pint"
-        ],
-        "test:lint": [
-            "pint --test"
-        ],
-        "test:unit": [
-            "pest --parallel"
-        ],
-        "test:types":  [
-            "phpstan"
-        ],
+        "lint": "pint",
+        "refactor": "rector",
+        "test:type-coverage": "pest --type-coverage --min=90",
+        "test:typos": "peck",
+        "test:lint": "pint --test",
+        "test:unit": "pest --parallel",
+        "test:types": "phpstan",
+        "test:refactor": "rector --dry-run",
         "test": [
+            "@test:type-coverage",
             "@test:unit",
             "@test:lint",
-            "@test:types"
+            "@test:types",
+            "@test:refactor"
         ]
-
     },
     "extra": {
         "laravel": {

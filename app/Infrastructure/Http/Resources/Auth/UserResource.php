@@ -8,7 +8,7 @@ use App\Infrastructure\Persistence\Models\Auth\BaseUser;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+final class UserResource extends JsonResource
 {
     public function __construct(BaseUser $resource)
     {

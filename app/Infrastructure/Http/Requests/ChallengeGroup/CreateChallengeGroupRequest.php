@@ -13,7 +13,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @property string $name
  * @property string $end_date
  */
-class CreateChallengeGroupRequest extends FormRequest implements ConvertsToDTO
+final class CreateChallengeGroupRequest extends FormRequest implements ConvertsToDTO
 {
     public function authorize(): bool
     {

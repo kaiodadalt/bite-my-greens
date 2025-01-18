@@ -6,7 +6,7 @@ namespace App\Domain\ChallengeGroup\Exceptions;
 
 use Exception;
 
-class ChallengeGroupNotFound extends Exception
+final class ChallengeGroupNotFound extends Exception
 {
     public function __construct()
     {

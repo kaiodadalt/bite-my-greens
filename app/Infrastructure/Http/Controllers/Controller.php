@@ -6,6 +6,7 @@ namespace App\Infrastructure\Http\Controllers;
 
 use App\Domain\Shared\Exceptions\DomainAuthorizationException;
 use App\Domain\Shared\Exceptions\DomainException;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Log;
@@ -19,7 +20,7 @@ abstract class Controller extends BaseController
      * @param  string  $method
      * @param  array  $parameters
      */
-    public function callAction($method, $parameters): Response
+    final public function callAction($method, $parameters): Response
     {
         try {
             return parent::callAction($method, $parameters);
@@ -27,7 +28,7 @@ abstract class Controller extends BaseController
             return $this->errorResponse($e->getMessage(), 403);
         } catch (DomainException $e) {
             return $this->errorResponse($e->getMessage(), 422);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error('An unexpected error occurred', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),

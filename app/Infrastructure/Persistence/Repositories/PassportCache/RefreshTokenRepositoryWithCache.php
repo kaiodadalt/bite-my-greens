@@ -9,7 +9,7 @@ use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\RefreshTokenRepository;
 
-class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
+final class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
 {
     public function find($id): ?RefreshToken
     {
@@ -36,7 +36,7 @@ class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
         parent::revokeRefreshTokensByAccessTokenId($tokenId);
     }
 
-    protected function createKey($id): string
+    private function createKey($id): string
     {
         return sprintf('%s:%s', Config::string('passport.refresh_token_cache_prefix'), $id);
     }

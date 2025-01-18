@@ -12,7 +12,7 @@ use Laravel\Sanctum\PersonalAccessToken;
 /**
  * @property string $token
  */
-class PersonalAccessTokenWithCache extends PersonalAccessToken
+final class PersonalAccessTokenWithCache extends PersonalAccessToken
 {
     public static function findToken($token): ?self
     {
@@ -32,22 +32,14 @@ class PersonalAccessTokenWithCache extends PersonalAccessToken
         return $cached_token;
     }
 
-    private static function extractTokenFromString(string $token_string): string
-    {
-        return match (true) {
-            str_contains($token_string, '|') => explode('|', $token_string, 2)[1],
-            default => $token_string,
-        };
-    }
-
     public static function boot(): void
     {
         parent::boot();
 
         // Update cache on token update event
-        static::updating(function (self $personal_access_token) {});
+        self::updating(function (self $personal_access_token): void {});
 
-        static::deleting(function (self $personal_access_token) {
+        self::deleting(function (self $personal_access_token): void {
             $hashed_token = Hash::make($personal_access_token->token);
             Cache::forget("personal-access-token:{$hashed_token}");
             Cache::forget("personal-access-token:{$hashed_token}:tokenable");
@@ -63,5 +55,13 @@ class PersonalAccessTokenWithCache extends PersonalAccessToken
                 fn () => parent::tokenable()
             )
         );
+    }
+
+    private static function extractTokenFromString(string $token_string): string
+    {
+        return match (true) {
+            str_contains($token_string, '|') => explode('|', $token_string, 2)[1],
+            default => $token_string,
+        };
     }
 }

@@ -46,6 +46,20 @@ abstract class BaseUser extends Authenticatable
         'remember_token',
     ];
 
+    final public function toDTO(): UserDTO
+    {
+        return new UserDTO(
+            $this->id,
+            $this->name,
+            $this->email,
+        );
+    }
+
+    protected static function newFactory(): UserFactory
+    {
+        return new UserFactory;
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -57,19 +71,5 @@ abstract class BaseUser extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    protected static function newFactory(): UserFactory
-    {
-        return new UserFactory;
-    }
-
-    public function toDTO(): UserDTO
-    {
-        return new UserDTO(
-            $this->id,
-            $this->name,
-            $this->email,
-        );
     }
 }
