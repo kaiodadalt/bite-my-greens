@@ -2,73 +2,62 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\ChallengeGroup;
-
 use App\Infrastructure\Persistence\Models\Auth\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-final class ChallengeGroupTest extends TestCase
-{
-    use RefreshDatabase;
+it('allows an authenticated user to create a challenge group', function () {
+    $user = User::factory()->create();
 
-    public function test_authenticated_user_can_create_challenge_group(): void
-    {
-        $user = User::factory()->create();
+    $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
 
-        $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+    expect(auth()->check())->toBeTrue();
 
-        $this->assertAuthenticated();
+    $response = $this->post('/api/challenge-group', [
+        'name' => 'Kaio Challenge',
+        'end_date' => now()->addDays(7)->toDateString(),
+    ]);
 
-        $response = $this->post('/api/challenge-group', [
-            'name' => 'Kaio Challenge',
-            'end_date' => now()->addDays(7)->toDateString(),
-        ]);
+    $response->assertStatus(201);
+    $response->assertJson([
+        'name' => 'Kaio Challenge',
+        'end_date' => now()->addDays(7)->toDateString(),
+    ]);
+})->group('challenge-group');
 
-        $response->assertStatus(201);
-        $response->assertJson([
-            'name' => 'Kaio Challenge',
-            'end_date' => now()->addDays(7)->toDateString(),
-        ]);
-    }
+it('allows an authenticated user to update a challenge group', function () {
+    $user = User::factory()->create();
 
-    public function test_authenticated_user_can_update_challenge_group(): void
-    {
-        $user = User::factory()->create();
+    $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
 
-        // Log in the user
-        $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+    expect(auth()->check())->toBeTrue();
 
-        $this->assertAuthenticated();
+    $response = $this->post('/api/challenge-group', [
+        'name' => 'Kaio Challenge',
+        'end_date' => now()->addDays(7)->toDateString(),
+    ]);
 
-        $response = $this->post('/api/challenge-group', [
-            'name' => 'Kaio Challenge',
-            'end_date' => now()->addDays(7)->toDateString(),
-        ]);
+    $id = $response->json('id');
 
-        $id = $response->json('id');
+    $response = $this->put('/api/challenge-group/'.$id, [
+        'name' => 'Updated Challenge',
+        'end_date' => now()->addDays(10)->toDateString(),
+    ]);
 
-        $response = $this->put('/api/challenge-group/'.$id, [
-            'name' => 'Updated Challenge',
-            'end_date' => now()->addDays(10)->toDateString(),
-        ]);
+    $response->assertStatus(200);
+    $response->assertJson([
+        'id' => $id,
+        'name' => 'Updated Challenge',
+        'end_date' => now()->addDays(10)->toDateString(),
+    ]);
 
-        $response->assertStatus(200);
-        $response->assertJson([
-            'id' => $id,
-            'name' => 'Updated Challenge',
-            'end_date' => now()->addDays(10)->toDateString(),
-        ]);
-        $this->assertDatabaseHas('challenge_groups', [
-            'id' => $id,
-            'name' => 'Updated Challenge',
-            'end_date' => now()->startOfDay()->addDays(10)->format('Y-m-d H:i:s'),
-        ]);
-    }
-}
+    $this->assertDatabaseHas('challenge_groups', [
+        'id' => $id,
+        'name' => 'Updated Challenge',
+        'end_date' => now()->startOfDay()->addDays(10)->format('Y-m-d H:i:s'),
+    ]);
+})->group('challenge-group');

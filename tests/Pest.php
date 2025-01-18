@@ -13,9 +13,13 @@ declare(strict_types=1);
 |
 */
 
-pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
+
+pest()->extend(TestCase::class, RefreshDatabase::class)->beforeEach(function () {
+    Storage::fake('public');
+});
 
 /*
 |--------------------------------------------------------------------------

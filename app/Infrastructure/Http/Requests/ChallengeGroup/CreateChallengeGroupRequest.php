@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Http\Requests\ChallengeGroup;
 
 use App\Application\ChallengeGroups\DTO\CreateChallengeGroupDTO;
-use App\Infrastructure\Http\Requests\ConvertsToDTO;
+use App\Application\Shared\ConvertsToDTO;
 use DateTimeImmutable;
 use Illuminate\Foundation\Http\FormRequest;
 

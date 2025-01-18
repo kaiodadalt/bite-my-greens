@@ -271,36 +271,6 @@ parameters:
 			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroupUser.php
 
 		-
-			message: '#^Binary operation "\." between mixed and string results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
-
-		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 5
-			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
-
-		-
-			message: '#^Class App\\Infrastructure\\Persistence\\Models\\UniqueID\\UniqueID implements generic interface Illuminate\\Contracts\\Database\\Eloquent\\CastsAttributes but does not specify its types\: TGet, TSet$#'
-			identifier: missingType.generics
-			count: 1
-			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
-
-		-
-			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
-
-		-
-			message: '#^Cannot access property \$id on mixed\.$#'
-			identifier: property.nonObject
-			count: 2
-			path: app/Infrastructure/Persistence/Models/UniqueID/UuidUser.php
-
-		-
 			message: '#^Method App\\Infrastructure\\Persistence\\Repositories\\ChallengeGroup\\ChallengeGroupEloquentRepository\:\:delete\(\) should return bool but returns mixed\.$#'
 			identifier: return.type
 			count: 1
@@ -371,6 +341,36 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: app/Infrastructure/Persistence/Repositories/PassportCache/TokenRepositoryWithCache.php
+
+		-
+			message: '#^Binary operation "\." between mixed and string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Infrastructure/Persistence/UniqueID/UniqueID.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 5
+			path: app/Infrastructure/Persistence/UniqueID/UniqueID.php
+
+		-
+			message: '#^Class App\\Infrastructure\\Persistence\\UniqueID\\UniqueID implements generic interface Illuminate\\Contracts\\Database\\Eloquent\\CastsAttributes but does not specify its types\: TGet, TSet$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Infrastructure/Persistence/UniqueID/UniqueID.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/UniqueID/UniqueID.php
+
+		-
+			message: '#^Cannot access property \$id on mixed\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: app/Infrastructure/Persistence/UniqueID/UuidUser.php
 
 		-
 			message: '#^Binary operation "\." between mixed and non\-falsy\-string results in an error\.$#'
