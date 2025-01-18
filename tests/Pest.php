@@ -17,11 +17,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-
 pest()->extend(TestCase::class, RefreshDatabase::class)
     ->beforeEach(function () {
-    Storage::fake('public');
-});
+        Storage::fake('public');
+    });
 
 /*
 |--------------------------------------------------------------------------
