@@ -1,0 +1,385 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Cannot call method hasVerifiedEmail\(\) on App\\Infrastructure\\Persistence\\Models\\Auth\\ApiUser\|App\\Infrastructure\\Persistence\\Models\\Auth\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/EmailVerificationNotificationController.php
+
+		-
+			message: '#^Cannot call method sendEmailVerificationNotification\(\) on App\\Infrastructure\\Persistence\\Models\\Auth\\ApiUser\|App\\Infrastructure\\Persistence\\Models\\Auth\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/EmailVerificationNotificationController.php
+
+		-
+			message: '#^Cannot call method forceFill\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
+
+		-
+			message: '#^Cannot call method save\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
+
+		-
+			message: '#^Parameter \#1 \$key of function __ expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
+
+		-
+			message: '#^Parameter \#1 \$user of class Illuminate\\Auth\\Events\\PasswordReset constructor expects Illuminate\\Contracts\\Auth\\Authenticatable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Facades\\Hash\:\:make\(\) expects string, Illuminate\\Support\\Stringable given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Facades\\Hash\:\:make\(\) expects string, Illuminate\\Support\\Stringable given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/RegisteredUserController.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/dashboard\?verified…'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: app/Infrastructure/Http/Controllers/Auth/VerifyEmailController.php
+
+		-
+			message: '#^Cannot call method hasVerifiedEmail\(\) on App\\Infrastructure\\Persistence\\Models\\Auth\\ApiUser\|App\\Infrastructure\\Persistence\\Models\\Auth\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/VerifyEmailController.php
+
+		-
+			message: '#^Cannot call method markEmailAsVerified\(\) on App\\Infrastructure\\Persistence\\Models\\Auth\\ApiUser\|App\\Infrastructure\\Persistence\\Models\\Auth\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/VerifyEmailController.php
+
+		-
+			message: '#^Parameter \#1 \$user of class Illuminate\\Auth\\Events\\Verified constructor expects Illuminate\\Contracts\\Auth\\MustVerifyEmail, App\\Infrastructure\\Persistence\\Models\\Auth\\ApiUser\|App\\Infrastructure\\Persistence\\Models\\Auth\\User\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Auth/VerifyEmailController.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Http\\Controllers\\Controller\:\:callAction\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Infrastructure/Http/Controllers/Controller.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Http\\Requests\\Auth\\LoginRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Infrastructure/Http/Requests/Auth/LoginRequest.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:lower\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Requests/Auth/LoginRequest.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Http\\Requests\\ChallengeGroup\\CreateChallengeGroupRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Infrastructure/Http/Requests/ChallengeGroup/CreateChallengeGroupRequest.php
+
+		-
+			message: '#^Cannot cast object\|string\|null to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Http\\Requests\\ChallengeGroup\\UpdateChallengeGroupRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
+
+		-
+			message: '#^Parameter \#1 \$datetime of class DateTimeImmutable constructor expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
+
+		-
+			message: '#^Parameter \#1 \$id of class App\\Application\\ChallengeGroups\\DTO\\UpdateChallengeGroupDTO constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
+
+		-
+			message: '#^Cannot access property \$created_at on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
+
+		-
+			message: '#^Cannot access property \$email on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
+
+		-
+			message: '#^Cannot access property \$id on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
+
+		-
+			message: '#^Cannot access property \$name on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Http\\Resources\\Auth\\UserResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
+
+		-
+			message: '#^Cannot call method format\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
+
+		-
+			message: '#^Cannot call method getCreatedAt\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
+
+		-
+			message: '#^Cannot call method getEndDate\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
+
+		-
+			message: '#^Cannot call method getId\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
+
+		-
+			message: '#^Cannot call method getName\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
+
+		-
+			message: '#^Cannot call method getOwnerId\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Http\\Resources\\ChallengeGroup\\ChallengeGroupResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
+
+		-
+			message: '#^Cannot access offset ''token'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
+
+		-
+			message: '#^Cannot access property \$token on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\Auth\\SanctumCache\\PersonalAccessTokenWithCache\:\:findToken\(\) should return static\(App\\Infrastructure\\Persistence\\Models\\Auth\\SanctumCache\\PersonalAccessTokenWithCache\)\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\Auth\\SanctumCache\\PersonalAccessTokenWithCache\:\:tokenable\(\) return type with generic class Illuminate\\Database\\Eloquent\\Casts\\Attribute does not specify its types\: TGet, TSet$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Facades\\Hash\:\:check\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Facades\\Hash\:\:make\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
+
+		-
+			message: '#^Return type \(Illuminate\\Database\\Eloquent\\Casts\\Attribute\) of method App\\Infrastructure\\Persistence\\Models\\Auth\\SanctumCache\\PersonalAccessTokenWithCache\:\:tokenable\(\) should be compatible with return type \(Illuminate\\Database\\Eloquent\\Relations\\MorphTo\) of method Laravel\\Sanctum\\PersonalAccessToken\:\:tokenable\(\)$#'
+			identifier: method.childReturnType
+			count: 1
+			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\:\:creator\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroup.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\:\:participants\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroup.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\:\:challengeGroup\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroupUser.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\:\:user\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroupUser.php
+
+		-
+			message: '#^Binary operation "\." between mixed and string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Class App\\Infrastructure\\Persistence\\Models\\UniqueID\\UniqueID implements generic interface Illuminate\\Contracts\\Database\\Eloquent\\CastsAttributes but does not specify its types\: TGet, TSet$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_starts_with expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Parameter \#1 \$string of function bin2hex expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strlen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Parameter \#1 \$string of function substr expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Parameter \#2 \$needle of function str_starts_with expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/UniqueID/UniqueID.php
+
+		-
+			message: '#^Cannot access property \$id on mixed\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: app/Infrastructure/Persistence/Models/UniqueID/UuidUser.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Repositories\\ChallengeGroup\\ChallengeGroupEloquentRepository\:\:delete\(\) should return bool but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
+
+		-
+			message: '#^Parameter \#5 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			identifier: argument.type
+			count: 4
+			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
+
+		-
+			message: '#^Parameter \#6 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			identifier: argument.type
+			count: 4
+			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
+
+		-
+			message: '#^Property App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\:\:\$end_date \(Carbon\\CarbonImmutable\) does not accept DateTimeImmutable\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Repositories\\PassportCache\\RefreshTokenRepositoryWithCache\:\:createKey\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/PassportCache/RefreshTokenRepositoryWithCache.php
+
+		-
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/PassportCache/RefreshTokenRepositoryWithCache.php
+
+		-
+			message: '#^Binary operation "\." between mixed and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/PassportCache/TokenRepositoryWithCache.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Repositories\\PassportCache\\TokenRepositoryWithCache\:\:createKey\(\) has parameter \$id with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/PassportCache/TokenRepositoryWithCache.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Repositories\\PassportCache\\TokenRepositoryWithCache\:\:forUser\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/PassportCache/TokenRepositoryWithCache.php
+
+		-
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/PassportCache/TokenRepositoryWithCache.php
+
+		-
+			message: '#^Binary operation "\." between mixed and non\-falsy\-string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Infrastructure/Providers/AppServiceProvider.php
+
+		-
+			message: '#^Parameter \#1 \$callback of static method Illuminate\\Auth\\Notifications\\ResetPassword\:\:createUrlUsing\(\) expects Closure\(mixed, string\)\: string, Closure\(App\\Infrastructure\\Persistence\\Models\\Auth\\BaseUser, string\)\: non\-falsy\-string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Providers/AppServiceProvider.php

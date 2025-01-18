@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Persistence\Models\ChallengeGroups;
 
 use App\Infrastructure\Persistence\Models\Auth\User;
+use Database\Factories\ChallengeGroups\ChallengeGroupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class ChallengeGroupUser extends Model
 {
+    /** @use HasFactory<ChallengeGroupFactory> */
     use HasFactory;
 
     public $incrementing = false;
@@ -25,7 +27,7 @@ class ChallengeGroupUser extends Model
     ];
 
     /**
-     * @return BelongsTo<ChallengeGroup>
+     * @return BelongsTo<ChallengeGroup, ChallengeGroupUser>
      */
     public function challengeGroup(): BelongsTo
     {
@@ -33,7 +35,7 @@ class ChallengeGroupUser extends Model
     }
 
     /**
-     * @return BelongsTo<User>
+     * @return BelongsTo<User, ChallengeGroupUser>
      */
     public function user(): BelongsTo
     {

@@ -18,7 +18,7 @@ class ChallengeGroupController extends Controller
 {
     public function create(CreateChallengeGroupRequest $request, CreateChallengeGroupChallengeGroupUseCase $use_case): JsonResponse
     {
-        $challenge_group = $use_case->execute(auth()->id(), $request->toDTO());
+        $challenge_group = $use_case->execute((int) auth()->id(), $request->toDTO());
         return (new ChallengeGroupResource($challenge_group))
             ->response()
             ->setStatusCode(201);
@@ -29,15 +29,18 @@ class ChallengeGroupController extends Controller
      */
     public function get(int $id, GetChallengeGroupUseCase $use_case): JsonResponse
     {
-        $challenge_group = $use_case->execute(auth()->id(), $id);
+        $challenge_group = $use_case->execute((int) auth()->id(), $id);
         return (new ChallengeGroupResource($challenge_group))
             ->response()
             ->setStatusCode(200);
     }
 
+    /**
+     * @throws ChallengeGroupNotFound
+     */
     public function update(UpdateChallengeGroupRequest $request, int $id, UpdateChallengeGroupUseCase $use_case): JsonResponse
     {
-        $challenge_group = $use_case->execute(auth()->id(), $request->toDto());
+        $challenge_group = $use_case->execute((int) auth()->id(), $request->toDto());
         return (new ChallengeGroupResource($challenge_group))
             ->response()
             ->setStatusCode(200);
@@ -48,7 +51,7 @@ class ChallengeGroupController extends Controller
      */
     public function delete(int $id, DeleteChallengeGroupUseCase $use_case): JsonResponse
     {
-        $use_case->execute(auth()->id(), $id);
+        $use_case->execute((int) auth()->id(), $id);
         return response()->json()->setStatusCode(200);
     }
 }

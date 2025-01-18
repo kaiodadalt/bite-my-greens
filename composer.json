@@ -63,6 +63,7 @@
         "test:unit": [
             "pest --parallel"
         ],
+        "phpstan:baseline": "phpstan --generate-baseline",
         "test": "php artisan test",
         "test:types":  [
             "phpstan"

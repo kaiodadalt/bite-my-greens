@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Repositories\PassportCache;
 
+use Illuminate\Support\Facades\Config;
 use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken;
 use Laravel\Passport\RefreshTokenRepository;
@@ -36,6 +37,6 @@ class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
 
     protected function createKey($id): string
     {
-        return sprintf('%s:%s', env('PASSPORT_REFRESH_TOKEN_CACHE_PREFIX', 'passport:refresh-token'), $id);
+        return sprintf('%s:%s', Config::string('passport.refresh_token_cache_prefix'), $id);
     }
 }

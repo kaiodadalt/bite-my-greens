@@ -73,5 +73,7 @@ return [
     ],
 
     'cookie_name' => env('PASSPORT_COOKIE_NAME', 'auth_cookie'),
-
+    'token_cache_prefix' => env('PASSPORT_TOKEN_CACHE_PREFIX', 'passport:token'),
+    'refresh_token_cache_prefix' => env('PASSPORT_REFRESH_TOKEN_CACHE_PREFIX', 'passport:refresh-token'),
+    'client_cache_prefix' => env('PASSPORT_CLIENT_CACHE_PREFIX', 'passport:client-token'),
 ];

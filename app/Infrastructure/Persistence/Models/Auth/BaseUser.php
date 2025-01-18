@@ -18,7 +18,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string $password
  * @property DateTime|null $email_verified_at
  * @property string|null $remember_token
- * @method static create(array $array)
  */
 abstract class BaseUser extends Authenticatable
 {

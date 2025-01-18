@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Persistence\Repositories\PassportCache;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use Laravel\Passport\Token;
 use Laravel\Passport\TokenRepository;
 
@@ -53,6 +54,6 @@ class TokenRepositoryWithCache extends TokenRepository
 
     protected function createKey($id): string
     {
-        return sprintf('%s:%s', env('PASSPORT_TOKEN_CACHE_PREFIX', 'passport:token'), $id);
+        return sprintf('%s:%s', Config::string('passport.token_cache_prefix'), $id);
     }
 }

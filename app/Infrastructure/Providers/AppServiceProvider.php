@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Providers;
 
+use App\Infrastructure\Persistence\Models\Auth\BaseUser;
 use Carbon\CarbonImmutable;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
+        ResetPassword::createUrlUsing(function (BaseUser $notifiable, string $token) {
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
 

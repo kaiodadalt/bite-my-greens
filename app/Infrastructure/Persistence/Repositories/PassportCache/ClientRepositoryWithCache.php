@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Repositories\PassportCache;
 
+use Illuminate\Support\Facades\Config;
 use Laravel\Passport\Client;
 use Laravel\Passport\ClientRepository;
 
@@ -19,6 +20,6 @@ class ClientRepositoryWithCache extends ClientRepository
 
     protected function createKey(int|string $id): string
     {
-        return sprintf('%s:%s', env('PASSPORT_CLIENT_CACHE_PREFIX', 'passport:client-token'), $id);
+        return sprintf('%s:%s', Config::string('passport.client_cache_prefix'), $id);
     }
 }

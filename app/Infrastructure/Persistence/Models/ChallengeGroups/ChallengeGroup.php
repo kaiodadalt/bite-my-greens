@@ -6,22 +6,18 @@ namespace App\Infrastructure\Persistence\Models\ChallengeGroups;
 use App\Infrastructure\Persistence\Models\Auth\User;
 use Database\Factories\ChallengeGroups\ChallengeGroupFactory;
 use DateTime;
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
  * @property int $id
  * @property int $created_by
  * @property string $name
- * @property DateTime $end_date
  * @property User $creator
- * @method static create(array $array)
- * @method static exists(int $id)
- * @method static find(int $id)
- * @method static where(array $clauses)
- * @method static join(string $table, string $first, string $operator, string $second)
  */
 class ChallengeGroup extends Model
 {
@@ -34,14 +30,13 @@ class ChallengeGroup extends Model
         'end_date',
     ];
 
-    protected $dates = [
-        'end_date',
-        'created_at',
-        'updated_at',
+    protected $casts = [
+        'end_date' => 'immutable_date',
     ];
 
+
     /**
-     * @return BelongsTo<User>
+     * @return BelongsTo<User, ChallengeGroup>
      */
     public function creator(): BelongsTo
     {
@@ -50,9 +45,9 @@ class ChallengeGroup extends Model
 
 
     /**
-     * @return HasMany<ChallengeGroupUser>
+     * @return HasMany<ChallengeGroupUser, ChallengeGroup>
      */
-    public function challengeGroupUsers(): HasMany
+    public function participants(): HasMany
     {
         return $this->hasMany(ChallengeGroupUser::class, 'challenge_group_id');
     }
