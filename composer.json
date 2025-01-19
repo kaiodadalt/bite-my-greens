@@ -73,7 +73,7 @@
         "phpstan:baseline": "phpstan --generate-baseline",
         "lint": "pint",
         "refactor": "rector",
-        "test:type-coverage": "pest --type-coverage --min=98",
+        "test:type-coverage": "pest --type-coverage --min=100",
         "test:lint": "pint --test",
         "test:unit": "pest --parallel",
         "test:types": "phpstan",

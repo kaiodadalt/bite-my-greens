@@ -20,7 +20,7 @@ abstract class Controller extends BaseController
      * @param  string  $method
      * @param  array  $parameters
      */
-    final public function callAction($method, $parameters): Response
+    final public function callAction($method, $parameters): Response // @pest-ignore-type
     {
         try {
             return parent::callAction($method, $parameters);
