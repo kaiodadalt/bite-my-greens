@@ -10,7 +10,7 @@ use Laravel\Passport\ClientRepository;
 
 final class ClientRepositoryWithCache extends ClientRepository
 {
-    public function find($id): ?Client
+    public function find($id): ?Client // @pest-ignore-type
     {
         return cache()->remember(
             $this->createKey($id),

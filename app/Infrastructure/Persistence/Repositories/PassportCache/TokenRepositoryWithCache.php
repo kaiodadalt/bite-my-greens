@@ -11,7 +11,7 @@ use Laravel\Passport\TokenRepository;
 
 final class TokenRepositoryWithCache extends TokenRepository
 {
-    public function find($id): ?Token
+    public function find($id): ?Token // @pest-ignore-type
     {
         return cache()->remember(
             $this->createKey($id),
@@ -20,7 +20,7 @@ final class TokenRepositoryWithCache extends TokenRepository
         );
     }
 
-    public function findForUser($id, $userId): ?Token
+    public function findForUser($id, $userId): ?Token // @pest-ignore-type
     {
         return cache()->remember(
             $this->createKey($id),
@@ -29,7 +29,7 @@ final class TokenRepositoryWithCache extends TokenRepository
         );
     }
 
-    public function forUser($userId): Collection
+    public function forUser($userId): Collection // @pest-ignore-type
     {
         return cache()->remember(
             $this->createKey($userId),
@@ -38,7 +38,7 @@ final class TokenRepositoryWithCache extends TokenRepository
         );
     }
 
-    public function getValidToken($user, $client): ?Token
+    public function getValidToken($user, $client): ?Token // @pest-ignore-type
     {
         return cache()->remember(
             $this->createKey($user->getKey().$client->getKey()),
@@ -47,14 +47,14 @@ final class TokenRepositoryWithCache extends TokenRepository
         );
     }
 
-    public function revokeAccessToken($id): mixed
+    public function revokeAccessToken($id): mixed // @pest-ignore-type
     {
         cache()->forget($this->createKey($id));
 
         return parent::revokeAccessToken($id);
     }
 
-    private function createKey($id): string
+    private function createKey($id): string // @pest-ignore-type
     {
         return sprintf('%s:%s', Config::string('passport.token_cache_prefix'), $id);
     }

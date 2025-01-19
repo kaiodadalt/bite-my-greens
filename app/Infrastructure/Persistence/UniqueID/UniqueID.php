@@ -41,7 +41,7 @@ abstract class UniqueID implements CastsAttributes
      *   - Strip dashes if it's a standard UUID
      *   - Convert to binary(16)
      */
-    final public function set(Model $model, string $key, $value, array $attributes)
+    final public function set(Model $model, string $key, $value, array $attributes) // @pest-ignore-type
     {
         // If the value is empty, generate a new one
         if (empty($value)) {

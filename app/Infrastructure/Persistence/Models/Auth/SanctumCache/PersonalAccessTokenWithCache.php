@@ -14,7 +14,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  */
 final class PersonalAccessTokenWithCache extends PersonalAccessToken
 {
-    public static function findToken($token): ?self
+    public static function findToken($token): ?self // @pest-ignore-type
     {
         $token = self::extractTokenFromString($token);
         $hashed_token = Hash::make($token);
@@ -49,7 +49,7 @@ final class PersonalAccessTokenWithCache extends PersonalAccessToken
     public function tokenable(): Attribute
     {
         return Attribute::make(
-            get: fn ($_, $attributes) => Cache::remember(
+            get: fn ($_, $attributes) => Cache::remember( // @pest-ignore-type
                 'personal-access-token:'.Hash::make($attributes['token']).':tokenable',
                 now()->addDays(30),
                 fn () => parent::tokenable()

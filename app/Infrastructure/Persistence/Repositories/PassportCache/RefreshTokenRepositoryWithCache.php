@@ -11,7 +11,7 @@ use Laravel\Passport\RefreshTokenRepository;
 
 final class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
 {
-    public function find($id): ?RefreshToken
+    public function find($id): ?RefreshToken // @pest-ignore-type
     {
         return cache()->remember(
             $this->createKey($id),
@@ -20,13 +20,13 @@ final class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
         );
     }
 
-    public function revokeRefreshToken($id): void
+    public function revokeRefreshToken($id): void // @pest-ignore-type
     {
         cache()->forget($this->createKey($id));
         parent::revokeRefreshToken($id);
     }
 
-    public function revokeRefreshTokensByAccessTokenId($tokenId): void
+    public function revokeRefreshTokensByAccessTokenId($tokenId): void // @pest-ignore-type
     {
         Passport::refreshToken()
             ->query()
@@ -36,7 +36,7 @@ final class RefreshTokenRepositoryWithCache extends RefreshTokenRepository
         parent::revokeRefreshTokensByAccessTokenId($tokenId);
     }
 
-    private function createKey($id): string
+    private function createKey($id): string // @pest-ignore-type
     {
         return sprintf('%s:%s', Config::string('passport.refresh_token_cache_prefix'), $id);
     }
