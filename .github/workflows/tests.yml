@@ -23,10 +23,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-#      - name: Install Aspell
-#        shell: bash
-#        run: |
-#          sudo apt-get update && sudo apt-get install -y aspell aspell-en
+      - name: Check single commit
+        # This step will only run for pull_request events, NOT for push
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Get the PR number
+            const pullNumber = context.payload.pull_request.number;
+
+            // Fetch all commits for this PR
+            const { data: commits } = await github.rest.pulls.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pullNumber
+            });
+
+            // Fail if there's more than one commit
+            if (commits.length > 1) {
+              core.setFailed(
+                `Pull Request has ${commits.length} commits. Please squash to a single commit.`
+              );
+            }
 
       - name: Cache Dependencies
         uses: actions/cache@v4
