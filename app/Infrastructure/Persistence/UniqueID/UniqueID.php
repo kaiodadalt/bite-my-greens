@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Persistence\UniqueID;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 abstract class UniqueID implements CastsAttributes
@@ -23,7 +24,7 @@ abstract class UniqueID implements CastsAttributes
     /**
      * Read from the database (binary(16)) and cast to a hex string with optional prefix.
      */
-    final public function get($model, string $key, $value, array $attributes): ?string
+    final public function get(Model $model, string $key, mixed $value, array $attributes): ?string
     {
         if (is_null($value)) {
             return null;
@@ -40,7 +41,7 @@ abstract class UniqueID implements CastsAttributes
      *   - Strip dashes if it's a standard UUID
      *   - Convert to binary(16)
      */
-    final public function set($model, string $key, $value, array $attributes)
+    final public function set(Model $model, string $key, $value, array $attributes)
     {
         // If the value is empty, generate a new one
         if (empty($value)) {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Http\Controllers\Auth;
 
 use App\Infrastructure\Http\Controllers\Controller;
+use App\Infrastructure\Persistence\Models\Auth\BaseUser;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,9 +35,9 @@ final class NewPasswordController extends Controller
         // database. Otherwise we will parse the error and return the response.
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user) use ($request): void {
+            function (BaseUser $user) use ($request): void {
                 $user->forceFill([
-                    'password' => Hash::make($request->string('password')),
+                    'password' => Hash::make($request->string('password')->toString()),
                     'remember_token' => Str::random(60),
                 ])->save();
 

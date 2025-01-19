@@ -13,31 +13,7 @@ parameters:
 			path: app/Infrastructure/Http/Controllers/Auth/EmailVerificationNotificationController.php
 
 		-
-			message: '#^Cannot call method forceFill\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
-
-		-
-			message: '#^Cannot call method save\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
-
-		-
 			message: '#^Parameter \#1 \$key of function __ expects string\|null, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
-
-		-
-			message: '#^Parameter \#1 \$user of class Illuminate\\Auth\\Events\\PasswordReset constructor expects Illuminate\\Contracts\\Auth\\Authenticatable, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
-
-		-
-			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Facades\\Hash\:\:make\(\) expects string, Illuminate\\Support\\Stringable given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Infrastructure/Http/Controllers/Auth/NewPasswordController.php
