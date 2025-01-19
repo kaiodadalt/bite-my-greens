@@ -1,6 +1,5 @@
 <?php
 
-class test
-{
+declare(strict_types=1);
 
-}
+final class test {}
