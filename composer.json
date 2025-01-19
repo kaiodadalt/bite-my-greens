@@ -26,7 +26,6 @@
         "laravel/sail": "^1.39",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "peckphp/peck": "^0.1.1",
         "pestphp/pest": "^3.7.1",
         "pestphp/pest-plugin-laravel": "^3.0",
         "pestphp/pest-plugin-stressless": "^3.1",
@@ -47,16 +46,16 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "cp .hooks/pre-commit .git/hooks/pre-commit || :",
-            "chmod +x .git/hooks/pre-commit || :"
+            "cp .hooks/pre-push .git/hooks/pre-push || :",
+            "chmod +x .git/hooks/pre-push || :"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "cp .hooks/pre-commit .git/hooks/pre-commit || :",
-            "chmod +x .git/hooks/pre-commit || :",
+            "cp .hooks/pre-push .git/hooks/pre-push || :",
+            "chmod +x .git/hooks/pre-push || :",
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [

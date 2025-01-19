@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo "Running pre-commit tests..."
+echo "Running pre-push tests..."
 
-# Navigate to the root directory of the repository
+# Navigate to the root directory
 cd "$(git rev-parse --show-toplevel)" || exit 1
 
 if [ -f "vendor/bin/sail" ]; then
@@ -13,11 +13,10 @@ else
     composer test
 fi
 
-# Check the exit code of the test command
 if [ $? -ne 0 ]; then
-    echo "Tests failed. Aborting commit."
+    echo "Tests failed. Aborting push."
     exit 1
 fi
 
-echo "Tests passed. Proceeding with commit."
+echo "Tests passed. Proceeding with push."
 exit 0
