@@ -8,7 +8,7 @@ use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupChallengeGroupU
 use App\Application\ChallengeGroups\UseCases\DeleteChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\GetChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\UpdateChallengeGroupUseCase;
-use App\Domain\ChallengeGroup\Exceptions\ChallengeGroupNotFound;
+use App\Domain\ChallengeGroup\Exceptions\ChallengeGroupNotFoundException;
 use App\Infrastructure\Http\Controllers\Controller;
 use App\Infrastructure\Http\Requests\ChallengeGroup\CreateChallengeGroupRequest;
 use App\Infrastructure\Http\Requests\ChallengeGroup\UpdateChallengeGroupRequest;
@@ -27,7 +27,7 @@ final class ChallengeGroupController extends Controller
     }
 
     /**
-     * @throws ChallengeGroupNotFound
+     * @throws ChallengeGroupNotFoundException
      */
     public function get(int $id, GetChallengeGroupUseCase $use_case): JsonResponse
     {
@@ -39,7 +39,7 @@ final class ChallengeGroupController extends Controller
     }
 
     /**
-     * @throws ChallengeGroupNotFound
+     * @throws ChallengeGroupNotFoundException
      */
     public function update(UpdateChallengeGroupRequest $request, int $id, UpdateChallengeGroupUseCase $use_case): JsonResponse
     {
@@ -51,7 +51,7 @@ final class ChallengeGroupController extends Controller
     }
 
     /**
-     * @throws ChallengeGroupNotFound
+     * @throws ChallengeGroupNotFoundException
      */
     public function delete(int $id, DeleteChallengeGroupUseCase $use_case): JsonResponse
     {

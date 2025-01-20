@@ -9,7 +9,7 @@ use Database\Factories\ChallengeGroups\ChallengeGroupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -32,8 +32,13 @@ final class ChallengeGroup extends Model
         'end_date' => 'immutable_date',
     ];
 
+    public static function newFactory(): ChallengeGroupFactory
+    {
+        return new ChallengeGroupFactory;
+    }
+
     /**
-     * @return BelongsTo<User, ChallengeGroup>
+     * @return BelongsTo<User, self>
      */
     public function creator(): BelongsTo
     {
@@ -41,10 +46,15 @@ final class ChallengeGroup extends Model
     }
 
     /**
-     * @return HasMany<ChallengeGroupUser, ChallengeGroup>
+     * @return BelongsToMany<ChallengeGroupUser, ChallengeGroup>
      */
-    public function participants(): HasMany
+    public function participants(): BelongsToMany
     {
-        return $this->hasMany(ChallengeGroupUser::class, 'challenge_group_id');
+        return $this->belongsToMany(
+            User::class,
+            'challenge_groups_users',
+            'challenge_group_id',
+            'user_id'
+        );
     }
 }

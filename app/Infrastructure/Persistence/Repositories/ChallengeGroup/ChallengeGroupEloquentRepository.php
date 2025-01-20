@@ -64,10 +64,12 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
 
     public function delete(ChallengeGroupEntity $challenge_group): bool
     {
-        return ChallengeGroup::where([
+        $deleted_rows = ChallengeGroup::where([
             'id' => $challenge_group->getId(),
             'created_by' => $challenge_group->getOwnerId(),
         ])->delete();
+
+        return $deleted_rows > 0;
     }
 
     public function hasMember(ChallengeGroupEntity $challenge_group, int $user_id): bool

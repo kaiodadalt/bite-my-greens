@@ -19,6 +19,14 @@
         <include>
             <directory>app</directory>
         </include>
+        <exclude>
+            <directory>app/Infrastructure/Providers</directory>
+            <directory>app/Infrastructure/Persistence/Repositories/PassportCache</directory>
+            <directory>app/Infrastructure/Persistence/UniqueID</directory>
+            <directory>app/Infrastructure/Persistence/Models/Auth</directory>
+            <directory>app/Infrastructure/Http/Controllers/Auth</directory>
+<!--            <directory>app/Infrastructure/Http/Requests/Auth</directory>-->
+        </exclude>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>

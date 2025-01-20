@@ -75,7 +75,7 @@
         "refactor": "rector",
         "test:type-coverage": "pest --type-coverage --min=100",
         "test:lint": "pint --test",
-        "test:unit": "pest --parallel",
+        "test:unit": "pest --parallel --coverage --min=100",
         "test:types": "phpstan",
         "test:refactor": "rector --dry-run",
         "test": [

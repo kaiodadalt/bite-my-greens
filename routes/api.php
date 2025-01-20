@@ -12,9 +12,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('challenge-group')->group(function () {
-        Route::post('/', [ChallengeGroupController::class, 'create']);
-        Route::get('/{id}', [ChallengeGroupController::class, 'get']);
-        Route::put('/{id}', [ChallengeGroupController::class, 'update']);
-        Route::delete('/{id}', [ChallengeGroupController::class, 'delete']);
+        Route::post('/', [ChallengeGroupController::class, 'create'])->name('challenge-group.create');
+        Route::get('/{id}', [ChallengeGroupController::class, 'get'])->name('challenge-group.get');
+        Route::put('/{id}', [ChallengeGroupController::class, 'update'])->name('challenge-group.update');
+        Route::delete('/{id}', [ChallengeGroupController::class, 'delete'])->name('challenge-group.delete');
     });
 });
