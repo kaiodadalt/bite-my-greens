@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 pest()->extend(TestCase::class, RefreshDatabase::class)
+    ->in('Feature', 'Unit')
     ->beforeEach(function () {
         Storage::fake('public');
     });

@@ -7,15 +7,15 @@ namespace App\Domain\ChallengeGroup\Entities;
 use App\Domain\Shared\Entity;
 use DateTimeImmutable;
 
-final class ChallengeGroupEntity implements Entity
+final readonly class ChallengeGroupEntity implements Entity
 {
     public function __construct(
-        private readonly int $id,
+        private int $id,
         private string $name,
         private DateTimeImmutable $end_date,
-        private readonly int $created_by,
-        private readonly DateTimeImmutable $created_at,
-        private readonly DateTimeImmutable $updated_at,
+        private int $created_by,
+        private DateTimeImmutable $created_at,
+        private DateTimeImmutable $updated_at,
     ) {}
 
     public function getId(): int
@@ -28,23 +28,9 @@ final class ChallengeGroupEntity implements Entity
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getEndDate(): DateTimeImmutable
     {
         return $this->end_date;
-    }
-
-    public function setEndDate(DateTimeImmutable $end_date): self
-    {
-        $this->end_date = $end_date;
-
-        return $this;
     }
 
     public function getOwnerId(): int

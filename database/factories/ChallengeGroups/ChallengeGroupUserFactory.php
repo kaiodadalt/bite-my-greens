@@ -6,14 +6,15 @@ namespace Database\Factories\ChallengeGroups;
 
 use App\Infrastructure\Persistence\Models\Auth\User;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
+use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroupUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<ChallengeGroup>
+ * @extends Factory<ChallengeGroupUser>
  */
-final class ChallengeGroupFactory extends Factory
+final class ChallengeGroupUserFactory extends Factory
 {
-    protected $model = ChallengeGroup::class;
+    protected $model = ChallengeGroupUser::class;
 
     /**
      * Define the model's default state.
@@ -23,9 +24,8 @@ final class ChallengeGroupFactory extends Factory
     public function definition(): array
     {
         return [
-            'created_by' => User::query()->inRandomOrder()->first()->id ?? User::factory(),
-            'name' => $this->faker->sentence(3, true),
-            'end_date' => $this->faker->dateTimeBetween('now', '+1 year')->setTime(0, 0),
+            'user_id' => User::query()->inRandomOrder()->first()->id ?? User::factory(),
+            'challenge_group_id' => ChallengeGroup::query()->inRandomOrder()->first()->id ?? ChallengeGroup::factory(),
         ];
     }
 }
