@@ -20,6 +20,7 @@ use Tests\TestCase;
 pest()->extend(TestCase::class, RefreshDatabase::class)
     ->in('Feature', 'Unit')
     ->beforeEach(function () {
+        $this->freezeTime();
         Storage::fake('public');
     });
 
