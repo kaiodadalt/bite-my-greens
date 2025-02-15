@@ -16,7 +16,7 @@ it('creates a new challenge group', function () {
     $repository = new ChallengeGroupEloquentRepository();
     $data = new CreateChallengeGroupData(
         name: 'Test Challenge Group',
-        end_date: new DateTimeImmutable('2025-01-31'),
+        end_date: $end_date = now()->addYear()->toDateTimeImmutable(),
         created_by: $user->id
     );
 
@@ -25,7 +25,8 @@ it('creates a new challenge group', function () {
     expect($entity)
         ->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($entity->getName())->toBe('Test Challenge Group')
-        ->and($entity->getOwnerId())->toBe($user->id);
+        ->and($entity->getOwnerId())->toBe($user->id)
+        ->and($entity->getEndDate()->format('Y-m-d'))->toBe($end_date->format('Y-m-d'));
 });
 
 it('updates an existing challenge group', function () {
@@ -37,7 +38,7 @@ it('updates an existing challenge group', function () {
         id: $challenge_group->id,
         created_by: $user->id,
         name: 'Updated Challenge Group',
-        end_date: new DateTimeImmutable('2025-02-28')
+        end_date: $end_date = now()->addYear()->toDateTimeImmutable()
     );
 
     $entity = $repository->update($data);
@@ -45,7 +46,7 @@ it('updates an existing challenge group', function () {
     expect($entity)
         ->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($entity->getName())->toBe('Updated Challenge Group')
-        ->and($entity->getEndDate()->format('Y-m-d'))->toBe('2025-02-28');
+        ->and($entity->getEndDate()->format('Y-m-d'))->toBe($end_date->format('Y-m-d'));
 });
 
 it('updates a challenge group name only', function () {
@@ -75,14 +76,14 @@ it('updates a challenge group end date only', function () {
         id: $challenge_group->id,
         created_by: $user->id,
         name: null,
-        end_date: new DateTimeImmutable('2025-03-01')
+        end_date: $end_date = now()->addYear()->toDateTimeImmutable()
     );
 
     $entity = $repository->update($data);
 
     expect($entity)
         ->toBeInstanceOf(ChallengeGroupEntity::class)
-        ->and($entity->getEndDate()->format('Y-m-d'))->toBe('2025-03-01')
+        ->and($entity->getEndDate()->format('Y-m-d'))->toBe($end_date->format('Y-m-d'))
         ->and($entity->getName())->toBe($challenge_group->name);
 });
 
@@ -92,7 +93,7 @@ it('throws exception when updating a non-existing challenge group', function () 
         id: 999,
         created_by: 1,
         name: 'Non-existing Challenge Group',
-        end_date: new DateTimeImmutable('2025-02-28')
+        end_date: $end_date = now()->addYear()->toDateTimeImmutable()
     );
 
     $repository->update($data);
