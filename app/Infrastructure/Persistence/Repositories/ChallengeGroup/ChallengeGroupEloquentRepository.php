@@ -62,30 +62,30 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
         );
     }
 
-    public function delete(ChallengeGroupEntity $challenge_group): bool
+    public function delete(int $id, int $created_by): bool
     {
         $deleted_rows = ChallengeGroup::where([
-            'id' => $challenge_group->getId(),
-            'created_by' => $challenge_group->getOwnerId(),
+            'id' => $id,
+            'created_by' => $created_by,
         ])->delete();
 
         return $deleted_rows > 0;
     }
 
-    public function hasMember(ChallengeGroupEntity $challenge_group, int $user_id): bool
+    public function hasMember(int $id, int $user_id): bool
     {
         return ChallengeGroup::join(
             'challenge_groups_users',
             'challenge_groups_users.challenge_group_id', '=', 'challenge_groups.id'
         )->where([
-            'challenge_groups_users.challenge_group_id' => $challenge_group->getId(),
+            'challenge_groups_users.challenge_group_id' => $id,
             'challenge_groups_users.user_id' => $user_id,
         ])->exists();
     }
 
-    public function find(int $challenge_group_id): ?ChallengeGroupEntity
+    public function find(int $id): ?ChallengeGroupEntity
     {
-        $challenge_group = ChallengeGroup::find($challenge_group_id);
+        $challenge_group = ChallengeGroup::find($id);
         if ($challenge_group === null) {
             return null;
         }
@@ -103,11 +103,11 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
     /**
      * @throws DomainException
      */
-    public function findOrFail(int $id, int $user_id): ChallengeGroupEntity
+    public function findOrFail(int $id, int $created_by): ChallengeGroupEntity
     {
         $challenge_group = ChallengeGroup::where([
             'id' => $id,
-            'created_by' => $user_id,
+            'created_by' => $created_by,
         ])->first();
         if ($challenge_group === null) {
             throw new DomainException('Challenge group does not exist');

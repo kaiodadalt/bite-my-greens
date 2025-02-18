@@ -113,7 +113,7 @@ it('deletes an existing challenge group', function () {
         updated_at: $challenge_group->updated_at,
     );
 
-    $deleted = $repository->delete($entity);
+    $deleted = $repository->delete($entity->getId(), $user->id);
 
     expect($deleted)->toBeTrue()
         ->and(ChallengeGroup::find($entity->getId()))->toBeNull();
@@ -154,7 +154,7 @@ it('checks if a user is a member of a challenge group', function () {
         updated_at: $challenge_group->updated_at,
     );
 
-    $is_member = $repository->hasMember($entity, $user->id);
+    $is_member = $repository->hasMember($entity->getId(), $user->id);
 
     expect($is_member)->toBeTrue();
 });
@@ -173,7 +173,7 @@ it('returns false when a user is not a member of a challenge group', function ()
         updated_at: $challenge_group->updated_at,
     );
 
-    $is_member = $repository->hasMember($entity, $user->id);
+    $is_member = $repository->hasMember($entity->getId(), $user->id);
 
     expect($is_member)->toBeFalse();
 });

@@ -58,6 +58,6 @@ final readonly class ChallengeGroupService
             throw new ChallengeGroupNotFoundException;
         }
 
-        return $this->repository->delete($challenge_group);
+        return $this->repository->delete($challenge_group_id, $user_id);
     }
 }
