@@ -6,11 +6,11 @@ namespace App\Application\Auth\DTOs;
 
 use App\Application\Shared\DTO;
 
-final class UserDTO extends DTO
+final readonly class UserDTO extends DTO
 {
     public function __construct(
-        public readonly int $id,
-        public readonly string $name,
-        public readonly string $email,
+        public int $id,
+        public string $name,
+        public string $email,
     ) {}
 }

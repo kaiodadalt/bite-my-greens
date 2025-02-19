@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Controllers\ChallengeGroup;
 
-use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupChallengeGroupUseCase;
+use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\DeleteChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\GetChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\UpdateChallengeGroupUseCase;
@@ -17,7 +17,7 @@ use Illuminate\Http\JsonResponse;
 
 final class ChallengeGroupController extends Controller
 {
-    public function create(CreateChallengeGroupRequest $request, CreateChallengeGroupChallengeGroupUseCase $use_case): JsonResponse
+    public function create(CreateChallengeGroupRequest $request, CreateChallengeGroupUseCase $use_case): JsonResponse
     {
         $challenge_group = $use_case->execute((int) auth()->id(), $request->toDTO());
 
