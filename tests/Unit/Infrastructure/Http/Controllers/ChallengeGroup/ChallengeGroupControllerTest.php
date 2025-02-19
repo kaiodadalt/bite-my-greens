@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupChallengeGroupUseCase;
+use App\Application\ChallengeGroups\UseCases\CreateChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\DeleteChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\GetChallengeGroupUseCase;
 use App\Application\ChallengeGroups\UseCases\UpdateChallengeGroupUseCase;
@@ -21,7 +21,7 @@ it('creates a challenge group successfully', function () {
         'name' => 'Group Name',
         'end_date' => now()->addMonth()->format('Y-m-d'),
     ]);
-    $use_case = app(CreateChallengeGroupChallengeGroupUseCase::class);
+    $use_case = app(CreateChallengeGroupUseCase::class);
 
     $controller = new ChallengeGroupController();
     $response = $controller->create($request, $use_case);
