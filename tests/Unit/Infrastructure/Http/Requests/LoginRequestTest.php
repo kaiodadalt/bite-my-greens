@@ -32,8 +32,8 @@ it('fails validation with missing email', function () {
         'password' => 'password123',
     ], $request->rules());
 
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->has('email'))->toBeTrue();
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->has('email'))->toBeTrue();
 });
 
 it('fails validation with missing password', function () {
@@ -42,8 +42,8 @@ it('fails validation with missing password', function () {
         'email' => 'test@example.com',
     ], $request->rules());
 
-    expect($validator->fails())->toBeTrue();
-    expect($validator->errors()->has('password'))->toBeTrue();
+    expect($validator->fails())->toBeTrue()
+        ->and($validator->errors()->has('password'))->toBeTrue();
 });
 
 it('authenticates with valid credentials', function () {
