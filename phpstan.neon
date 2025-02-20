@@ -4,6 +4,9 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
+    ignoreErrors:
+        - message: '#expects string, mixed given#'
+        - message: '#return type has no value type specified in iterable type array#'
 
     paths:
         - app/

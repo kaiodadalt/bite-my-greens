@@ -67,32 +67,8 @@ parameters:
 			path: app/Infrastructure/Http/Middleware/EnsureEmailIsVerified.php
 
 		-
-			message: '#^Method App\\Infrastructure\\Http\\Requests\\Auth\\LoginRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Infrastructure/Http/Requests/Auth/LoginRequest.php
-
-		-
-			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:lower\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Infrastructure/Http/Requests/Auth/LoginRequest.php
-
-		-
-			message: '#^Method App\\Infrastructure\\Http\\Requests\\ChallengeGroup\\CreateChallengeGroupRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Infrastructure/Http/Requests/ChallengeGroup/CreateChallengeGroupRequest.php
-
-		-
 			message: '#^Cannot cast object\|string\|null to int\.$#'
 			identifier: cast.int
-			count: 1
-			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
-
-		-
-			message: '#^Method App\\Infrastructure\\Http\\Requests\\ChallengeGroup\\UpdateChallengeGroupRequest\:\:rules\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
 
@@ -139,54 +115,6 @@ parameters:
 			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
 
 		-
-			message: '#^Method App\\Infrastructure\\Http\\Resources\\Auth\\UserResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
-
-		-
-			message: '#^Cannot call method format\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
-
-		-
-			message: '#^Cannot call method getCreatedAt\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
-
-		-
-			message: '#^Cannot call method getEndDate\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
-
-		-
-			message: '#^Cannot call method getId\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
-
-		-
-			message: '#^Cannot call method getName\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
-
-		-
-			message: '#^Cannot call method getOwnerId\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
-
-		-
-			message: '#^Method App\\Infrastructure\\Http\\Resources\\ChallengeGroup\\ChallengeGroupResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Infrastructure/Http/Resources/ChallengeGroup/ChallengeGroupResource.php
-
-		-
 			message: '#^Cannot access offset ''token'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -207,18 +135,6 @@ parameters:
 		-
 			message: '#^Method App\\Infrastructure\\Persistence\\Models\\Auth\\SanctumCache\\PersonalAccessTokenWithCache\:\:tokenable\(\) return type with generic class Illuminate\\Database\\Eloquent\\Casts\\Attribute does not specify its types\: TGet, TSet$#'
 			identifier: missingType.generics
-			count: 1
-			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
-
-		-
-			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Facades\\Hash\:\:check\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
-
-		-
-			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Facades\\Hash\:\:make\(\) expects string, mixed given\.$#'
-			identifier: argument.type
 			count: 1
 			path: app/Infrastructure/Persistence/Models/Auth/SanctumCache/PersonalAccessTokenWithCache.php
 

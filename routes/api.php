@@ -16,5 +16,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/{id}', [ChallengeGroupController::class, 'get'])->name('challenge-group.get');
         Route::put('/{id}', [ChallengeGroupController::class, 'update'])->name('challenge-group.update');
         Route::delete('/{id}', [ChallengeGroupController::class, 'delete'])->name('challenge-group.delete');
+
+        Route::post('/join', [ChallengeGroupController::class, 'create'])->name('challenge-group.create');
+        Route::post('/exit', [ChallengeGroupController::class, 'create'])->name('challenge-group.create');
     });
 });
