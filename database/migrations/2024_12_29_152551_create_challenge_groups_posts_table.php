@@ -15,12 +15,8 @@ return new class extends Migration
     {
         Schema::create('challenge_groups_posts', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('challenge_group_id')->constrained('challenge_groups');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreign(['challenge_group_id', 'user_id'])
-                ->references(['challenge_group_id', 'user_id'])
-                ->on('challenge_groups_users')
-                ->onDelete('cascade');
+            $table->foreignId('challenge_group_id')->constrained('challenge_groups')->on('challenge_groups')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->on('users')->onDelete('cascade');
             $table->string('description', 140);
             $table->string('image', 255);
             $table->smallInteger('score')->nullable();

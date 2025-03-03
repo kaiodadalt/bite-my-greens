@@ -70,6 +70,18 @@ parameters:
 			message: '#^Cannot cast object\|string\|null to int\.$#'
 			identifier: cast.int
 			count: 1
+			path: app/Infrastructure/Http/Requests/ChallengeGroup/AddChallengeGroupPostRequest.php
+
+		-
+			message: '#^Parameter \#1 \$challenge_group_id of class App\\Application\\ChallengeGroups\\DTO\\AddChallengeGroupPostDTO constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Requests/ChallengeGroup/AddChallengeGroupPostRequest.php
+
+		-
+			message: '#^Cannot cast object\|string\|null to int\.$#'
+			identifier: cast.int
+			count: 1
 			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
 
 		-
@@ -157,6 +169,18 @@ parameters:
 			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroup.php
 
 		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\:\:challengeGroup\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroupPost.php
+
+		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\:\:user\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroupPost.php
+
+		-
 			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\:\:challengeGroup\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser\)\>\.$#'
 			identifier: return.type
 			count: 1
@@ -185,6 +209,18 @@ parameters:
 			identifier: assign.propertyType
 			count: 1
 			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
+
+		-
+			message: '#^Parameter \#6 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupPostEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupPostEloquentRepository.php
+
+		-
+			message: '#^Parameter \#7 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupPostEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupPostEloquentRepository.php
 
 		-
 			message: '#^Method App\\Infrastructure\\Persistence\\Repositories\\PassportCache\\RefreshTokenRepositoryWithCache\:\:createKey\(\) has parameter \$id with no type specified\.$#'
