@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Crypt;
 
 it('joins a challenge group successfully', function () {
     $user = User::factory()->create();
-    $challenge_group = ChallengeGroup::factory()->create();
+    $challenge_group = ChallengeGroup::factory()->create([
+        'created_by' => $user->id,
+    ]);
     $this->actingAs($user);
     $challenge_code = Crypt::encryptString((string) $challenge_group->id);
 

@@ -36,4 +36,18 @@ final readonly class AuthorizeChallengeGroupService
     {
         return ! $challenge_group->hasOwner($user_id);
     }
+
+    public function canPost(int $user_id, ChallengeGroupEntity $challenge_group): bool
+    {
+        if ($challenge_group->hasOwner($user_id)) {
+            return true;
+        }
+
+        return $this->repository->hasMember($challenge_group->getId(), $user_id);
+    }
+
+    public function cannotPost(int $user_id, ChallengeGroupEntity $challenge_group): bool
+    {
+        return ! $this->canPost($user_id, $challenge_group);
+    }
 }
