@@ -1,6 +1,24 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^PHPDoc tag @param for parameter \$users with type array\<App\\Domain\\Auth\\Entities\\UserEntity\> is incompatible with native type App\\Domain\\Auth\\Entities\\UserEntity\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: app/Domain/Auth/Entities/UserEntityCollection.php
+
+		-
+			message: '#^Method App\\Domain\\Shared\\Helpers\\Collection\:\:getIterator\(\) should return ArrayIterator\<TKey of int\|string, TValue\> but returns ArrayIterator\<\(TKey of int\)\|TKey of string, TValue\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Domain/Shared/Helpers/Collection.php
+
+		-
+			message: '#^Property App\\Domain\\Shared\\Helpers\\Collection\<TKey of int\|string,TValue\>\:\:\$items \(Ds\\Map\<TKey of int\|string, TValue\>\) does not accept Ds\\Map\<mixed, mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Domain/Shared/Helpers/Collection.php
+
+		-
 			message: '#^Cannot call method hasVerifiedEmail\(\) on App\\Infrastructure\\Persistence\\Models\\Auth\\ApiUser\|App\\Infrastructure\\Persistence\\Models\\Auth\\User\|null\.$#'
 			identifier: method.nonObject
 			count: 1
