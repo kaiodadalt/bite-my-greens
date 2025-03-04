@@ -12,10 +12,16 @@ final readonly class UserMapper
 {
     public static function map(User $user): UserEntity
     {
+        $total_score = null;
+        if (! empty($user->pivot)) {
+            $total_score = $user->pivot->total_score;
+        }
+
         return new UserEntity(
             $user->id,
             $user->name,
             $user->email,
+            $total_score,
         );
     }
 

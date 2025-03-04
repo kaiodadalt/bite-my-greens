@@ -56,7 +56,7 @@ final class ChallengeGroup extends Model
             'challenge_groups_users',
             'challenge_group_id',
             'user_id'
-        );
+        )->withPivot(['total_score']);
     }
 
     /**

@@ -20,10 +20,16 @@ final class UserResource extends JsonResource
         /** @var UserEntity $user */
         $user = $this->resource;
 
-        return [
+        $user_array = [
             'id' => $user->getId(),
             'name' => $user->getName(),
             'email' => $user->getEmail(),
         ];
+
+        if (! is_null($user->getTotalScore())) {
+            $user_array['total_score'] = $user->getTotalScore();
+        }
+
+        return $user_array;
     }
 }
