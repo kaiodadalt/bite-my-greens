@@ -115,34 +115,16 @@ parameters:
 			path: app/Infrastructure/Http/Requests/ChallengeGroup/UpdateChallengeGroupRequest.php
 
 		-
-			message: '#^Cannot access property \$created_at on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
-
-		-
-			message: '#^Cannot access property \$email on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
-
-		-
-			message: '#^Cannot access property \$id on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
-
-		-
-			message: '#^Cannot access property \$name on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
-
-		-
-			message: '#^Cannot call method format\(\) on mixed\.$#'
+			message: '#^Cannot call method toArray\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 1
-			path: app/Infrastructure/Http/Resources/Auth/UserResource.php
+			path: app/Infrastructure/Http/Resources/JsonResource.php
+
+		-
+			message: '#^Parameter \#2 \$array of function array_map expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Http/Resources/JsonResource.php
 
 		-
 			message: '#^Cannot access offset ''token'' on mixed\.$#'

@@ -61,6 +61,16 @@ it('can be iterated', function () {
     ]);
 });
 
+it('first() return the first pair in the map', function () {
+    $this->collection->addUser($user1 = new UserEntity(1, 'Item 1', 'test@test.com'));
+    $this->collection->addUser($user2 = new UserEntity(2, 'Item 1', 'test@test.com'));
+
+    $first = $this->collection->first();
+
+    expect($first->key)->toBe($user1->getId())
+        ->and($first->value)->toBe($user1);
+});
+
 it('throws an exception if copy() fails', function () {
     $collection = new UserEntityCollection();
     $mock = Mockery::mock($collection)->makePartial();

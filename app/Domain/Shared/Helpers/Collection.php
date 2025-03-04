@@ -7,6 +7,7 @@ namespace App\Domain\Shared\Helpers;
 use ArrayIterator;
 use Ds\Collection as BaseCollection;
 use Ds\Map;
+use Ds\Pair;
 use ReflectionClass;
 use ReflectionException;
 
@@ -34,6 +35,16 @@ abstract class Collection implements BaseCollection
     final public function all(): Map
     {
         return $this->items;
+    }
+
+    /**
+     * Returns the first pair in the map
+     *
+     * @return Pair<TKey, TValue> The first pair in the map.
+     */
+    final public function first(): mixed
+    {
+        return $this->items->first();
     }
 
     /**
