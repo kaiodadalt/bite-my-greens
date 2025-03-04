@@ -31,6 +31,7 @@ final class ChallengeGroupResource extends JsonResource
             'end_date' => $challenge_group->getEndDate()->format('Y-m-d'),
             'owner' => new UserResource($challenge_group->getOwner()),
             'participants' => UserResource::collection($challenge_group->getParticipants()),
+            'posts' => PostResource::collection($challenge_group->getPosts()),
             'created_at' => $challenge_group->getCreatedAt(),
         ];
     }
