@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
+use App\Domain\Auth\Entities\UserEntityCollection;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainException;
+use App\Infrastructure\Persistence\Mappers\UserMapper;
 use App\Infrastructure\Persistence\Models\Auth\User;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
+use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroupUser;
 use App\Infrastructure\Persistence\Repositories\ChallengeGroup\ChallengeGroupEloquentRepository;
 
 it('creates a new challenge group', function () {
@@ -25,7 +28,7 @@ it('creates a new challenge group', function () {
     expect($entity)
         ->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($entity->getName())->toBe('Test Challenge Group')
-        ->and($entity->getOwnerId())->toBe($user->id)
+        ->and($entity->getOwner()->getId())->toBe($user->id)
         ->and($entity->getEndDate()->format('Y-m-d'))->toBe($end_date->format('Y-m-d'));
 });
 
@@ -108,7 +111,8 @@ it('deletes an existing challenge group', function () {
         id: $challenge_group->id,
         name: $challenge_group->name,
         end_date: $challenge_group->end_date,
-        created_by: $user->id,
+        owner: UserMapper::map($user),
+        participants: new UserEntityCollection(),
         created_at: $challenge_group->created_at,
         updated_at: $challenge_group->updated_at,
     );
@@ -121,6 +125,13 @@ it('deletes an existing challenge group', function () {
 
 it('finds a challenge group by ID', function () {
     $challenge_group = ChallengeGroup::factory()->create();
+    ChallengeGroupUser::factory()->create();
+
+    $user = User::factory()->create();
+    ChallengeGroupUser::factory()->create([
+        'challenge_group_id' => $challenge_group->id,
+        'user_id' => $user->id,
+    ]);
 
     $repository = new ChallengeGroupEloquentRepository();
     $entity = $repository->find($challenge_group->id);
@@ -128,7 +139,9 @@ it('finds a challenge group by ID', function () {
     expect($entity)
         ->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($entity->getId())->toBe($challenge_group->id)
-        ->and($entity->getName())->toBe($challenge_group->name);
+        ->and($entity->getName())->toBe($challenge_group->name)
+        ->and($entity->getParticipants())->toBeInstanceOf(UserEntityCollection::class)
+        ->and($entity->getParticipants()->count())->toBe(2);
 });
 
 it('returns null when finding a non-existing challenge group', function () {
@@ -149,7 +162,8 @@ it('checks if a user is a member of a challenge group', function () {
         id: $challenge_group->id,
         name: $challenge_group->name,
         end_date: $challenge_group->end_date,
-        created_by: $challenge_group->created_by,
+        owner: UserMapper::map($user),
+        participants: new UserEntityCollection(),
         created_at: $challenge_group->created_at,
         updated_at: $challenge_group->updated_at,
     );
@@ -168,7 +182,8 @@ it('returns false when a user is not a member of a challenge group', function ()
         id: $challenge_group->id,
         name: $challenge_group->name,
         end_date: $challenge_group->end_date,
-        created_by: $challenge_group->created_by,
+        owner: UserMapper::map($user),
+        participants: new UserEntityCollection(),
         created_at: $challenge_group->created_at,
         updated_at: $challenge_group->updated_at,
     );
@@ -188,7 +203,7 @@ it('finds a challenge group with findOrFail', function () {
     expect($entity)
         ->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($entity->getId())->toBe($challenge_group->id)
-        ->and($entity->getOwnerId())->toBe($user->id);
+        ->and($entity->getOwner()->getId())->toBe($user->id);
 });
 
 it('throws exception when finding a non-existing challenge group with findOrFail', function () {

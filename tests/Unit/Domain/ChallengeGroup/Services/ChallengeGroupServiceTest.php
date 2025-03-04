@@ -23,7 +23,7 @@ it('creates a challenge group successfully', function () {
     expect($entity)->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($entity->getName())->toBe($name)
         ->and($entity->getEndDate()->format('Y-m-d'))->toBe($end_date->format('Y-m-d'))
-        ->and($entity->getOwnerId())->toBe($user->id);
+        ->and($entity->getOwner()->getId())->toBe($user->id);
 });
 
 it('retrieves a challenge group successfully', function () {
@@ -37,7 +37,7 @@ it('retrieves a challenge group successfully', function () {
 
     expect($entity)->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($entity->getId())->toBe($challenge_group->id)
-        ->and($entity->getOwnerId())->toBe($user->id);
+        ->and($entity->getOwner()->getId())->toBe($user->id);
 });
 
 it('throws exception when retrieving a non-existent challenge group', function () {

@@ -14,5 +14,5 @@ it('gets a Challenge Group using UseCase', function () {
     $challenge_group_entity = $use_case->execute($user->id, $challenge_group->id);
     expect($challenge_group_entity)->toBeInstanceOf(ChallengeGroupEntity::class)
         ->and($challenge_group_entity->getId())->toBe($challenge_group->id)
-        ->and($challenge_group_entity->getOwnerId())->toBe($user->id);
+        ->and($challenge_group_entity->getOwner()->getId())->toBe($user->id);
 });

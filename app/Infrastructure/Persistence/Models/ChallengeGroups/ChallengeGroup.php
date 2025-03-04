@@ -46,7 +46,7 @@ final class ChallengeGroup extends Model
     }
 
     /**
-     * @return BelongsToMany<ChallengeGroupUser, ChallengeGroup>
+     * @return BelongsToMany<User, ChallengeGroup>
      */
     public function participants(): BelongsToMany
     {

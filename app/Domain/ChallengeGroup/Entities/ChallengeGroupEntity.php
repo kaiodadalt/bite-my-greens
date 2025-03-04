@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\ChallengeGroup\Entities;
 
+use App\Domain\Auth\Entities\UserEntity;
+use App\Domain\Auth\Entities\UserEntityCollection;
 use App\Domain\Shared\Entity;
 use DateTimeImmutable;
 
@@ -13,7 +15,8 @@ final readonly class ChallengeGroupEntity implements Entity
         private int $id,
         private string $name,
         private DateTimeImmutable $end_date,
-        private int $created_by,
+        private UserEntity $owner,
+        private UserEntityCollection $participants,
         private DateTimeImmutable $created_at,
         private DateTimeImmutable $updated_at,
     ) {}
@@ -33,14 +36,19 @@ final readonly class ChallengeGroupEntity implements Entity
         return $this->end_date;
     }
 
-    public function getOwnerId(): int
+    public function getOwner(): UserEntity
     {
-        return $this->created_by;
+        return $this->owner;
     }
 
     public function hasOwner(int $user_id): bool
     {
-        return $this->created_by === $user_id;
+        return $this->owner->getId() === $user_id;
+    }
+
+    public function getParticipants(): UserEntityCollection
+    {
+        return $this->participants;
     }
 
     public function getCreatedAt(): DateTimeImmutable
