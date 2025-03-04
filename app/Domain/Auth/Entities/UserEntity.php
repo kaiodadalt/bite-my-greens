@@ -12,6 +12,7 @@ final readonly class UserEntity implements Entity
         private int $id,
         private string $name,
         private string $email,
+        private ?int $total_score = null,
     ) {}
 
     public function getId(): int
@@ -27,5 +28,10 @@ final readonly class UserEntity implements Entity
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getTotalScore(): ?int
+    {
+        return $this->total_score;
     }
 }

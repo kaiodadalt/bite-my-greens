@@ -133,6 +133,18 @@ parameters:
 			path: app/Infrastructure/Http/Resources/JsonResource.php
 
 		-
+			message: '#^Cannot access property \$total_score on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Infrastructure/Persistence/Mappers/UserMapper.php
+
+		-
+			message: '#^Parameter \#4 \$total_score of class App\\Domain\\Auth\\Entities\\UserEntity constructor expects int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Mappers/UserMapper.php
+
+		-
 			message: '#^Cannot access offset ''token'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
