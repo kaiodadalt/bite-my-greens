@@ -7,16 +7,20 @@ namespace App\Infrastructure\Persistence\Models\ChallengeGroups;
 use App\Infrastructure\Persistence\Models\Auth\User;
 use Database\Factories\ChallengeGroups\ChallengeGroupPostFactory;
 use Database\Factories\ChallengeGroups\ChallengeGroupUserFactory;
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ * @property int $id
  * @property int $challenge_group_id
  * @property int $user_id
  * @property string $description
  * @property string $image
  * @property int $score
+ * @property DateTimeImmutable $created_at
+ * @property DateTimeImmutable $updated_at
  */
 final class ChallengeGroupPost extends Model
 {

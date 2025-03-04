@@ -10,6 +10,7 @@ use DateTimeImmutable;
 final readonly class ChallengeGroupPostEntity implements Entity
 {
     public function __construct(
+        private int $id,
         private int $challenge_group_id,
         private int $user_id,
         private string $description,
@@ -18,6 +19,11 @@ final readonly class ChallengeGroupPostEntity implements Entity
         private DateTimeImmutable $created_at,
         private DateTimeImmutable $updated_at,
     ) {}
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function getChallengeGroupId(): int
     {

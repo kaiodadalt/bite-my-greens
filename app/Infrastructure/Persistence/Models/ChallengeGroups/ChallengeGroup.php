@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -55,6 +56,17 @@ final class ChallengeGroup extends Model
             'challenge_groups_users',
             'challenge_group_id',
             'user_id'
+        );
+    }
+
+    /**
+     * @return HasMany<ChallengeGroupPost, ChallengeGroup>
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(
+            ChallengeGroupPost::class,
+            'challenge_group_id'
         );
     }
 }

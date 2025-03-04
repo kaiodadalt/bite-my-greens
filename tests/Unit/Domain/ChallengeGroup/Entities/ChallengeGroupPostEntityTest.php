@@ -6,6 +6,7 @@ use App\Domain\ChallengeGroup\Entities\ChallengeGroupPostEntity;
 
 it('creates a ChallengeGroupPostEntity correctly', function () {
     $entity = new ChallengeGroupPostEntity(
+        $id = 1,
         $challenge_group_id = 1,
         $user_id = 1,
         $description = 'Description',
@@ -16,6 +17,7 @@ it('creates a ChallengeGroupPostEntity correctly', function () {
     );
 
     expect($entity->getChallengeGroupId())->toBe($challenge_group_id)
+        ->and($entity->getId())->toBe($id)
         ->and($entity->getUserId())->toBe($user_id)
         ->and($entity->getDescription())->toBe($description)
         ->and($entity->getImage())->toBe($image)

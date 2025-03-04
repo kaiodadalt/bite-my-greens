@@ -17,6 +17,7 @@ final readonly class ChallengeGroupEntity implements Entity
         private DateTimeImmutable $end_date,
         private UserEntity $owner,
         private UserEntityCollection $participants,
+        private ChallengeGroupPostEntityCollection $posts,
         private DateTimeImmutable $created_at,
         private DateTimeImmutable $updated_at,
     ) {}
@@ -49,6 +50,11 @@ final readonly class ChallengeGroupEntity implements Entity
     public function getParticipants(): UserEntityCollection
     {
         return $this->participants;
+    }
+
+    public function getPosts(): ChallengeGroupPostEntityCollection
+    {
+        return $this->posts;
     }
 
     public function getCreatedAt(): DateTimeImmutable

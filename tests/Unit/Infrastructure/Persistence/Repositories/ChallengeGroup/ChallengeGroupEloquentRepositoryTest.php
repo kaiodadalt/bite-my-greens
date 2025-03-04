@@ -6,6 +6,7 @@ use App\Domain\Auth\Entities\UserEntityCollection;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
+use App\Domain\ChallengeGroup\Entities\ChallengeGroupPostEntityCollection;
 use App\Domain\Shared\Exceptions\DomainException;
 use App\Infrastructure\Persistence\Mappers\UserMapper;
 use App\Infrastructure\Persistence\Models\Auth\User;
@@ -113,6 +114,7 @@ it('deletes an existing challenge group', function () {
         end_date: $challenge_group->end_date,
         owner: UserMapper::map($user),
         participants: new UserEntityCollection(),
+        posts: new ChallengeGroupPostEntityCollection(),
         created_at: $challenge_group->created_at,
         updated_at: $challenge_group->updated_at,
     );
@@ -164,6 +166,7 @@ it('checks if a user is a member of a challenge group', function () {
         end_date: $challenge_group->end_date,
         owner: UserMapper::map($user),
         participants: new UserEntityCollection(),
+        posts: new ChallengeGroupPostEntityCollection(),
         created_at: $challenge_group->created_at,
         updated_at: $challenge_group->updated_at,
     );
@@ -184,6 +187,7 @@ it('returns false when a user is not a member of a challenge group', function ()
         end_date: $challenge_group->end_date,
         owner: UserMapper::map($user),
         participants: new UserEntityCollection(),
+        posts: new ChallengeGroupPostEntityCollection(),
         created_at: $challenge_group->created_at,
         updated_at: $challenge_group->updated_at,
     );
