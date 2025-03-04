@@ -12,6 +12,7 @@ use App\Infrastructure\Http\Requests\ChallengeGroup\CreateChallengeGroupRequest;
 use App\Infrastructure\Http\Requests\ChallengeGroup\UpdateChallengeGroupRequest;
 use App\Infrastructure\Persistence\Models\Auth\User;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
+use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroupPost;
 
 it('creates a challenge group successfully', function () {
     $user = User::factory()->create();
@@ -116,7 +117,7 @@ it('throws exception when deleting a non-existent challenge group', function () 
     $controller->delete(99, $use_case);
 })->throws(ChallengeGroupNotFoundException::class, 'Challenge group not found');
 
-it('retrieves a challenge group successfully with users', function () {
+it('retrieves a challenge group successfully with users and posts', function () {
     $user = User::factory()->create();
     $another_user = User::factory()->create();
     $challenge_group = ChallengeGroup::factory()->create([
@@ -125,8 +126,22 @@ it('retrieves a challenge group successfully with users', function () {
     $challenge_group->participants()->attach($user->id);
     $challenge_group->participants()->attach($another_user->id);
 
+    ChallengeGroupPost::factory(3)->create([
+        'challenge_group_id' => $challenge_group->id,
+    ]);
+
     $this->actingAs($user);
     $response = $this->get(route('challenge-group.get', ['id' => $challenge_group->id]));
 
-    expect($response->getStatusCode())->toBe(200);
+    $response->assertOk()
+        ->assertExactJsonStructure([
+            'created_at',
+            'end_date',
+            'id',
+            'name',
+            'challenge_code',
+            'owner',
+            'participants',
+            'posts',
+        ]);
 });

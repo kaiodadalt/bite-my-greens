@@ -19,7 +19,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::post('/', [ChallengeGroupController::class, 'create'])->name('challenge-group.create');
 
-        // TODO: Get users and posts for the given challenge group
         Route::get('/{id}', [ChallengeGroupController::class, 'get'])->name('challenge-group.get');
         Route::put('/{id}', [ChallengeGroupController::class, 'update'])->name('challenge-group.update');
         Route::delete('/{id}', [ChallengeGroupController::class, 'delete'])->name('challenge-group.delete');
