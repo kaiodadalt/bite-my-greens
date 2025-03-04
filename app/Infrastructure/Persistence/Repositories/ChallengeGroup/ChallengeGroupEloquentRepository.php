@@ -9,6 +9,7 @@ use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
 use App\Domain\Shared\Exceptions\DomainException;
+use App\Infrastructure\Persistence\Mappers\UserMapper;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
 use DateTimeImmutable;
 
@@ -26,7 +27,8 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             $created_model->id,
             $created_model->name,
             $created_model->end_date,
-            $created_model->created_by,
+            UserMapper::map($created_model->creator),
+            UserMapper::mapCollection($created_model->creator),
             $created_model->created_at,
             $created_model->updated_at,
         );
@@ -37,7 +39,7 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
      */
     public function update(UpdateChallengeGroupData $challenge_group_data): ChallengeGroupEntity
     {
-        $challenge_group = ChallengeGroup::where([
+        $challenge_group = ChallengeGroup::with('participants')->where([
             'id' => $challenge_group_data->getId(),
             'created_by' => $challenge_group_data->getOwnerId(),
         ])->first();
@@ -56,7 +58,8 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             $challenge_group->id,
             $challenge_group->name,
             $challenge_group->end_date,
-            $challenge_group->created_by,
+            UserMapper::map($challenge_group->creator),
+            UserMapper::mapCollection(...$challenge_group->participants),
             $challenge_group->created_at,
             $challenge_group->updated_at,
         );
@@ -85,7 +88,7 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
 
     public function find(int $id): ?ChallengeGroupEntity
     {
-        $challenge_group = ChallengeGroup::find($id);
+        $challenge_group = ChallengeGroup::with('participants')->find($id);
         if ($challenge_group === null) {
             return null;
         }
@@ -94,7 +97,8 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             $challenge_group->id,
             $challenge_group->name,
             $challenge_group->end_date,
-            $challenge_group->created_by,
+            UserMapper::map($challenge_group->creator),
+            UserMapper::mapCollection(...$challenge_group->participants),
             $challenge_group->created_at,
             $challenge_group->updated_at,
         );
@@ -117,7 +121,8 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             $challenge_group->id,
             $challenge_group->name,
             $challenge_group->end_date,
-            $challenge_group->created_by,
+            UserMapper::map($challenge_group->creator),
+            UserMapper::mapCollection(...$challenge_group->participants),
             $challenge_group->created_at,
             $challenge_group->updated_at,
         );

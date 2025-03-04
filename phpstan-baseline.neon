@@ -181,7 +181,7 @@ parameters:
 			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroup.php
 
 		-
-			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\:\:participants\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupUser, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\)\>\.$#'
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\:\:participants\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Infrastructure\\Persistence\\Models\\Auth\\User, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\)\>\.$#'
 			identifier: return.type
 			count: 1
 			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroup.php
@@ -211,13 +211,13 @@ parameters:
 			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroupUser.php
 
 		-
-			message: '#^Parameter \#5 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			message: '#^Parameter \#6 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
 			identifier: argument.type
 			count: 4
 			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
 
 		-
-			message: '#^Parameter \#6 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			message: '#^Parameter \#7 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
 			identifier: argument.type
 			count: 4
 			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
