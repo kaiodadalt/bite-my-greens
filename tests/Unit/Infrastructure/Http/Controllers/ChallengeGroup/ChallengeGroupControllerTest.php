@@ -115,3 +115,18 @@ it('throws exception when deleting a non-existent challenge group', function () 
     $controller = new ChallengeGroupController();
     $controller->delete(99, $use_case);
 })->throws(ChallengeGroupNotFoundException::class, 'Challenge group not found');
+
+it('retrieves a challenge group successfully with users', function () {
+    $user = User::factory()->create();
+    $another_user = User::factory()->create();
+    $challenge_group = ChallengeGroup::factory()->create([
+        'created_by' => $user->id,
+    ]);
+    $challenge_group->participants()->attach($user->id);
+    $challenge_group->participants()->attach($another_user->id);
+
+    $this->actingAs($user);
+    $response = $this->get(route('challenge-group.get', ['id' => $challenge_group->id]));
+
+    expect($response->getStatusCode())->toBe(200);
+});
