@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Http\Resources\Auth;
 
-use App\Infrastructure\Persistence\Models\Auth\BaseUser;
+use App\Domain\Auth\Entities\UserEntity;
+use App\Infrastructure\Http\Resources\JsonResource;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class UserResource extends JsonResource
 {
-    public function __construct(BaseUser $resource)
+    public function __construct(UserEntity $resource)
     {
         parent::__construct($resource);
     }
 
     public function toArray(Request $request): array
     {
+        /** @var UserEntity $user */
+        $user = $this->resource;
+
         return [
-            'id' => $this->resource->id,
-            'name' => $this->resource->name,
-            'email' => $this->resource->email,
-            'created_at' => $this->resource->created_at->format('Y-m-d H:i:s'),
+            'id' => $user->getId(),
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
         ];
     }
 }
