@@ -7,6 +7,12 @@ parameters:
 			path: app/Domain/Auth/Entities/UserEntityCollection.php
 
 		-
+			message: '#^PHPDoc tag @param for parameter \$posts with type array\<App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupPostEntity\> is incompatible with native type App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupPostEntity\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: app/Domain/ChallengeGroup/Entities/ChallengeGroupPostEntityCollection.php
+
+		-
 			message: '#^Method App\\Domain\\Shared\\Helpers\\Collection\:\:getIterator\(\) should return ArrayIterator\<TKey of int\|string, TValue\> but returns ArrayIterator\<\(TKey of int\)\|TKey of string, TValue\>\.$#'
 			identifier: return.type
 			count: 1
@@ -169,6 +175,12 @@ parameters:
 			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroup.php
 
 		-
+			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\:\:posts\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroup.php
+
+		-
 			message: '#^Method App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\:\:challengeGroup\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup, \$this\(App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroupPost\)\>\.$#'
 			identifier: return.type
 			count: 1
@@ -193,13 +205,13 @@ parameters:
 			path: app/Infrastructure/Persistence/Models/ChallengeGroups/ChallengeGroupUser.php
 
 		-
-			message: '#^Parameter \#6 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			message: '#^Parameter \#7 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
 			identifier: argument.type
 			count: 4
 			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
 
 		-
-			message: '#^Parameter \#7 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			message: '#^Parameter \#8 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
 			identifier: argument.type
 			count: 4
 			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
@@ -209,18 +221,6 @@ parameters:
 			identifier: assign.propertyType
 			count: 1
 			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
-
-		-
-			message: '#^Parameter \#6 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupPostEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupPostEloquentRepository.php
-
-		-
-			message: '#^Parameter \#7 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupPostEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupPostEloquentRepository.php
 
 		-
 			message: '#^Method App\\Infrastructure\\Persistence\\Repositories\\PassportCache\\RefreshTokenRepositoryWithCache\:\:createKey\(\) has parameter \$id with no type specified\.$#'

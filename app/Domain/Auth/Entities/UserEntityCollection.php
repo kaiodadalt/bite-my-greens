@@ -32,7 +32,7 @@ final class UserEntityCollection extends Collection
         return $this->all()->get($id, null);
     }
 
-    public function removeUserById(int $id): bool
+    public function removeById(int $id): bool
     {
         if ($this->all()->hasKey($id)) {
             $this->all()->remove($id);

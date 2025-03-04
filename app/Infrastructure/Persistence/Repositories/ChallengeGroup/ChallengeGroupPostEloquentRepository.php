@@ -29,6 +29,7 @@ final class ChallengeGroupPostEloquentRepository implements ChallengeGroupPostRe
         ]);
 
         return new ChallengeGroupPostEntity(
+            $post->id,
             $post->challenge_group_id,
             $post->user_id,
             $post->description,

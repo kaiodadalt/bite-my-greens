@@ -24,12 +24,12 @@ it('creates a UserEntityCollection correctly', function () {
     $user_found = $collection->findById($id_1);
     expect($user_found)->toBe($user_1);
 
-    $removed = $collection->removeUserById($id_2);
+    $removed = $collection->removeById($id_2);
     expect($removed)->toBeTrue()
         ->and($collection->count())->toBe(1)
         ->and($collection->findById($id_2))->toBeNull();
 
-    $removed = $collection->removeUserById($id_2);
+    $removed = $collection->removeById($id_2);
     expect($removed)->toBeFalse()
         ->and($collection->contains($user_1))->toBeTrue()
         ->and($collection->contains($user_2))->toBeFalse();

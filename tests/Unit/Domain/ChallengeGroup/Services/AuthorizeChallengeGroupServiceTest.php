@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Domain\Auth\Entities\UserEntityCollection;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
+use App\Domain\ChallengeGroup\Entities\ChallengeGroupPostEntityCollection;
 use App\Domain\ChallengeGroup\Services\AuthorizeChallengeGroupService;
 use App\Infrastructure\Persistence\Mappers\UserMapper;
 use App\Infrastructure\Persistence\Models\Auth\User;
@@ -24,6 +25,7 @@ it('allows viewing when user is the owner', function () {
         $challenge_group->end_date,
         UserMapper::map($user),
         new UserEntityCollection(),
+        new ChallengeGroupPostEntityCollection(),
         $challenge_group->created_at,
         $challenge_group->updated_at
     )))->toBeTrue();
@@ -48,6 +50,7 @@ it('allows viewing when user is a member', function () {
         $challenge_group->end_date,
         UserMapper::map($owner),
         new UserEntityCollection(),
+        new ChallengeGroupPostEntityCollection(),
         $challenge_group->created_at,
         $challenge_group->updated_at
     )))->toBeTrue();
@@ -68,6 +71,7 @@ it('denies viewing when user is neither owner nor member', function () {
         $challenge_group->end_date,
         UserMapper::map($user_1),
         new UserEntityCollection(),
+        new ChallengeGroupPostEntityCollection(),
         $challenge_group->created_at,
         $challenge_group->updated_at
     )))->toBeTrue();
@@ -87,6 +91,7 @@ it('allows updating when user is the owner', function () {
         $challenge_group->end_date,
         UserMapper::map($user),
         new UserEntityCollection(),
+        new ChallengeGroupPostEntityCollection(),
         $challenge_group->created_at,
         $challenge_group->updated_at
     )))->toBeFalse();
@@ -107,6 +112,7 @@ it('denies deleting when user is not the owner', function () {
         $challenge_group->end_date,
         UserMapper::map($user_1),
         new UserEntityCollection(),
+        new ChallengeGroupPostEntityCollection(),
         $challenge_group->created_at,
         $challenge_group->updated_at
     )))->toBeTrue();
@@ -126,6 +132,7 @@ it('allows deleting when user is the owner', function () {
         $challenge_group->end_date,
         UserMapper::map($user),
         new UserEntityCollection(),
+        new ChallengeGroupPostEntityCollection(),
         $challenge_group->created_at,
         $challenge_group->updated_at
     )))->toBeFalse();
