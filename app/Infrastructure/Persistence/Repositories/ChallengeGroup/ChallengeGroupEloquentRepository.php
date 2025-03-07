@@ -8,12 +8,15 @@ use App\Domain\ChallengeGroup\Contracts\ChallengeGroupRepository;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
+use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntityCollection;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupPostEntityCollection;
 use App\Domain\Shared\Exceptions\DomainException;
+use App\Infrastructure\Persistence\Mappers\ChallengeGroupMapper;
 use App\Infrastructure\Persistence\Mappers\PostMapper;
 use App\Infrastructure\Persistence\Mappers\UserMapper;
 use App\Infrastructure\Persistence\Models\ChallengeGroups\ChallengeGroup;
 use DateTimeImmutable;
+use Illuminate\Database\Eloquent\Builder;
 
 final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
 {
@@ -107,6 +110,22 @@ final class ChallengeGroupEloquentRepository implements ChallengeGroupRepository
             $challenge_group->created_at,
             $challenge_group->updated_at,
         );
+    }
+
+    public function findByUser(int $user_id): ChallengeGroupEntityCollection
+    {
+        $owned_groups = ChallengeGroup::with(['creator', 'participants'])
+            ->where('created_by', '=', $user_id)
+            ->get();
+
+        $participating_groups = ChallengeGroup::with(['creator', 'participants'])
+            ->whereHas('participants', function (Builder $query) use ($user_id): void {
+                $query->where('user_id', $user_id);
+            })->get();
+
+        $challenge_groups = $owned_groups->merge($participating_groups);
+
+        return ChallengeGroupMapper::mapCollection(...$challenge_groups);
     }
 
     /**

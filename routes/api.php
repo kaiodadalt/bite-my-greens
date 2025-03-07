@@ -14,19 +14,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('challenge-group')->group(function () {
-        // TODO: Create this route
-        // Route::get('/', [ChallengeGroupController::class, 'getAll'])->name('challenge-group.all');
-
+        Route::get('/', [ChallengeGroupController::class, 'getAll'])->name('challenge-group.all');
         Route::post('/', [ChallengeGroupController::class, 'create'])->name('challenge-group.create');
-
-        Route::get('/{id}', [ChallengeGroupController::class, 'get'])->name('challenge-group.get');
-        Route::put('/{id}', [ChallengeGroupController::class, 'update'])->name('challenge-group.update');
-        Route::delete('/{id}', [ChallengeGroupController::class, 'delete'])->name('challenge-group.delete');
-
-        Route::post('/{id}/post', [ChallengeGroupPostController::class, 'post'])->name('challenge-group.post');
-
         Route::post('/join', [ChallengeGroupUserController::class, 'join'])->name('challenge-group.join');
         Route::post('/exit', [ChallengeGroupUserController::class, 'exit'])->name('challenge-group.exit');
 
+        Route::prefix('{id}')->group(function () {
+            Route::get('/', [ChallengeGroupController::class, 'get'])->name('challenge-group.get');
+            Route::put('/', [ChallengeGroupController::class, 'update'])->name('challenge-group.update');
+            Route::delete('/', [ChallengeGroupController::class, 'delete'])->name('challenge-group.delete');
+            Route::post('/post', [ChallengeGroupPostController::class, 'post'])->name('challenge-group.post');
+        });
     });
 });

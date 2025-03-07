@@ -24,15 +24,23 @@ final class ChallengeGroupResource extends JsonResource
         /** @var ChallengeGroupEntity $challenge_group */
         $challenge_group = $this->resource;
 
-        return [
+        $challenge_group_array = [
             'id' => $challenge_group->getId(),
             'name' => $challenge_group->getName(),
             'challenge_code' => Crypt::encrypt($challenge_group->getId()),
             'end_date' => $challenge_group->getEndDate()->format('Y-m-d'),
             'owner' => new UserResource($challenge_group->getOwner()),
-            'participants' => UserResource::collection($challenge_group->getParticipants()),
-            'posts' => PostResource::collection($challenge_group->getPosts()),
             'created_at' => $challenge_group->getCreatedAt(),
         ];
+
+        if (! $challenge_group->getParticipants()->isEmpty()) {
+            $challenge_group_array['participants'] = UserResource::collection($challenge_group->getParticipants());
+        }
+
+        if (! $challenge_group->getPosts()->isEmpty()) {
+            $challenge_group_array['posts'] = PostResource::collection($challenge_group->getPosts());
+        }
+
+        return $challenge_group_array;
     }
 }

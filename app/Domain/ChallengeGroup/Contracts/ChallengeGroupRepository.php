@@ -7,6 +7,7 @@ namespace App\Domain\ChallengeGroup\Contracts;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
+use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntityCollection;
 
 interface ChallengeGroupRepository
 {
@@ -19,6 +20,8 @@ interface ChallengeGroupRepository
     public function hasMember(int $id, int $user_id): bool;
 
     public function find(int $id): ?ChallengeGroupEntity;
+
+    public function findByUser(int $user_id): ChallengeGroupEntityCollection;
 
     public function findOrFail(int $id, int $created_by): ChallengeGroupEntity;
 }

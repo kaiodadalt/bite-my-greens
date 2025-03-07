@@ -17,7 +17,7 @@ final class ChallengeGroupPostController extends Controller
      * @throws ChallengeGroupNotFoundException
      * @throws UserNotAllowedToPostException
      */
-    public function post(int $id, AddChallengeGroupPostRequest $request, AddChallengeGroupPostUseCase $use_case): Response
+    public function post(AddChallengeGroupPostRequest $request, AddChallengeGroupPostUseCase $use_case): Response
     {
         $use_case->execute((int) auth()->id(), $request->toDTO());
 

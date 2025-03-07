@@ -10,6 +10,7 @@ use App\Domain\ChallengeGroup\Data\AddChallengeGroupPostData;
 use App\Domain\ChallengeGroup\Data\CreateChallengeGroupData;
 use App\Domain\ChallengeGroup\Data\UpdateChallengeGroupData;
 use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntity;
+use App\Domain\ChallengeGroup\Entities\ChallengeGroupEntityCollection;
 use App\Domain\ChallengeGroup\Exceptions\ChallengeGroupNotFoundException;
 use App\Domain\ChallengeGroup\Exceptions\UserNotAllowedToPostException;
 
@@ -37,6 +38,11 @@ final readonly class ChallengeGroupService
         }
 
         return $challenge_group;
+    }
+
+    public function getAll(int $user_id): ChallengeGroupEntityCollection
+    {
+        return $this->repository->findByUser($user_id);
     }
 
     /**
