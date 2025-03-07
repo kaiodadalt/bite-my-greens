@@ -90,7 +90,7 @@ it('throws exception when updating a non-existent challenge group', function () 
     $use_case = app(UpdateChallengeGroupUseCase::class);
 
     $controller = new ChallengeGroupController();
-    $controller->update($request, $challenge_group->id, $use_case);
+    $controller->update($request, $use_case);
 })->throws(ChallengeGroupNotFoundException::class, 'Challenge group not found');
 
 it('deletes a challenge group successfully', function () {
@@ -144,4 +144,26 @@ it('retrieves a challenge group successfully with users and posts', function () 
             'participants',
             'posts',
         ]);
+});
+
+it('retrieves all the challenge groups that the user have access', function () {
+    $user = User::factory()->create();
+    $another_user = User::factory()->create();
+    $challenge_group = ChallengeGroup::factory()->create([
+        'created_by' => $user->id,
+    ]);
+    $challenge_group->participants()->attach($user->id);
+    $challenge_group->participants()->attach($another_user->id);
+
+    ChallengeGroupPost::factory(3)->create([
+        'challenge_group_id' => $challenge_group->id,
+    ]);
+    ChallengeGroup::factory()->create([
+        'created_by' => $user->id,
+    ]);
+
+    $this->actingAs($user);
+    $response = $this->get(route('challenge-group.all'));
+
+    $response->assertOk();
 });

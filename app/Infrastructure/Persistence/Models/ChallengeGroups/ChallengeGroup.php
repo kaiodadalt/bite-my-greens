@@ -6,6 +6,7 @@ namespace App\Infrastructure\Persistence\Models\ChallengeGroups;
 
 use App\Infrastructure\Persistence\Models\Auth\User;
 use Database\Factories\ChallengeGroups\ChallengeGroupFactory;
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $created_by
  * @property string $name
  * @property User $creator
+ * @property DateTimeImmutable $end_date
  */
 final class ChallengeGroup extends Model
 {

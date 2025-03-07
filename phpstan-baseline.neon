@@ -133,6 +133,18 @@ parameters:
 			path: app/Infrastructure/Http/Resources/JsonResource.php
 
 		-
+			message: '#^Parameter \#7 \$created_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Mappers/ChallengeGroupMapper.php
+
+		-
+			message: '#^Parameter \#8 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Infrastructure/Persistence/Mappers/ChallengeGroupMapper.php
+
+		-
 			message: '#^Cannot access property \$total_score on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
@@ -226,12 +238,6 @@ parameters:
 			message: '#^Parameter \#8 \$updated_at of class App\\Domain\\ChallengeGroup\\Entities\\ChallengeGroupEntity constructor expects DateTimeImmutable, Carbon\\CarbonImmutable\|null given\.$#'
 			identifier: argument.type
 			count: 4
-			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
-
-		-
-			message: '#^Property App\\Infrastructure\\Persistence\\Models\\ChallengeGroups\\ChallengeGroup\:\:\$end_date \(Carbon\\CarbonImmutable\) does not accept DateTimeImmutable\.$#'
-			identifier: assign.propertyType
-			count: 1
 			path: app/Infrastructure/Persistence/Repositories/ChallengeGroup/ChallengeGroupEloquentRepository.php
 
 		-
