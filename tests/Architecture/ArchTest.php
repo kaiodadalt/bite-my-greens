@@ -16,6 +16,7 @@ arch('Allow models to be used only inside repositories')
     ->toBeClasses()
     ->toExtend('Illuminate\Database\Eloquent\Model')
     ->toOnlyBeUsedIn([
+        'App\Infrastructure\Events',
         'App\Infrastructure\Persistence\Mappers',
         'App\Infrastructure\Persistence\Models',
         'App\Infrastructure\Persistence\Repositories',
