@@ -53,10 +53,8 @@ final class AuthServiceProvider extends ServiceProvider
 
     private function registerPassportSingletons(): void
     {
-        $this->app->singleton(TokenRepository::class, fn (): \App\Infrastructure\Persistence\Repositories\PassportCache\TokenRepositoryWithCache => new TokenRepositoryWithCache);
-
-        $this->app->singleton(RefreshTokenRepository::class, fn (): \App\Infrastructure\Persistence\Repositories\PassportCache\RefreshTokenRepositoryWithCache => new RefreshTokenRepositoryWithCache);
-
-        $this->app->singleton(ClientRepository::class, fn (): \App\Infrastructure\Persistence\Repositories\PassportCache\ClientRepositoryWithCache => new ClientRepositoryWithCache);
+        $this->app->singleton(TokenRepository::class, fn (): TokenRepositoryWithCache => new TokenRepositoryWithCache);
+        $this->app->singleton(RefreshTokenRepository::class, fn (): RefreshTokenRepositoryWithCache => new RefreshTokenRepositoryWithCache);
+        $this->app->singleton(ClientRepository::class, fn (): ClientRepositoryWithCache => new ClientRepositoryWithCache);
     }
 }

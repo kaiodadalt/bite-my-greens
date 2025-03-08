@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Models\ChallengeGroups;
 
+use App\Infrastructure\Events\ChallengeGroupPostCreated;
 use App\Infrastructure\Persistence\Models\Auth\User;
 use Database\Factories\ChallengeGroups\ChallengeGroupPostFactory;
 use Database\Factories\ChallengeGroups\ChallengeGroupUserFactory;
@@ -37,6 +38,10 @@ final class ChallengeGroupPost extends Model
         'score',
         'created_at',
         'updated_at',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => ChallengeGroupPostCreated::class,
     ];
 
     public static function newFactory(): ChallengeGroupPostFactory
